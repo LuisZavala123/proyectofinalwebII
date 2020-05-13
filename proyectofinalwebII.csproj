@@ -134,8 +134,11 @@
     <Content Include="js\popper.min.js" />
     <Content Include="Principal.aspx" />
     <Content Include="Web.config" />
+    <Content Include="XML\Datos.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAOS\ArticuloDAOS.cs" />
+    <Compile Include="DAOS\VentaDAOS.cs" />
     <Compile Include="Modelos\MArticulos.cs" />
     <Compile Include="Modelos\MDetalles.cs" />
     <Compile Include="Modelos\MVentas.cs" />
@@ -176,9 +179,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DAOS\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
