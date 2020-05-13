@@ -12,5 +12,7 @@ namespace proyectofinalwebII.Modelos
         public String id { get; set; }
         public String descripccion { get; set; }
 
+        public List<MDetalles> Detalles = new List<MDetalles>();
+
     }
 }
