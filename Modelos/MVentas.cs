@@ -5,11 +5,12 @@ using System.Web;
 
 namespace proyectofinalwebII.Modelos
 {
-    public class MBebidas
+    public class MVentas
     {
-        public String nombre { get; set; }
-        public Double costo { get; set; }
-        public String clave { get; set; }
+        public String fecha { get; set; }
+        public Double total { get; set; }
+        public String id { get; set; }
         public String descripccion { get; set; }
+
     }
 }
