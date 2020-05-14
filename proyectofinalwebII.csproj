@@ -137,10 +137,12 @@
     <Content Include="XML\Datos.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAOS\ArticuloDAOS.cs" />
-    <Compile Include="DAOS\VentaDAOS.cs" />
+    <Compile Include="DAOS\ArticuloDAO.cs" />
+    <Compile Include="DAOS\UsuarioDAO.cs" />
+    <Compile Include="DAOS\VentaDAO.cs" />
     <Compile Include="Modelos\MArticulos.cs" />
     <Compile Include="Modelos\MDetalles.cs" />
+    <Compile Include="Modelos\MUsuarios.cs" />
     <Compile Include="Modelos\MVentas.cs" />
     <Compile Include="Principal.aspx.cs">
       <DependentUpon>Principal.aspx</DependentUpon>

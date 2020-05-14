@@ -14,5 +14,16 @@ namespace proyectofinalwebII.Modelos
 
         public List<MDetalles> Detalles = new List<MDetalles>();
 
+        public MVentas()
+        {
+        }
+
+        public MVentas(string fecha, double total, string id, string descripccion)
+        {
+            this.fecha = fecha;
+            this.total = total;
+            this.id = id;
+            this.descripccion = descripccion;
+        }
     }
 }
