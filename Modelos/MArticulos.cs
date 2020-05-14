@@ -12,5 +12,18 @@ namespace proyectofinalwebII.Modelos
         public Double costo { get; set; }
         public String id { get; set; }
         public String descripccion { get; set; }//aqui se agregaran todos los detalles
+
+        public MArticulos()
+        {
+        }
+
+        public MArticulos(string tipo, string nombre, double costo, string id, string descripccion)
+        {
+            this.tipo = tipo;
+            this.nombre = nombre;
+            this.costo = costo;
+            this.id = id;
+            this.descripccion = descripccion;
+        }
     }
 }

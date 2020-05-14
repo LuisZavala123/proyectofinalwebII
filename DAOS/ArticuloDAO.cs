@@ -8,7 +8,7 @@ using System.Xml;
 
 namespace proyectofinalwebII.DAOS
 {
-    public class ArticuloDAOS
+    public class ArticuloDAO
     {
         XmlDocument doc = new XmlDocument();
         string rutaXml = "..\\XML\\datos.xml";
