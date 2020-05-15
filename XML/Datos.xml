@@ -1,4 +1,19 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Datos>
-  
+  <Usuario>
+    <IdUsuario>1</IdUsuario>
+    <Nombre>Luis</Nombre>
+    <Primer_Apellido>Zavala</Primer_Apellido>
+    <Segundo_Apellido>Ayala</Segundo_Apellido>
+    <Contraseña>20-2C-B9-62-AC-59-07-5B-96-4B-07-15-2D-23-4B-70</Contraseña>
+    <Correo>a@123</Correo>
+    <Tipo>1</Tipo>
+  </Usuario>
+  <Producto>
+    <IdProducto>1</IdProducto>
+    <Nombre>ham</Nombre>
+    <Costo>12.3</Costo>
+    <Descripcion>cosa de prueba</Descripcion>
+    <Tipo>Hamburgesa</Tipo>
+  </Producto>
 </Datos>

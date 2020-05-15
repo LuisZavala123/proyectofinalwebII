@@ -45,8 +45,8 @@
                             </asp:DropDownList>
                     </div>
                     <div class="col-md-12 text-center">
-                        <asp:Button runat="server" class=" btn btn-danger mybtn btn-primary tx-tfm" Text="Cancelar" />
-                        <asp:Button runat="server" class=" btn btn-success mybtn btn-primary tx-tfm" Text="Aceptar" />
+                        <asp:Button runat="server" class=" btn btn-danger mybtn btn-primary tx-tfm" Text="Cancelar" OnClick="btnCancelar_Click" />
+                        <asp:Button runat="server" class=" btn btn-success mybtn btn-primary tx-tfm" Text="Aceptar" OnClick="btnAceptar_Click" />
                     </div>
                 </div>
             </div>
