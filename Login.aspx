@@ -14,14 +14,14 @@
                     </div>
                     <div class="form-group">
                         <asp:Label runat="server" Text="Correo Electronico"></asp:Label>
-                        <asp:TextBox runat="server" id="Email" type="email" class="form-control" placeholder="Ingresa tu Correo Electronico"></asp:TextBox>
+                        <asp:TextBox runat="server" id="txtEmail" type="email" class="form-control" placeholder="Ingresa tu Correo Electronico"></asp:TextBox>
                     </div>
                     <div class="form-group">
                         <asp:Label runat="server" Text="Contraseña"></asp:Label>
-                        <asp:TextBox runat="server" id="Password" type="password" class="form-control" placeholder="Ingresa tu contraseña"></asp:TextBox>
+                        <asp:TextBox runat="server" id="txtPassword" type="password" class="form-control" placeholder="Ingresa tu contraseña"></asp:TextBox>
                     </div>
                     <div class="col-md-12 text-center">
-                        <asp:Button runat="server" class=" btn btn-block mybtn btn-primary tx-tfm" Text="Login" />
+                        <asp:Button runat="server" class=" btn btn-block mybtn btn-primary tx-tfm" Text="Login" OnClick="btnLogin_Click"/>
                     </div>
                 </div>
             </div>

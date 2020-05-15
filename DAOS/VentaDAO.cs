@@ -10,7 +10,7 @@ namespace proyectofinalwebII.DAOS
     public class VentaDAO
     {
         XmlDocument doc = new XmlDocument();
-        string rutaXml = "..\\XML\\datos.xml";
+        string rutaXml = "C:\\Users\\cuyoc\\Desktop\\proyectofinalwebII\\XML\\Datos.xml";
 
 
 

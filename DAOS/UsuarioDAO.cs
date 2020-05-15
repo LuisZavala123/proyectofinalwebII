@@ -12,7 +12,8 @@ namespace proyectofinalwebII.DAOS
     public class UsuarioDAO
     {
         XmlDocument doc = new XmlDocument();
-        string rutaXml = "..\\XML\\datos.xml";
+        string rutaXml = "C:\\Users\\cuyoc\\Desktop\\proyectofinalwebII\\XML\\Datos.xml";
+        
 
 
 
@@ -123,7 +124,30 @@ namespace proyectofinalwebII.DAOS
             return nUsuario;
         }
 
-        
+        public MUsuarios Getbycorreo(String correo)
+        {
+            doc.Load(rutaXml);
+            XmlNodeList Lista = doc.SelectNodes("Datos/Usuario");
+
+            MUsuarios nUsuario = new MUsuarios();
+            foreach (XmlNode Usuario in Lista)
+            {
+                if (Usuario.SelectSingleNode("Correo").InnerText.Equals(correo))
+                {
+                    nUsuario.IdUsuario = Usuario.SelectSingleNode("IdUsuario").InnerText;
+                    nUsuario.Nombre = Usuario.SelectSingleNode("Nombre").InnerText;
+                    nUsuario.Contraseña = Usuario.SelectSingleNode("Contraseña").InnerText;
+                    nUsuario.Primer_Apellido = Usuario.SelectSingleNode("Primer_Apellido").InnerText;
+                    nUsuario.Segundo_Apellido = Usuario.SelectSingleNode("Segundo_Apellido").InnerText;
+                    nUsuario.Correo = Usuario.SelectSingleNode("Correo").InnerText;
+                    nUsuario.Tipo = Usuario.SelectSingleNode("Tipo").InnerText;
+                }
+            }
+
+            return nUsuario;
+        }
+
+
 
         public void Eliminar(string id)
         {
