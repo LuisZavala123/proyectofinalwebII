@@ -9,11 +9,11 @@
             <asp:Button ID="btnGenerar" CssClass="btn btn-success mybtn btn-primary tx-tfm" runat="server" Text="Generar Reporte" />
         </div>
         <asp:GridView CssClass="table table-bordered table-striped" ID="grvLista" runat="server"
-             DataKeyNames="IdUsuario">
+             DataKeyNames="Tipo">
             <Columns>
-                <asp:BoundField DataField="Producto" HeaderText="Producto" />
-                <asp:BoundField DataField="Cantidad vendida" HeaderText="Cantidad" />
-                <asp:BoundField DataField="Total Vendido" HeaderText="Total" />
+                <asp:BoundField DataField="Tipo" HeaderText="Producto" />
+                <asp:BoundField DataField="Cantidad" HeaderText="Cantidad Vendida" />
+                <asp:BoundField DataField="Total" HeaderText="Total Vendido" />
             </Columns>
         </asp:GridView>
 </asp:Content>

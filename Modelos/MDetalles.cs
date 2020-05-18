@@ -9,6 +9,7 @@ namespace proyectofinalwebII.Modelos
     {
         public String idVenta { get; set; }
         public String producto { get; set; }
+        public String Tipo { get; set; }
         public int cantidad { get; set; }
         public Double total { get; set; }
 
@@ -16,10 +17,11 @@ namespace proyectofinalwebII.Modelos
         {
         }
 
-        public MDetalles(string idVenta, string producto, int cantidad, double total)
+        public MDetalles(string idVenta, string producto, string Tipo, int cantidad, double total)
         {
             this.idVenta = idVenta;
             this.producto = producto;
+            this.Tipo = Tipo;
             this.cantidad = cantidad;
             this.total = total;
         }

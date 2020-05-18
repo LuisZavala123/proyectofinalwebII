@@ -170,6 +170,7 @@
     <Content Include="Login.aspx" />
     <Content Include="Principal.aspx" />
     <Content Include="Reportes.aspx" />
+    <Content Include="ventas.aspx" />
     <Content Include="Web.config" />
     <Content Include="XML\Datos.xml" />
   </ItemGroup>
@@ -202,7 +203,7 @@
     <Compile Include="Modelos\MDetalles.cs" />
     <Compile Include="Modelos\MUsuarios.cs" />
     <Compile Include="Modelos\MVentas.cs" />
-    <Compile Include="MReporte.cs" />
+    <Compile Include="Modelos\MReporte.cs" />
     <Compile Include="Principal.aspx.cs">
       <DependentUpon>Principal.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -224,6 +225,13 @@
     </Compile>
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="ventas.aspx.cs">
+      <DependentUpon>ventas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ventas.aspx.designer.cs">
+      <DependentUpon>ventas.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
