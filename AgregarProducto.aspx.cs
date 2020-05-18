@@ -18,7 +18,7 @@ namespace proyectofinalwebII
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
             ArticuloDAO Productodao = new ArticuloDAO();
-            Productodao.Agregar(Productodao.nId() + "", txtNombre.Text,double.Parse(txtCosto.Text), txtDescripcion.Text, CboxTipo.Text);
+            Productodao.Agregar(Productodao.nId() + "", txtNombre.Text,double.Parse(txtCosto.Text), txtDescripcion.Text, CboxTipo.SelectedValue);
             Response.Redirect("Principal.aspx");
         }
 

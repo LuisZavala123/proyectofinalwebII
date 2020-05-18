@@ -110,8 +110,44 @@ namespace proyectofinalwebII.DAOS
 
             return nProducto;
         }
+        public MArticulos GetbyNombre(String Nombre)
+        {
+            doc.Load(rutaXml);
+            XmlNodeList Lista = doc.SelectNodes("Datos/Producto");
 
-       
+            MArticulos nProducto = new MArticulos();
+            foreach (XmlNode Producto in Lista)
+            {
+                if (Producto.SelectSingleNode("Nombre").InnerText.Equals(Nombre))
+                {
+                    nProducto.id = Producto.SelectSingleNode("IdProducto").InnerText;
+                    nProducto.nombre = Producto.SelectSingleNode("Nombre").InnerText;
+                    nProducto.costo = Double.Parse(Producto.SelectSingleNode("Costo").InnerText);
+                    nProducto.descripccion = Producto.SelectSingleNode("Descripcion").InnerText;
+                    nProducto.tipo = Producto.SelectSingleNode("Tipo").InnerText;
+                    break;
+                }
+            }
+
+            return nProducto;
+        }
+
+        public List<String> GetNombres()
+        {
+            doc.Load(rutaXml);
+            XmlNodeList Lista = doc.SelectNodes("Datos/Producto");
+
+            List<String> Nombres = new List<String>();
+            foreach (XmlNode Producto in Lista)
+            {
+                
+                    Nombres.Add(Producto.SelectSingleNode("Nombre").InnerText);  
+                
+            }
+
+            return Nombres;
+        }
+
 
         public void Eliminar(string id)
         {

@@ -25,7 +25,7 @@ namespace proyectofinalwebII.DAOS
             nodoRaiz.InsertAfter(Venta, nodoRaiz.LastChild);
             foreach (var item in detalles)
             {
-                XmlNode detalle = Crear_Detalle(item.idVenta,item.producto ,item.cantidad + "", item.total+"");
+                XmlNode detalle = Crear_Detalle(item.idVenta,item.producto,item.Tipo ,item.cantidad + "", item.total+"");
                 nodoRaiz.InsertAfter(detalle, nodoRaiz.LastChild);
             }
 
@@ -66,7 +66,7 @@ namespace proyectofinalwebII.DAOS
             return Venta;
         }
 
-        private XmlNode Crear_Detalle(string idVenta, string idProducto, string Cantidad, string Total)
+        private XmlNode Crear_Detalle(string idVenta, string idProducto,string Tipo, string Cantidad, string Total)
         {
 
             XmlNode Detalle = doc.CreateElement("Detalle");
@@ -79,6 +79,10 @@ namespace proyectofinalwebII.DAOS
             XmlElement xidProducto = doc.CreateElement("IdProducto");
             xidProducto.InnerText = idProducto;
             Detalle.AppendChild(xidProducto);
+
+            XmlElement xTipo = doc.CreateElement("Tipo");
+            xTipo.InnerText = Tipo;
+            Detalle.AppendChild(xTipo);
 
             XmlElement xCantidad = doc.CreateElement("Cantidad");
             xCantidad.InnerText = Cantidad;
@@ -125,6 +129,7 @@ namespace proyectofinalwebII.DAOS
                 nDestalle = new MDetalles();
                 nDestalle.idVenta = detalle.SelectSingleNode("IdVenta").InnerText;
                 nDestalle.producto = detalle.SelectSingleNode("IdProducto").InnerText;
+                nDestalle.Tipo = detalle.SelectSingleNode("Tipo").InnerText;
                 nDestalle.total = double.Parse(detalle.SelectSingleNode("Total").InnerText);
                 nDestalle.cantidad = int.Parse(detalle.SelectSingleNode("Cantidad").InnerText);
 

@@ -21,7 +21,29 @@ namespace proyectofinalwebII
         {
             var nu = new VentaDAO();
             grvLista.AutoGenerateColumns = false;
-            grvLista.DataSource = nu.GetAll();
+            List<MReporte> reportes = new List<MReporte>();
+            reportes.Add(new MReporte("Hamburgesa",0,0));
+            reportes.Add(new MReporte("Pizza", 0, 0));
+            reportes.Add(new MReporte("Bebida", 0, 0));
+
+            foreach (var item in nu.GetAll())
+            {
+                foreach (var item2 in item.Detalles)
+                {
+
+
+                    foreach (var item3 in reportes)
+                    {
+                        if (item3.Tipo.Equals(item2.Tipo))
+                        {
+                            item3.Cantidad += item2.cantidad;
+                            item3.Total += item2.total;
+                        }
+                    }
+                }
+            }
+
+            grvLista.DataSource = reportes;
             grvLista.DataBind();
         }
     }
