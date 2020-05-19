@@ -11,27 +11,14 @@ namespace proyectofinalwebII
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                agProducto.Visible = false;
+                agUsuario.Visible = false;
+                Reporte.Visible = false;
+                Login.Visible = true;
+            }
         }
-        protected void btnHamburgesas_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("");
-        }
-        protected void btnPizzas_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("");
-        }
-        protected void btnBebidas_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("");
-        }
-        protected void btnNosotros_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("");
-        }
-        protected void btnOrden_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("");
-        }
+        
     }
 }

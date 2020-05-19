@@ -18,8 +18,7 @@
   </Producto>
   <Venta>
     <IdVenta>1</IdVenta>
-    <Fecha>
-    </Fecha>
+    <Fecha>17-5-2020</Fecha>
     <Total>12.3</Total>
     <Descripcion>
     </Descripcion>
@@ -40,8 +39,7 @@
   </Producto>
   <Venta>
     <IdVenta>2</IdVenta>
-    <Fecha>
-    </Fecha>
+    <Fecha>18-5-2020</Fecha>
     <Total>12.4</Total>
     <Descripcion>
     </Descripcion>
@@ -63,8 +61,7 @@
   </Producto>
   <Venta>
     <IdVenta>3</IdVenta>
-    <Fecha>
-    </Fecha>
+    <Fecha>18-5-2020</Fecha>
     <Total>43</Total>
     <Descripcion>
     </Descripcion>
