@@ -97,6 +97,7 @@
     <Content Include="img\iconos\banner1.png" />
     <Content Include="img\iconos\bebidas.png" />
     <Content Include="img\iconos\hamburguesas.png" />
+    <Content Include="img\iconos\Login.png" />
     <Content Include="img\iconos\nosotros.png" />
     <Content Include="img\iconos\orden.png" />
     <Content Include="img\iconos\pizzas.png" />

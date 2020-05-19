@@ -14,10 +14,10 @@ namespace proyectofinalwebII
         {
             if (!IsPostBack)
             {
-                actualizar();
+               
             }
         }
-        protected void actualizar()
+        protected void actualizar(String fecha)
         {
             var nu = new VentaDAO();
             grvLista.AutoGenerateColumns = false;
@@ -34,7 +34,7 @@ namespace proyectofinalwebII
 
                     foreach (var item3 in reportes)
                     {
-                        if (item3.Tipo.Equals(item2.Tipo))
+                        if (item3.Tipo.Equals(item2.Tipo) && item.fecha.Equals(fecha))
                         {
                             item3.Cantidad += item2.cantidad;
                             item3.Total += item2.total;
@@ -45,6 +45,11 @@ namespace proyectofinalwebII
 
             grvLista.DataSource = reportes;
             grvLista.DataBind();
+        }
+
+        protected void Calendario_SelectionChanged(object sender, EventArgs e)
+        {
+            actualizar(Calendario.SelectedDate.Day + "-" + Calendario.SelectedDate.Month + "-" + Calendario.SelectedDate.Year);
         }
     }
 }

@@ -3,7 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="contenido" runat="server">
     <div class="row justify-content-center my-2">
-        <asp:Calendar ID="Calendario" CssClass="card" runat="server"></asp:Calendar>   
+        <asp:Calendar ID="Calendario" CssClass="card" runat="server" OnSelectionChanged="Calendario_SelectionChanged"></asp:Calendar>   
         </div>
     <div class="row justify-content-center my-2">
             <asp:Button ID="btnGenerar" CssClass="btn btn-success mybtn btn-primary tx-tfm" runat="server" Text="Generar Reporte" />

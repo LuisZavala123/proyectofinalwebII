@@ -46,7 +46,8 @@ namespace proyectofinalwebII
         {
 
             VentaDAO daoventa = new VentaDAO();
-            MVentas venta = new MVentas("", Double.Parse(lbltotal.Text),daoventa.nId()+"","");
+            DateTime hoy = DateTime.Now;
+            MVentas venta = new MVentas(hoy.Day+"-"+hoy.Month+"-"+hoy.Year, Double.Parse(lbltotal.Text),daoventa.nId()+"","");
             daoventa.Agregar(venta.id,venta.fecha,venta.total,venta.descripccion,detalle);
             Response.Redirect("Principal.aspx");
 
