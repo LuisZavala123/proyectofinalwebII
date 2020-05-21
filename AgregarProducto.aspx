@@ -45,17 +45,18 @@
     
     <script type="text/javascript">
         $(document).ready(function () {
-           $('#btnAceptar').click(function () {
-               var Nombre = $('#txtNombre').val();
-                var Costo = $('#txtCosto').val();
-                var Desc = $('#txtDescripcion').val();
-                var tipo = $('#CboxTipon').val();
-                
+            $('#contenido_btnAceptar').click(function (e) {
+                e.preventDefault();
+                var Nombre = $('#contenido_txtNombre').val();
+                var Costo = $('#contenido_txtCosto').val();
+                var Desc = $('#contenido_txtDescripcion').val();
+                var tipo = $('#contenido_CboxTipo').val();
                 $.ajax({
-                    url: '~/WS/WSArticulos.asmx/Agregar',
-                    data: { nom: Nombre, costo: Costo, Descripcion: Desc, Tipo: tipo },
-                    method: 'post',
-                    dataType: 'application / x - www - form - urlencoded',
+                    url: 'WS/WSArticulos.asmx/Agregar',
+                    data: '{ "nom":"'+ Nombre+'", "costo":"'+ Costo+'", "Descripcion":"'+ Desc+'", "Tipo": "'+tipo+'" }',
+                    contentType: 'application/json; utf-8',
+                    dataType: 'json',
+                    type: 'POST',
                     success: function (data) {
                         console.log(data);
                     },

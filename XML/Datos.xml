@@ -101,4 +101,18 @@
     <Descripcion>adsd</Descripcion>
     <Tipo>Pizza</Tipo>
   </Producto>
+  <Producto>
+    <IdProducto>6</IdProducto>
+    <Nombre>undefined</Nombre>
+    <Costo>undefined</Costo>
+    <Descripcion>undefined</Descripcion>
+    <Tipo>undefined</Tipo>
+  </Producto>
+  <Producto>
+    <IdProducto>7</IdProducto>
+    <Nombre>hawaiana</Nombre>
+    <Costo>12.3</Costo>
+    <Descripcion>pizza</Descripcion>
+    <Tipo>undefined</Tipo>
+  </Producto>
 </Datos>

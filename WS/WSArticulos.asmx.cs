@@ -47,7 +47,7 @@ namespace proyectofinalwebII.WS
 
         }
 
-        [WebMethod]
+        
         private XmlNode Crear_Producto(string id, string nom, string costo, String Descripcion, String Tipo)
         {
 
