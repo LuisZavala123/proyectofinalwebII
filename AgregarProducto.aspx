@@ -55,7 +55,6 @@
                     url: '~/WS/WSArticulos.asmx/Agregar',
                     data: { nom: Nombre, costo: Costo, Descripcion: Desc, Tipo: tipo },
                     method: 'post',
-                    dataType: 'application / x - www - form - urlencoded',
                     success: function (data) {
                         console.log(data);
                     },
