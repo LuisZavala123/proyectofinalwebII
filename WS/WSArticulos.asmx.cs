@@ -2,24 +2,33 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Web;
+using System.Web.Services;
 using System.Xml;
 
-namespace proyectofinalwebII.DAOS
+namespace proyectofinalwebII.WS
 {
-    public class ArticuloDAO
+    /// <summary>
+    /// Descripción breve de WSArticulos
+    /// </summary>
+    [WebService(Namespace = "http://tempuri.org/")]
+    [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+    [System.ComponentModel.ToolboxItem(false)]
+    // Para permitir que se llame a este servicio web desde un script, usando ASP.NET AJAX, quite la marca de comentario de la línea siguiente. 
+    [System.Web.Script.Services.ScriptService]
+    public class WSArticulos : System.Web.Services.WebService
     {
+
         XmlDocument doc = new XmlDocument();
         string rutaXml = "C:\\Users\\cuyoc\\Desktop\\proyectofinalwebII\\XML\\Datos.xml";
 
 
-
-        public void Agregar(string nom,double costo,String Descripcion, String Tipo)
+        [WebMethod]
+        public void Agregar(string nom, String costo, String Descripcion, String Tipo)
         {
             doc.Load(rutaXml);
 
-            XmlNode Producto = Crear_Producto(nId()+"", nom,costo+"",Descripcion,Tipo);
+            XmlNode Producto = Crear_Producto(nId() + "", nom, costo + "", Descripcion, Tipo);
 
             XmlNode nodoRaiz = doc.DocumentElement;
 
@@ -28,6 +37,7 @@ namespace proyectofinalwebII.DAOS
             doc.Save(rutaXml);
 
         }
+        [WebMethod]
         public int nId()
         {
             List<MArticulos> respuesta = new List<MArticulos>();
@@ -37,6 +47,7 @@ namespace proyectofinalwebII.DAOS
 
         }
 
+        [WebMethod]
         private XmlNode Crear_Producto(string id, string nom, string costo, String Descripcion, String Tipo)
         {
 
@@ -67,6 +78,7 @@ namespace proyectofinalwebII.DAOS
             return Producto;
         }
 
+        [WebMethod]
         public List<MArticulos> GetAll()
         {
             List<MArticulos> respuesta = new List<MArticulos>();
@@ -89,6 +101,7 @@ namespace proyectofinalwebII.DAOS
             return respuesta;
         }
 
+        [WebMethod]
         public MArticulos Getbyid(String id)
         {
             doc.Load(rutaXml);
@@ -110,6 +123,8 @@ namespace proyectofinalwebII.DAOS
 
             return nProducto;
         }
+
+        [WebMethod]
         public MArticulos GetbyNombre(String Nombre)
         {
             doc.Load(rutaXml);
@@ -132,6 +147,7 @@ namespace proyectofinalwebII.DAOS
             return nProducto;
         }
 
+        [WebMethod]
         public List<String> GetNombres()
         {
             doc.Load(rutaXml);
@@ -140,15 +156,16 @@ namespace proyectofinalwebII.DAOS
             List<String> Nombres = new List<String>();
             foreach (XmlNode Producto in Lista)
             {
-                
-                    Nombres.Add(Producto.SelectSingleNode("Nombre").InnerText);  
-                
+
+                Nombres.Add(Producto.SelectSingleNode("Nombre").InnerText);
+
             }
 
             return Nombres;
         }
 
 
+        [WebMethod]
         public void Eliminar(string id)
         {
             doc.Load(rutaXml);
@@ -172,6 +189,7 @@ namespace proyectofinalwebII.DAOS
             doc.Save(rutaXml);
         }
 
+        [WebMethod]
         public void Editar(string id, string nom, double costo, String Descripcion, String Tipo)
         {
 
@@ -179,7 +197,7 @@ namespace proyectofinalwebII.DAOS
 
             XmlNodeList lista = doc.SelectNodes("Datos/Producto");
 
-            XmlNode nuevo_Producto = Crear_Producto(id, nom,costo+"",Descripcion,Tipo);
+            XmlNode nuevo_Producto = Crear_Producto(id, nom, costo + "", Descripcion, Tipo);
 
             foreach (XmlNode item in lista)
             {
@@ -194,6 +212,5 @@ namespace proyectofinalwebII.DAOS
 
             doc.Save(rutaXml);
         }
-
     }
 }

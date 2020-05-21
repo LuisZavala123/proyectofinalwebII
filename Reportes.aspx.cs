@@ -12,9 +12,19 @@ namespace proyectofinalwebII
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+         
+            if (Session["Nombre"]!=null) {
+                if (new UsuarioDAO().IsUsuario(Session["Nombre"].ToString()))
+                {
+                }
+                else
+                {
+                    Response.Redirect("Login.aspx");
+                }
+            }
+            else
             {
-               
+                Response.Redirect("Login.aspx");
             }
         }
         protected void actualizar(String fecha)

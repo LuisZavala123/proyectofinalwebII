@@ -33,7 +33,7 @@
                             </asp:DropDownList>
                     </div>
                     <div class="col-md-12 text-center">
-                        <asp:Button runat="server" class=" btn btn-success mybtn btn-primary tx-tfm" Text="Aceptar" onClick="btnAceptar_Click"/>
+                        <asp:Button runat="server" class=" btn btn-success mybtn btn-primary tx-tfm" Text="Aceptar" ID="btnAceptar"/>
                     </div>
                 </div>
             </div>
@@ -42,4 +42,28 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Scripts" runat="server">
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+           $('#btnAceptar').click(function () {
+               var Nombre = $('#txtNombre').val();
+                var Costo = $('#txtCosto').val();
+                var Desc = $('#txtDescripcion').val();
+                var tipo = $('#CboxTipon').val();
+                
+                $.ajax({
+                    url: '~/WS/WSArticulos.asmx/Agregar',
+                    data: { nom: Nombre, costo: Costo, Descripcion: Desc, Tipo: tipo },
+                    method: 'post',
+                    dataType: 'application / x - www - form - urlencoded',
+                    success: function (data) {
+                        console.log(data);
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                });
+            });
+        });
+    </script>
 </asp:Content>

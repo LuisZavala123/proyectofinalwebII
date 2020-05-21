@@ -24,6 +24,7 @@ namespace proyectofinalwebII
             MUsuarios user = userdao.Getbycorreo(txtEmail.Text);
             if (user!=null) {
                 if(user.Contraseña.Equals(BitConverter.ToString(hashmd5.ComputeHash(UTF8Encoding.UTF8.GetBytes(txtPassword.Text))))){
+                    Session["Nombre"] = user.Nombre;
                     Response.Redirect("Principal.aspx");
                 }
             }

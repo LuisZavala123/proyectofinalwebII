@@ -1,4 +1,5 @@
-﻿using System;
+﻿using proyectofinalwebII.DAOS;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,8 +18,21 @@ namespace proyectofinalwebII
                 agUsuario.Visible = false;
                 Reporte.Visible = false;
                 Login.Visible = true;
+                exit.Visible = false;
+            }
+            if (Session["Nombre"] != null)
+            {
+                if (new UsuarioDAO().IsUsuario(Session["Nombre"].ToString()))
+                {
+                    agProducto.Visible = true;
+                    agUsuario.Visible = true;
+                    Reporte.Visible = true;
+                    Login.Visible = false;
+                    exit.Visible = true;
+                } 
             }
         }
-        
+      
+
     }
 }
