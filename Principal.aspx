@@ -15,7 +15,7 @@
                                                 <h1>
                                                   Hamburguesa Bigman
                                                 </h1>
-                                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquid aliquam, quam porro iusto sit temporibus. Minus quos error odit culpa! Ratione explicabo cupiditate tempora nobis aperiam voluptate aliquid similique nulla?</p>
+                                                <p></p>
                                                 <a href="#" class="btn btn-outline-secondary btn-lg text-white">
                                                   Read More
                                                 </a>
@@ -51,7 +51,7 @@
                                                 <h1>
                                                   Alitas de pollo
                                                 </h1>
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam provident vel, hic doloremque veritatis officiis, voluptates laudantium sit nulla eaque quidem expedita ut repellendus at ullam blanditiis minima nam iste ducimus magni. At necessitatibus perspiciatis quidem vel dolorum blanditiis voluptatum amet illo animi, maxime modi fuga, adipisci autem. Cum, nesciunt?</p>
+                                                <p></p>
                                                 <a href="#" class="btn btn-outline-secondary btn-lg text-white">
                                                   Read More
                                                 </a>
@@ -84,7 +84,7 @@
                     <div class="card-body">
                       <h3>Noticia 1</h3>
                       <p>
-                        Amet alias a ipsa tempora ullam asperiores aperiam rem? 
+                        
                       </p>
                     </div>
                   </div>
@@ -94,7 +94,7 @@
                     <div class="card-body">
                       <h3>Noticia 2</h3>
                       <p>
-                        Amet alias a ipsa tempora ullam asperiores aperiam rem? 
+                         
                       </p>
                     </div>
                   </div>
@@ -114,7 +114,7 @@
                     <div class="card-body">
                       <h3>Noticia 4</h3>
                       <p>
-                        Amet alias a ipsa tempora ullam asperiores aperiam rem? 
+                        
                       </p>
                     </div>
                   </div>

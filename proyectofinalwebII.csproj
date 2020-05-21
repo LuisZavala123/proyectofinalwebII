@@ -46,6 +46,8 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -69,6 +71,40 @@
   <ItemGroup>
     <Content Include="AgregarProducto.aspx" />
     <Content Include="AgregarUsuario.aspx" />
+    <Content Include="Connected Services\WSArticulo\proyectofinalwebII.WSArticulo.AgregarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WSArticulo\proyectofinalwebII.WSArticulo.ArrayOfString.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WSArticulo\proyectofinalwebII.WSArticulo.EditarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WSArticulo\proyectofinalwebII.WSArticulo.EliminarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WSArticulo\proyectofinalwebII.WSArticulo.GetAllResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WSArticulo\proyectofinalwebII.WSArticulo.GetbyidResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WSArticulo\proyectofinalwebII.WSArticulo.GetbyNombreResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WSArticulo\proyectofinalwebII.WSArticulo.GetNombresResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\WSArticulo\proyectofinalwebII.WSArticulo.MArticulos.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\WSArticulo\WSArticulos.disco" />
+    <None Include="Connected Services\WSArticulo\configuration91.svcinfo" />
+    <None Include="Connected Services\WSArticulo\configuration.svcinfo" />
+    <None Include="Connected Services\WSArticulo\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="css\bootstrap-grid.css" />
     <Content Include="css\bootstrap-grid.min.css" />
     <Content Include="css\bootstrap-reboot.css" />
@@ -173,6 +209,9 @@
     <Content Include="Reportes.aspx" />
     <Content Include="ventas.aspx" />
     <Content Include="Web.config" />
+    <Content Include="WS\WSArticulos.asmx" />
+    <Content Include="WS\WSUsuario.asmx" />
+    <Content Include="WS\WSVenta.asmx" />
     <Content Include="XML\Datos.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -189,6 +228,11 @@
     </Compile>
     <Compile Include="AgregarUsuario.aspx.designer.cs">
       <DependentUpon>AgregarUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\WSArticulo\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="DAOS\ArticuloDAO.cs" />
     <Compile Include="DAOS\UsuarioDAO.cs" />
@@ -234,6 +278,18 @@
     <Compile Include="ventas.aspx.designer.cs">
       <DependentUpon>ventas.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WS\WSArticulos.asmx.cs">
+      <DependentUpon>WSArticulos.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WS\WSUsuario.asmx.cs">
+      <DependentUpon>WSUsuario.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WS\WSVenta.asmx.cs">
+      <DependentUpon>WSVenta.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="js\bootstrap.bundle.js.map" />
@@ -247,6 +303,7 @@
     <Content Include="css\bootstrap.css.map" />
     <Content Include="css\bootstrap.min.css.map" />
     <Content Include="letras\CooperFiveOpti-Black.otf" />
+    <None Include="Connected Services\WSArticulo\WSArticulos.wsdl" />
     <None Include="packages.config" />
     <Content Include="Site.Master" />
     <None Include="Web.Debug.config">
@@ -256,7 +313,12 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\WSArticulo\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

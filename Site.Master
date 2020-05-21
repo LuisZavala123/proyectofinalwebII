@@ -47,6 +47,9 @@
                     <li runat="server" class="nav-item" id="Login">
                         <a href="/Login.aspx"><img src="img/iconos/Login.png" class="nav-link btn"></a>
                     </li>
+                    <li runat="server" class="nav-item" id="exit">
+                        <a href="#"><img src="img/iconos/exit.png" class="nav-link btn"></a>
+                    </li>
                 </ul>
            </div>
     </nav>
@@ -54,10 +57,12 @@
             <asp:ContentPlaceHolder ID="contenido" runat="server">
             </asp:ContentPlaceHolder>
          </form>
-    <asp:ContentPlaceHolder ID="Scripts" runat="server">
-            </asp:ContentPlaceHolder> 
-        <script src="js/jquery.js"></script>
+    <script src="js/jquery.js"></script>
         <script src="js/popper.min.js"></script>
         <script src="js/bootstrap.js"></script>
+    <asp:ContentPlaceHolder ID="Scripts" runat="server">
+            </asp:ContentPlaceHolder> 
+        
+        
 </body>
 </html>

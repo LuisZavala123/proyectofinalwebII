@@ -5,18 +5,29 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
+using System.Web.Services;
 using System.Xml;
 
-namespace proyectofinalwebII.DAOS
+namespace proyectofinalwebII.WS
 {
-    public class UsuarioDAO
+    /// <summary>
+    /// Descripción breve de WSUsuario
+    /// </summary>
+    [WebService(Namespace = "http://tempuri.org/")]
+    [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+    [System.ComponentModel.ToolboxItem(false)]
+    // Para permitir que se llame a este servicio web desde un script, usando ASP.NET AJAX, quite la marca de comentario de la línea siguiente. 
+     [System.Web.Script.Services.ScriptService]
+    public class WSUsuario : System.Web.Services.WebService
     {
+
+        
         XmlDocument doc = new XmlDocument();
         string rutaXml = "C:\\Users\\cuyoc\\Desktop\\proyectofinalwebII\\XML\\Datos.xml";
-        
 
 
 
+        [WebMethod]
         public void Agregar(string id, string nom, string primer_apellido, string segundo_apellido, string contraseña, string Correo, string Tipo)
         {
             MD5CryptoServiceProvider hashmd5 = new MD5CryptoServiceProvider();
@@ -31,6 +42,8 @@ namespace proyectofinalwebII.DAOS
             doc.Save(rutaXml);
 
         }
+
+        [WebMethod]
         public int nId()
         {
             List<MUsuarios> respuesta = new List<MUsuarios>();
@@ -40,6 +53,7 @@ namespace proyectofinalwebII.DAOS
 
         }
 
+        [WebMethod]
         private XmlNode Crear_Usuario(string id, string nom, string primer_apellido, string segundo_apellido, string contraseña, string Correo, string Tipo)
         {
 
@@ -78,6 +92,7 @@ namespace proyectofinalwebII.DAOS
             return Usuario;
         }
 
+        [WebMethod]
         public List<MUsuarios> GetAll()
         {
             List<MUsuarios> respuesta = new List<MUsuarios>();
@@ -101,6 +116,7 @@ namespace proyectofinalwebII.DAOS
             return respuesta;
         }
 
+        [WebMethod]
         public MUsuarios Getbyid(String id)
         {
             doc.Load(rutaXml);
@@ -124,12 +140,13 @@ namespace proyectofinalwebII.DAOS
             return nUsuario;
         }
 
+        [WebMethod]
         public Boolean IsUsuario(String Nombre)
         {
             doc.Load(rutaXml);
             XmlNodeList Lista = doc.SelectNodes("Datos/Usuario");
             Boolean resp = false;
-            
+
             foreach (XmlNode Usuario in Lista)
             {
                 if (Usuario.SelectSingleNode("Nombre").InnerText.Equals(Nombre))
@@ -140,6 +157,8 @@ namespace proyectofinalwebII.DAOS
 
             return resp;
         }
+
+        [WebMethod]
         public MUsuarios Getbycorreo(String correo)
         {
             doc.Load(rutaXml);
@@ -163,8 +182,7 @@ namespace proyectofinalwebII.DAOS
             return nUsuario;
         }
 
-
-
+        [WebMethod]
         public void Eliminar(string id)
         {
             doc.Load(rutaXml);
@@ -188,6 +206,7 @@ namespace proyectofinalwebII.DAOS
             doc.Save(rutaXml);
         }
 
+        [WebMethod]
         public void Editar(string id, string nom, string primer_apellido, string segundo_apellido, string contraseña, string Correo, string Tipo)
         {
 

@@ -73,4 +73,32 @@
     <Cantidad>1</Cantidad>
     <Total>43</Total>
   </Detalle>
+  <Venta>
+    <IdVenta>4</IdVenta>
+    <Fecha>19-5-2020</Fecha>
+    <Total>36.9</Total>
+    <Descripcion>
+    </Descripcion>
+  </Venta>
+  <Detalle>
+    <IdVenta>4</IdVenta>
+    <IdProducto>ham</IdProducto>
+    <Tipo>Hamburgesa</Tipo>
+    <Cantidad>3</Cantidad>
+    <Total>36.9</Total>
+  </Detalle>
+  <Producto>
+    <IdProducto>4</IdProducto>
+    <Nombre>conweb</Nombre>
+    <Costo>123</Costo>
+    <Descripcion>das</Descripcion>
+    <Tipo>Hamburgesa</Tipo>
+  </Producto>
+  <Producto>
+    <IdProducto>5</IdProducto>
+    <Nombre>desde</Nombre>
+    <Costo>123</Costo>
+    <Descripcion>adsd</Descripcion>
+    <Tipo>Pizza</Tipo>
+  </Producto>
 </Datos>
