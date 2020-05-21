@@ -49,6 +49,7 @@ CREATE TABLE IF NOT EXISTS `Tiemda`.`Detalles` (
   `Cantidad` INT NOT NULL,
   `Total` DECIMAL(10,2) NOT NULL,
   INDEX `idVenta_idx` (`idVenta` ASC) VISIBLE,
+  PRIMARY KEY (`Producto`),
   CONSTRAINT `idVenta`
     FOREIGN KEY (`idVenta`)
     REFERENCES `Tiemda`.`Ventas` (`idVentas`)
