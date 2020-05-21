@@ -59,17 +59,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Tiemda`.`Reporte`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Tiemda`.`Reporte` (
-  `Tipo` VARCHAR(45) NOT NULL,
-  `Cantidad` INT NULL,
-  `Total` DECIMAL(10,2) NULL,
-  `Reportecol` VARCHAR(45) NULL)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `Tiemda`.`Usuario`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Tiemda`.`Usuario` (
