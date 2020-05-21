@@ -48,14 +48,22 @@ CREATE TABLE IF NOT EXISTS `Tiemda`.`Detalles` (
   `Tipo` ENUM('Hamburguesa', 'Pizza', 'Bebida') NOT NULL,
   `Cantidad` INT NOT NULL,
   `Total` DECIMAL(10,2) NOT NULL,
+  `idDetalles` VARCHAR(45) NOT NULL,
   INDEX `idVenta_idx` (`idVenta` ASC) VISIBLE,
-  PRIMARY KEY (`Producto`),
+  INDEX `Producto_idx` (`Producto` ASC) VISIBLE,
+  PRIMARY KEY (idVenta,Producto),
   CONSTRAINT `idVenta`
     FOREIGN KEY (`idVenta`)
     REFERENCES `Tiemda`.`Ventas` (`idVentas`)
     ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `Producto`
+    FOREIGN KEY (`Producto`)
+    REFERENCES `Tiemda`.`Articulos` (`ID`)
+    ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
 
 
 -- -----------------------------------------------------
