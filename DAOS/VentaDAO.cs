@@ -34,6 +34,34 @@ namespace proyectofinalwebII.DAOS
             }
         }
 
+        public int lastid()
+        {
+            try
+            {
+                MySqlCommand sentencia = new MySqlCommand();
+                sentencia.CommandText = "SELECT LAST_INSERT_ID();";
+
+                DataTable tabla = Conexion.ejecutarConsulta(sentencia);
+
+                int r = 0;
+
+                foreach (DataRow fila in tabla.Rows)
+                {
+                    r = int.Parse(fila["LAST_INSERT_ID()"].ToString());
+                    
+                }
+
+                return r;
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+            finally
+            {
+                Conexion.desconectar();
+            }
+        }
 
         public List<MVentas> GetAll()
         {
@@ -133,7 +161,7 @@ namespace proyectofinalwebII.DAOS
                 sentencia.CommandText = "INSERT INTO detalles (idVenta ,Producto ,Tipo , Cantidad,"+
                     " Total) " +
                     "VALUES("+obj.idVenta+" ,"+obj.producto+" ,'"+obj.Tipo+"', "+obj.cantidad
-                    +","+obj.cantidad+");";
+                    +","+obj.total+");";
 
                 Conexion.ejecutarSentencia(sentencia, true);
 
@@ -168,6 +196,41 @@ namespace proyectofinalwebII.DAOS
                     det.producto = fila["Producto"].ToString();
                     det.Tipo = fila["Tipo"].ToString();
                     det.cantidad =int.Parse(fila["Cantidad"].ToString());
+                    det.total = double.Parse(fila["Total"].ToString());
+                    lista.Add(det);
+                }
+
+                return lista;
+            }
+            catch (Exception)
+            {
+                return lista;
+            }
+            finally
+            {
+                Conexion.desconectar();
+            }
+        }
+
+        public List<MDetalles> GetallDetalles()
+        {
+            List<MDetalles> lista = new List<MDetalles>();
+            MDetalles det = new MDetalles();
+            try
+            {
+                MySqlCommand sentencia = new MySqlCommand();
+                sentencia.CommandText = "SELECT * FROM detalles;";
+                DataTable tabla = Conexion.ejecutarConsulta(sentencia);
+
+
+
+                foreach (DataRow fila in tabla.Rows)
+                {
+
+                    det.idVenta = fila["idVenta"].ToString();
+                    det.producto = fila["Producto"].ToString();
+                    det.Tipo = fila["Tipo"].ToString();
+                    det.cantidad = int.Parse(fila["Cantidad"].ToString());
                     det.total = double.Parse(fila["Total"].ToString());
                     lista.Add(det);
                 }

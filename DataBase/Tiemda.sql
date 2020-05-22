@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `Tiemda`.`Usuario` (
   `Nombre` VARCHAR(45) NOT NULL,
   `Primer_Apellido` VARCHAR(45) NOT NULL,
   `Segundo_Apellido` VARCHAR(45) NOT NULL,
-  `Contraseña` VARCHAR(45) NOT NULL,
+  `Contraseña` VARCHAR(100) NOT NULL,
   `Correo` VARCHAR(45) NOT NULL,
   `Tipo` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idUsuario`))
