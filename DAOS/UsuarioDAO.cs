@@ -19,7 +19,7 @@ namespace proyectofinalwebII.DAOS
             {
                 MySqlCommand sentencia = new MySqlCommand();
                 sentencia.CommandText = "INSERT INTO usuario ( Nombre, Primer_Apellido,"+
-                    " Segundo_Apellido, Contraseña, Correo, Tipo)" +
+                    " Segundo_Apellido, Contraseña, Correo, Tipo) VALUES" +
                     "('"+ obj.Nombre + "', '"+ obj.Primer_Apellido + "', '"+ obj.Segundo_Apellido + 
                     "', '"+ obj.Contraseña + "', '"+obj.Correo+"', '"+ obj.Tipo + "');";
 

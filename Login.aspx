@@ -21,7 +21,7 @@
                         <asp:TextBox runat="server" id="txtPassword" type="password" class="form-control" placeholder="Ingresa tu contraseña"></asp:TextBox>
                     </div>
                     <div class="col-md-12 text-center">
-                        <asp:Button runat="server" class=" btn btn-block mybtn btn-primary tx-tfm" Text="Login" OnClick="btnLogin_Click"/>
+                        <asp:Button runat="server" class=" btn btn-block mybtn btn-primary tx-tfm" Text="Login"  id="btnLogin"/>
                     </div>
                 </div>
             </div>
@@ -30,4 +30,26 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Scripts" runat="server">
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#contenido_btnLogin').click(function (e) {
+                e.preventDefault();
+                var Password = $('#contenido_txtPassword').val();
+                var Correo = $('#contenido_txtEmail').val();
+                $.ajax({
+                    url: 'WS/WSUsuario.asmx/Confirmar',
+                    data: '{ "correo":"' + Correo + '", "pw":"' + Password +'"}',
+                    contentType: 'application/json; utf-8',
+                    dataType: 'json',
+                    type: 'POST',
+                    success: function (data) {
+                        console.log(data);
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                });
+            });
+        });
+    </script>
 </asp:Content>

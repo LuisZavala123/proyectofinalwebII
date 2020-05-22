@@ -46,7 +46,7 @@
                     </div>
                     <div class="col-md-12 text-center">
                         <asp:Button runat="server" class=" btn btn-danger mybtn btn-primary tx-tfm" Text="Cancelar" OnClick="btnCancelar_Click" />
-                        <asp:Button runat="server" class=" btn btn-success mybtn btn-primary tx-tfm" Text="Aceptar" OnClick="btnAceptar_Click" />
+                        <asp:Button runat="server" class=" btn btn-success mybtn btn-primary tx-tfm" Text="Aceptar" ID="btnAceptar" />
                     </div>
                 </div>
             </div>
@@ -55,4 +55,30 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Scripts" runat="server">
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#contenido_btnAceptar').click(function (e) {
+                e.preventDefault();
+                var Nombre = $('#contenido_txtNombre').val();
+                var ApellidoP = $('#contenido_txtApellidoP').val();
+                var ApellidoM = $('#contenido_txtApellidoM').val(); 
+                var Password = $('#contenido_txtPassword').val();
+                var Correo = $('#contenido_txtEmail').val();
+                var tipo = $('#contenido_CboxTipo').val();
+                $.ajax({
+                    url: 'WS/WSUsuario.asmx/Agregar',
+                    data: '{ "nom":"' + Nombre + '", "primer_apellido":"' + ApellidoP + '", "segundo_apellido":"' + ApellidoM + '", "contraseña": "' + Password + '", "Correo": "' + Correo + '", "Tipo":"' + tipo+'"}',
+                    contentType: 'application/json; utf-8',
+                    dataType: 'json',
+                    type: 'POST',
+                    success: function (data) {
+                        console.log(data);
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                });
+            });
+        });
+    </script>
 </asp:Content>
