@@ -27,7 +27,7 @@
                     <div class="form-group">
                         <asp:Label ID="Label8" runat="server" Text="Tipo"></asp:Label>
                             <asp:DropDownList ID="CboxTipo" CssClass="form-control" runat="server">
-                                <asp:ListItem>Hamburgesa</asp:ListItem>
+                                <asp:ListItem>Hamburguesa</asp:ListItem>
                                 <asp:ListItem>Pizza</asp:ListItem>
                                 <asp:ListItem>Bebida</asp:ListItem>
                             </asp:DropDownList>
