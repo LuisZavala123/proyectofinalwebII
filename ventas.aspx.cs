@@ -36,20 +36,12 @@ namespace proyectofinalwebII
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
             
-            int id = new VentaDAO().nId();
-            ArticuloDAO art = new ArticuloDAO();
-            detalle.Add(new MDetalles(id + "", CboxProducto.Text, art.GetbyNombre(CboxProducto.Text).tipo, int.Parse(txtCantidad.Text), art.GetbyNombre(CboxProducto.Text).costo * int.Parse(txtCantidad.Text)));
-            lbltotal.Text = (Double.Parse(lbltotal.Text)+(new ArticuloDAO().GetbyNombre(CboxProducto.Text).costo * int.Parse(txtCantidad.Text)))+"";
-            tabladetalles();
+           
         }
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
 
-            VentaDAO daoventa = new VentaDAO();
-            DateTime hoy = DateTime.Now;
-            MVentas venta = new MVentas(hoy.Day+"-"+hoy.Month+"-"+hoy.Year, Double.Parse(lbltotal.Text),daoventa.nId()+"","");
-            daoventa.Agregar(venta.id,venta.fecha,venta.total,venta.descripccion,detalle);
-            Response.Redirect("Principal.aspx");
+            
 
         }
 
