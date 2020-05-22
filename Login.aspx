@@ -31,6 +31,7 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Scripts" runat="server">
     <script type="text/javascript">
+
         $(document).ready(function () {
             $('#contenido_btnLogin').click(function (e) {
                 e.preventDefault();
@@ -50,6 +51,25 @@
                     }
                 });
             });
+        });
+        var expr = /^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/;
+        var ready = 0;
+        $(document).ready(function () {
+            
+            $('#contenido_txtEmail').keypress(function (e) {
+                e.preventDefault();
+                var exa = $('#contenido_txtEmail').val();
+                if (expr.test(exa)) {
+                    ready += 1;
+                } else {
+                    ready = 0;
+                }
+            });
+            if (ready = 1) {
+                //Poner lo que quieras que haga si es cierto
+            }
+
+
         });
     </script>
 </asp:Content>

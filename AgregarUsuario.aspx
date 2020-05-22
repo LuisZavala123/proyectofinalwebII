@@ -56,6 +56,7 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Scripts" runat="server">
     <script type="text/javascript">
+
         $(document).ready(function () {
             $('#contenido_btnAceptar').click(function (e) {
                 e.preventDefault();
@@ -79,6 +80,62 @@
                     }
                 });
             });
+        });
+        var expr = /^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/;
+        var exprn = /^[A-ZÁÉÍÓÚ][a-záéíúó]+$/;
+        var ready = 0;
+        $(document).ready(function () {
+            $('#contenido_txtNombre').keypress(function (e) {
+                e.preventDefault();
+                var exa = $('#contenido_txtNombre').val();
+                if (exprn.test(exa)) {
+                    ready += 1;
+                } else {
+                    ready = 0;
+                }
+            });
+            $('#contenido_txtApellidoP').keypress(function (e) {
+                e.preventDefault();
+                var exa = $('#contenido_txtApellidoP').val();
+                if (exprn.test(exa)) {
+                    ready += 1;
+                } else {
+                    ready = 0;
+                }
+            });
+            $('#contenido_txtApellidoM').keypress(function (e) {
+                e.preventDefault();
+                var exa = $('#contenido_txtApellidoM').val();
+                if (exprn.test(exa)) {
+                    ready += 1;
+                } else {
+                    ready = 0;
+                }
+            });
+            $('#contenido_txtEmail').keypress(function (e) {
+                e.preventDefault();
+                var exa = $('#contenido_txtEmail').val();
+                if (expr.test(exa)) {
+                    ready += 1;
+                } else {
+                    ready = 0;
+                }
+            });
+            $('#contenido_txtRPassword').keypress(function (e) {
+                e.preventDefault();
+                var exa1 = $('#contenido_txtRPassword').val();
+                var exa2 = $('#contenido_txtPassword').val();
+                if (exa = exa2) {
+                    ready += 1;
+                } else {
+                    ready = 0;
+                }
+            });
+            if (ready = 5) {
+                //Poner lo que quieras que haga si es cierto
+            }
+
+
         });
     </script>
 </asp:Content>
