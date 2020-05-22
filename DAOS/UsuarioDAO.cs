@@ -1,6 +1,8 @@
-﻿using proyectofinalwebII.Modelos;
+﻿using MySql.Data.MySqlClient;
+using proyectofinalwebII.Modelos;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -11,205 +13,218 @@ namespace proyectofinalwebII.DAOS
 {
     public class UsuarioDAO
     {
-        XmlDocument doc = new XmlDocument();
-        string rutaXml = "C:\\Users\\cuyoc\\Desktop\\proyectofinalwebII\\XML\\Datos.xml";
-        
-
-
-
-        public void Agregar(string id, string nom, string primer_apellido, string segundo_apellido, string contraseña, string Correo, string Tipo)
+        public Boolean Agregar(MUsuarios obj)
         {
-            MD5CryptoServiceProvider hashmd5 = new MD5CryptoServiceProvider();
-            doc.Load(rutaXml);
+            
 
-            XmlNode Usuario = Crear_Usuario(id, nom, primer_apellido, segundo_apellido, BitConverter.ToString(hashmd5.ComputeHash(UTF8Encoding.UTF8.GetBytes(contraseña))), Correo, Tipo);
+            try
+            {
+                MySqlCommand sentencia = new MySqlCommand();
+                sentencia.CommandText = "INSERT INTO usuario ( Nombre, Primer_Apellido,"+
+                    " Segundo_Apellido, Contraseña, Correo, Tipo)" +
+                    "('@Nombre', '@Primer_Apellido', '@Segundo_Apellido', '@Contraseña', '@Correo', '@Tipo');";
 
-            XmlNode nodoRaiz = doc.DocumentElement;
+                sentencia.Parameters.AddWithValue("@Nombre", obj.Nombre);
+                sentencia.Parameters.AddWithValue("@Primer_Apellido", obj.Primer_Apellido);
+                sentencia.Parameters.AddWithValue("@Segundo_Apellido", obj.Segundo_Apellido);
+                sentencia.Parameters.AddWithValue("@Contraseña", obj.Contraseña);
+                sentencia.Parameters.AddWithValue("@Correo", obj.Correo);
+                sentencia.Parameters.AddWithValue("@Tipo", obj.Tipo);
 
-            nodoRaiz.InsertAfter(Usuario, nodoRaiz.LastChild);
+                Conexion.ejecutarSentencia(sentencia, true);
 
-            doc.Save(rutaXml);
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            finally
+            {
+                Conexion.desconectar();
+            }
 
         }
-        public int nId()
-        {
-            List<MUsuarios> respuesta = new List<MUsuarios>();
-            doc.Load(rutaXml);
-            XmlNodeList Lista = doc.SelectNodes("Datos/Usuario");
-            return Lista.Count + 1;
 
-        }
-
-        private XmlNode Crear_Usuario(string id, string nom, string primer_apellido, string segundo_apellido, string contraseña, string Correo, string Tipo)
-        {
-
-            XmlNode Usuario = doc.CreateElement("Usuario");
-
-
-            XmlElement xid = doc.CreateElement("IdUsuario");
-            xid.InnerText = id;
-            Usuario.AppendChild(xid);
-
-            XmlElement xNombre = doc.CreateElement("Nombre");
-            xNombre.InnerText = nom;
-            Usuario.AppendChild(xNombre);
-
-            XmlElement xPrimer_Apellido = doc.CreateElement("Primer_Apellido");
-            xPrimer_Apellido.InnerText = primer_apellido;
-            Usuario.AppendChild(xPrimer_Apellido);
-
-            XmlElement xSegundo_Apellido = doc.CreateElement("Segundo_Apellido");
-            xSegundo_Apellido.InnerText = segundo_apellido;
-            Usuario.AppendChild(xSegundo_Apellido);
-
-            XmlElement xContraseña = doc.CreateElement("Contraseña");
-            xContraseña.InnerText = contraseña;
-            Usuario.AppendChild(xContraseña);
-
-            XmlElement xCorreo = doc.CreateElement("Correo");
-            xCorreo.InnerText = Correo;
-            Usuario.AppendChild(xCorreo);
-
-
-            XmlElement xTipo = doc.CreateElement("Tipo");
-            xTipo.InnerText = Tipo;
-            Usuario.AppendChild(xTipo);
-
-            return Usuario;
-        }
 
         public List<MUsuarios> GetAll()
         {
-            List<MUsuarios> respuesta = new List<MUsuarios>();
-            doc.Load(rutaXml);
-            XmlNodeList Lista = doc.SelectNodes("Datos/Usuario");
+            List<MUsuarios> lista = new List<MUsuarios>();
 
-            MUsuarios nUsuario = new MUsuarios();
-            foreach (XmlNode Usuario in Lista)
+            try
             {
-                nUsuario = new MUsuarios();
-                nUsuario.IdUsuario = Usuario.SelectSingleNode("IdUsuario").InnerText;
-                nUsuario.Nombre = Usuario.SelectSingleNode("Nombre").InnerText;
-                nUsuario.Primer_Apellido = Usuario.SelectSingleNode("Primer_Apellido").InnerText;
-                nUsuario.Segundo_Apellido = Usuario.SelectSingleNode("Segundo_Apellido").InnerText;
-                nUsuario.Contraseña = Usuario.SelectSingleNode("Contraseña").InnerText;
-                nUsuario.Correo = Usuario.SelectSingleNode("Correo").InnerText;
-                nUsuario.Tipo = Usuario.SelectSingleNode("Tipo").InnerText;
-                respuesta.Add(nUsuario);
-            }
+                MySqlCommand sentencia = new MySqlCommand();
+                sentencia.CommandText = "SELECT * FROM usuario;";
 
-            return respuesta;
+                DataTable tabla = Conexion.ejecutarConsulta(sentencia);
+
+                MUsuarios user = new MUsuarios();
+
+                foreach (DataRow fila in tabla.Rows)
+                {
+                    user.IdUsuario = fila["IdUsuario"].ToString();
+                    user.Nombre = fila["Nombre"].ToString();
+                    user.Primer_Apellido = fila["Primer_Apellido"].ToString();
+                    user.Segundo_Apellido= fila["Segundo_Apellido"].ToString();
+                    user.Contraseña = fila["Contraseña"].ToString();
+                    user.Correo = fila["Correo"].ToString();
+                    user.Tipo = fila["Tipo"].ToString();
+
+                    lista.Add(user);
+                }
+
+                return lista;
+            }
+            catch (Exception)
+            {
+                return lista;
+            }
+            finally
+            {
+                Conexion.desconectar();
+            }
         }
 
         public MUsuarios Getbyid(String id)
         {
-            doc.Load(rutaXml);
-            XmlNodeList Lista = doc.SelectNodes("Datos/Usuario");
 
-            MUsuarios nUsuario = new MUsuarios();
-            foreach (XmlNode Usuario in Lista)
+            MUsuarios user = new MUsuarios();
+            try
             {
-                if (Usuario.SelectSingleNode("IdUsuario").InnerText.Equals(id))
+                MySqlCommand sentencia = new MySqlCommand();
+                sentencia.CommandText = "SELECT * FROM usuario where idUsuario = @idUsuario;";
+                sentencia.Parameters.AddWithValue("@idUsuario", id);
+
+                DataTable tabla = Conexion.ejecutarConsulta(sentencia);
+
+
+
+                foreach (DataRow fila in tabla.Rows)
                 {
-                    nUsuario.IdUsuario = Usuario.SelectSingleNode("IdUsuario").InnerText;
-                    nUsuario.Nombre = Usuario.SelectSingleNode("Nombre").InnerText;
-                    nUsuario.Contraseña = Usuario.SelectSingleNode("Contraseña").InnerText;
-                    nUsuario.Primer_Apellido = Usuario.SelectSingleNode("Primer_Apellido").InnerText;
-                    nUsuario.Segundo_Apellido = Usuario.SelectSingleNode("Segundo_Apellido").InnerText;
-                    nUsuario.Correo = Usuario.SelectSingleNode("Correo").InnerText;
-                    nUsuario.Tipo = Usuario.SelectSingleNode("Tipo").InnerText;
+
+                    user.IdUsuario = fila["IdUsuario"].ToString();
+                    user.Nombre = fila["Nombre"].ToString();
+                    user.Primer_Apellido = fila["Primer_Apellido"].ToString();
+                    user.Segundo_Apellido = fila["Segundo_Apellido"].ToString();
+                    user.Contraseña = fila["Contraseña"].ToString();
+                    user.Correo = fila["Correo"].ToString();
+                    user.Tipo = fila["Tipo"].ToString();
+
                 }
+
+                return user;
+            }
+            catch (Exception)
+            {
+                return user;
+            }
+            finally
+            {
+                Conexion.desconectar();
+            }
+        }
+        public MUsuarios GetbyCorreo(String Correo)
+        {
+            MUsuarios user = new MUsuarios();
+            try
+            {
+                MySqlCommand sentencia = new MySqlCommand();
+                sentencia.CommandText = "SELECT * FROM usuario where Correo = '@Correo';";
+                sentencia.Parameters.AddWithValue("@Correo", Correo);
+
+                DataTable tabla = Conexion.ejecutarConsulta(sentencia);
+
+
+
+                foreach (DataRow fila in tabla.Rows)
+                {
+
+                    user.IdUsuario = fila["IdUsuario"].ToString();
+                    user.Nombre = fila["Nombre"].ToString();
+                    user.Primer_Apellido = fila["Primer_Apellido"].ToString();
+                    user.Segundo_Apellido = fila["Segundo_Apellido"].ToString();
+                    user.Contraseña = fila["Contraseña"].ToString();
+                    user.Correo = fila["Correo"].ToString();
+                    user.Tipo = fila["Tipo"].ToString();
+
+                }
+
+                return user;
+            }
+            catch (Exception)
+            {
+                return user;
+            }
+            finally
+            {
+                Conexion.desconectar();
+            }
+        }
+
+        
+
+
+        public Boolean Eliminar(string id)
+        {
+            try
+            {
+                MySqlCommand sentencia = new MySqlCommand();
+                sentencia.CommandText = "DELETE FROM usuario WHERE idUsuario =@idUsuario;";
+                sentencia.Parameters.AddWithValue("@idUsuario", id);
+                Conexion.ejecutarSentencia(sentencia, false);
+            
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                Conexion.desconectar();
             }
 
-            return nUsuario;
         }
+
+
 
         public Boolean IsUsuario(String Nombre)
         {
-            doc.Load(rutaXml);
-            XmlNodeList Lista = doc.SelectNodes("Datos/Usuario");
-            Boolean resp = false;
-            
-            foreach (XmlNode Usuario in Lista)
+            MUsuarios user = new MUsuarios();
+            Boolean r = false;
+            try
             {
-                if (Usuario.SelectSingleNode("Nombre").InnerText.Equals(Nombre))
-                {
-                    resp = true;
-                }
-            }
+                MySqlCommand sentencia = new MySqlCommand();
+                sentencia.CommandText = "SELECT * FROM usuario where Nombre = '@Nombre';";
+                sentencia.Parameters.AddWithValue("@Nombre", Nombre);
 
-            return resp;
-        }
-        public MUsuarios Getbycorreo(String correo)
-        {
-            doc.Load(rutaXml);
-            XmlNodeList Lista = doc.SelectNodes("Datos/Usuario");
+                DataTable tabla = Conexion.ejecutarConsulta(sentencia);
 
-            MUsuarios nUsuario = new MUsuarios();
-            foreach (XmlNode Usuario in Lista)
-            {
-                if (Usuario.SelectSingleNode("Correo").InnerText.Equals(correo))
-                {
-                    nUsuario.IdUsuario = Usuario.SelectSingleNode("IdUsuario").InnerText;
-                    nUsuario.Nombre = Usuario.SelectSingleNode("Nombre").InnerText;
-                    nUsuario.Contraseña = Usuario.SelectSingleNode("Contraseña").InnerText;
-                    nUsuario.Primer_Apellido = Usuario.SelectSingleNode("Primer_Apellido").InnerText;
-                    nUsuario.Segundo_Apellido = Usuario.SelectSingleNode("Segundo_Apellido").InnerText;
-                    nUsuario.Correo = Usuario.SelectSingleNode("Correo").InnerText;
-                    nUsuario.Tipo = Usuario.SelectSingleNode("Tipo").InnerText;
-                }
-            }
+                
 
-            return nUsuario;
-        }
-
-
-
-        public void Eliminar(string id)
-        {
-            doc.Load(rutaXml);
-
-            XmlNode empleados = doc.DocumentElement;
-
-            XmlNodeList listaEmpleados = doc.SelectNodes("Datos/Usuario");
-
-            foreach (XmlNode item in listaEmpleados)
-            {
-
-                if (item.SelectSingleNode("IdUsuario").InnerText == id)
+                foreach (DataRow fila in tabla.Rows)
                 {
 
-                    XmlNode nodoOld = item;
+                    if (Nombre.Equals(fila["Nombre"].ToString()))
+                    {
+                        r = true;
+                    }
 
-                    empleados.RemoveChild(nodoOld);
                 }
+                return r;
+             
             }
-
-            doc.Save(rutaXml);
-        }
-
-        public void Editar(string id, string nom, string primer_apellido, string segundo_apellido, string contraseña, string Correo, string Tipo)
-        {
-
-            MD5CryptoServiceProvider hashmd5 = new MD5CryptoServiceProvider();
-            XmlElement Usuarios = doc.DocumentElement;
-
-            XmlNodeList lista = doc.SelectNodes("Datos/Usuario");
-
-            XmlNode nuevo_Usuario = Crear_Usuario(id, nom, primer_apellido, segundo_apellido, BitConverter.ToString(hashmd5.ComputeHash(UTF8Encoding.UTF8.GetBytes(contraseña))), Correo, Tipo);
-
-            foreach (XmlNode item in lista)
+            catch (Exception)
             {
-
-                if (item.FirstChild.InnerText == id)
-                {
-                    XmlNode nodoOld = item;
-                    Usuarios.ReplaceChild(nuevo_Usuario, nodoOld);
-
-                }
+                return false;
             }
-
-            doc.Save(rutaXml);
+            finally
+            {
+                Conexion.desconectar();
+            }
         }
+
     }
 }

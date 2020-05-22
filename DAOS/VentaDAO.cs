@@ -1,6 +1,8 @@
-﻿using proyectofinalwebII.Modelos;
+﻿using MySql.Data.MySqlClient;
+using proyectofinalwebII.Modelos;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Xml;
@@ -9,203 +11,213 @@ namespace proyectofinalwebII.DAOS
 {
     public class VentaDAO
     {
-        XmlDocument doc = new XmlDocument();
-        string rutaXml = "C:\\Users\\cuyoc\\Desktop\\proyectofinalwebII\\XML\\Datos.xml";
-
-
-
-        public void Agregar(string id, string Fecha, double Total, String Descripcion, List<MDetalles> detalles)
+        public Boolean Agregar(MVentas obj)
         {
-            doc.Load(rutaXml);
-
-            XmlNode Venta = Crear_Venta(id, Fecha, Total + "", Descripcion);
-
-            XmlNode nodoRaiz = doc.DocumentElement;
-
-            nodoRaiz.InsertAfter(Venta, nodoRaiz.LastChild);
-            foreach (var item in detalles)
+            try
             {
-                XmlNode detalle = Crear_Detalle(item.idVenta,item.producto,item.Tipo ,item.cantidad + "", item.total+"");
-                nodoRaiz.InsertAfter(detalle, nodoRaiz.LastChild);
+                MySqlCommand sentencia = new MySqlCommand();
+                sentencia.CommandText = "INSERT INTO ventas (fecha, total, Descripcion) " +
+                    "VALUES('@fecha',@total,'@Descripcion');";
+
+                sentencia.Parameters.AddWithValue("@fecha", obj.fecha);
+                sentencia.Parameters.AddWithValue("@total", obj.total);
+                sentencia.Parameters.AddWithValue("@Descripcion", obj.descripccion);
+
+                Conexion.ejecutarSentencia(sentencia, true);
+
+                return true;
+
             }
-
-            doc.Save(rutaXml);
-
-        }
-        public int nId()
-        {
-            List<MArticulos> respuesta = new List<MArticulos>();
-            doc.Load(rutaXml);
-            XmlNodeList Lista = doc.SelectNodes("Datos/Venta");
-            return Lista.Count + 1;
-
+            catch (Exception ex)
+            {
+                return false;
+            }
+            finally
+            {
+                Conexion.desconectar();
+            }
         }
 
-        private XmlNode Crear_Venta(string id, string Fecha, string Total, string Descripcion)
-        {
-
-            XmlNode Venta = doc.CreateElement("Venta");
-
-
-            XmlElement xid = doc.CreateElement("IdVenta");
-            xid.InnerText = id;
-            Venta.AppendChild(xid);
-
-            XmlElement xFecha = doc.CreateElement("Fecha");
-            xFecha.InnerText = Fecha;
-            Venta.AppendChild(xFecha);
-
-            XmlElement xTotal = doc.CreateElement("Total");
-            xTotal.InnerText = Total;
-            Venta.AppendChild(xTotal);
-
-            XmlElement xDesc = doc.CreateElement("Descripcion");
-            xDesc.InnerText = Descripcion;
-            Venta.AppendChild(xDesc);
-
-            return Venta;
-        }
-
-        private XmlNode Crear_Detalle(string idVenta, string idProducto,string Tipo, string Cantidad, string Total)
-        {
-
-            XmlNode Detalle = doc.CreateElement("Detalle");
-
-
-            XmlElement xidVenta = doc.CreateElement("IdVenta");
-            xidVenta.InnerText = idVenta;
-            Detalle.AppendChild(xidVenta);
-
-            XmlElement xidProducto = doc.CreateElement("IdProducto");
-            xidProducto.InnerText = idProducto;
-            Detalle.AppendChild(xidProducto);
-
-            XmlElement xTipo = doc.CreateElement("Tipo");
-            xTipo.InnerText = Tipo;
-            Detalle.AppendChild(xTipo);
-
-            XmlElement xCantidad = doc.CreateElement("Cantidad");
-            xCantidad.InnerText = Cantidad;
-            Detalle.AppendChild(xCantidad);
-
-            XmlElement xTotal = doc.CreateElement("Total");
-            xTotal.InnerText = Total;
-            Detalle.AppendChild(xTotal);
-
-            return Detalle;
-        }
 
         public List<MVentas> GetAll()
         {
-            List<MVentas> respuesta = new List<MVentas>();
-            doc.Load(rutaXml);
-            XmlNodeList Lista = doc.SelectNodes("Datos/Venta");
+            List<MVentas> lista = new List<MVentas>();
 
-            MVentas nVenta = new MVentas();
-            foreach (XmlNode venta in Lista)
+            try
             {
-                nVenta = new MVentas();
+                MySqlCommand sentencia = new MySqlCommand();
+                sentencia.CommandText = "SELECT * FROM ventas;";
 
-                nVenta.id = venta.SelectSingleNode("IdVenta").InnerText;
-                nVenta.fecha = venta.SelectSingleNode("Fecha").InnerText;
-                nVenta.total = Double.Parse(venta.SelectSingleNode("Total").InnerText);
-                nVenta.descripccion = venta.SelectSingleNode("Descripcion").InnerText;
-                nVenta.Detalles = GetDetalles(nVenta.id);
-                respuesta.Add(nVenta);
-            }
+                DataTable tabla = Conexion.ejecutarConsulta(sentencia);
 
-            return respuesta;
-        }
-        public List<MDetalles> GetDetalles(String id)
-        {
-            List<MDetalles> respuesta = new List<MDetalles>();
-            doc.Load(rutaXml);
-            XmlNodeList Lista = doc.SelectNodes("Datos/Detalle");
+                MVentas ven = new MVentas();
 
-            MDetalles nDestalle = new MDetalles();
-            foreach (XmlNode detalle in Lista)
-            {
-                if (id.Equals(detalle.SelectSingleNode("IdVenta").InnerText)) { 
-                nDestalle = new MDetalles();
-                nDestalle.idVenta = detalle.SelectSingleNode("IdVenta").InnerText;
-                nDestalle.producto = detalle.SelectSingleNode("IdProducto").InnerText;
-                nDestalle.Tipo = detalle.SelectSingleNode("Tipo").InnerText;
-                nDestalle.total = double.Parse(detalle.SelectSingleNode("Total").InnerText);
-                nDestalle.cantidad = int.Parse(detalle.SelectSingleNode("Cantidad").InnerText);
-
-                respuesta.Add(nDestalle);
+                foreach (DataRow fila in tabla.Rows)
+                {
+                    ven.id = fila["idVentas"].ToString();
+                    ven.fecha = fila["fecha"].ToString();
+                    ven.total = Double.Parse(fila["total"].ToString());
+                    ven.descripccion = fila["descripcion"].ToString();
+                    lista.Add(ven);
                 }
-            }
 
-            return respuesta;
+                return lista;
+            }
+            catch (Exception)
+            {
+                return lista;
+            }
+            finally
+            {
+                Conexion.desconectar();
+            }
         }
 
         public MVentas Getbyid(String id)
         {
-            doc.Load(rutaXml);
-            XmlNodeList Lista = doc.SelectNodes("Datos/Venta");
 
-            MVentas nVenta = new MVentas();
-            foreach (XmlNode venta in Lista)
+            MVentas ven = new MVentas();
+            try
             {
-                if (venta.SelectSingleNode("IdVenta").InnerText.Equals(id))
+                MySqlCommand sentencia = new MySqlCommand();
+                sentencia.CommandText = "SELECT * FROM ventas where idVentas = @idVentas;";
+                sentencia.Parameters.AddWithValue("@idVentas", id);
+
+                DataTable tabla = Conexion.ejecutarConsulta(sentencia);
+
+
+
+                foreach (DataRow fila in tabla.Rows)
                 {
-                    nVenta.id = venta.SelectSingleNode("IdVenta").InnerText;
-                    nVenta.fecha = venta.SelectSingleNode("Fecha").InnerText;
-                    nVenta.total = Double.Parse(venta.SelectSingleNode("Total").InnerText);
-                    nVenta.descripccion = venta.SelectSingleNode("Descripcion").InnerText;
-                    nVenta.Detalles = GetDetalles(nVenta.id);
-                    break;
+
+                    ven.id = fila["idVentas"].ToString();
+                    ven.fecha = fila["fecha"].ToString();
+                    ven.total = Double.Parse(fila["total"].ToString());
+                    ven.descripccion = fila["descripcion"].ToString();
+                    
+
                 }
+
+                return ven;
+            }
+            catch (Exception)
+            {
+                return ven;
+            }
+            finally
+            {
+                Conexion.desconectar();
+            }
+        }
+       
+        public Boolean Eliminar(string id)
+        {
+            try
+            {
+                MySqlCommand sentencia = new MySqlCommand();
+                sentencia.CommandText = "DELETE FROM ventas WHERE idVentas =@idVentas;";
+                sentencia.Parameters.AddWithValue("@idVentas", id);
+                Conexion.ejecutarSentencia(sentencia, false);
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                Conexion.desconectar();
             }
 
-            return nVenta;
         }
 
-
-
-        public void Eliminar(string id)
+        public Boolean Agregar_Detalles(MDetalles obj)
         {
-            doc.Load(rutaXml);
-
-            XmlNode Ventas = doc.DocumentElement;
-
-            XmlNodeList listaVentas = doc.SelectNodes("Datos/Venta");
-
-            foreach (XmlNode item in listaVentas)
+            try
             {
+                MySqlCommand sentencia = new MySqlCommand();
+                sentencia.CommandText = "INSERT INTO detalles (idVenta ,Producto ,Tipo , Cantidad,"+
+                    " Total) " +
+                    "VALUES(@idVenta ,@Producto ,'@Tipo' , @Cantidad, @Total);";
 
-                if (item.SelectSingleNode("IdVenta").InnerText == id)
-                {
+                sentencia.Parameters.AddWithValue("@idVenta", obj.idVenta);
+                sentencia.Parameters.AddWithValue("@Producto", obj.producto);
+                sentencia.Parameters.AddWithValue("@Tipo", obj.Tipo);
+                sentencia.Parameters.AddWithValue("@Cantidad", obj.cantidad);
+                sentencia.Parameters.AddWithValue("@Total", obj.total);
 
-                    XmlNode nodoOld = item;
-                    Ventas.RemoveChild(nodoOld);
-                }
+
+                Conexion.ejecutarSentencia(sentencia, true);
+
+                return true;
+
             }
-
-            doc.Save(rutaXml);
-            EliminarDetalles(id);
+            catch (Exception ex)
+            {
+                return false;
+            }
+            finally
+            {
+                Conexion.desconectar();
+            }
         }
-        public void EliminarDetalles(string id)
+        public List<MDetalles> GetDetalles(String id)
         {
-            doc.Load(rutaXml);
-
-            XmlNode Detalles = doc.DocumentElement;
-
-            XmlNodeList listaDetalles = doc.SelectNodes("Datos/Detalle");
-
-            foreach (XmlNode item in listaDetalles)
+            List<MDetalles> lista = new List<MDetalles>();
+            MDetalles det = new MDetalles();
+            try
             {
+                MySqlCommand sentencia = new MySqlCommand();
+                sentencia.CommandText = "SELECT * FROM detalles where idVenta = @idVenta;";
+                sentencia.Parameters.AddWithValue("@idVenta", id);
 
-                if (item.SelectSingleNode("IdVenta").InnerText == id)
+                DataTable tabla = Conexion.ejecutarConsulta(sentencia);
+
+
+
+                foreach (DataRow fila in tabla.Rows)
                 {
 
-                    XmlNode nodoOld = item;
-                    Detalles.RemoveChild(nodoOld);
+                    det.idVenta = fila["idVentas"].ToString();
+                    det.producto = fila["Producto"].ToString();
+                    det.Tipo = fila["Tipo"].ToString();
+                    det.cantidad =int.Parse(fila["Cantidad"].ToString());
+                    det.total = double.Parse(fila["Total"].ToString());
+                    lista.Add(det);
                 }
-            }
 
-            doc.Save(rutaXml);
+                return lista;
+            }
+            catch (Exception)
+            {
+                return lista;
+            }
+            finally
+            {
+                Conexion.desconectar();
+            }
+        }
+
+        public Boolean EliminarDetalles(string id)
+        {
+            try
+            {
+                MySqlCommand sentencia = new MySqlCommand();
+                sentencia.CommandText = "DELETE FROM detalles WHERE idVenta =@idVenta;";
+                sentencia.Parameters.AddWithValue("@idVenta", id);
+                Conexion.ejecutarSentencia(sentencia, false);
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                Conexion.desconectar();
+            }
         }
 
     }

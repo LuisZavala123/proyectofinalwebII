@@ -1,6 +1,8 @@
-﻿using proyectofinalwebII.Modelos;
+﻿using MySql.Data.MySqlClient;
+using proyectofinalwebII.Modelos;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Web;
@@ -10,190 +12,197 @@ namespace proyectofinalwebII.DAOS
 {
     public class ArticuloDAO
     {
-        XmlDocument doc = new XmlDocument();
-        string rutaXml = "C:\\Users\\cuyoc\\Desktop\\proyectofinalwebII\\XML\\Datos.xml";
 
-
-
-        public void Agregar(string nom,double costo,String Descripcion, String Tipo)
+        public Boolean Agregar(MArticulos obj)
         {
-            doc.Load(rutaXml);
+            // new MArticulos(Tipo,nom,costo,nId()+"",Descripcion);
 
-            XmlNode Producto = Crear_Producto(nId()+"", nom,costo+"",Descripcion,Tipo);
+            try
+            {
+                MySqlCommand sentencia = new MySqlCommand();
+                sentencia.CommandText = "INSERT INTO articulos ( Tipo, Nombre, Costo, Descripccion) " +
+                    "VALUES('@Tipo','@Nombre',@Costo,'@Descripccion');";
 
-            XmlNode nodoRaiz = doc.DocumentElement;
+                sentencia.Parameters.AddWithValue("@Tipo", obj.tipo);
+                sentencia.Parameters.AddWithValue("@Nombre", obj.nombre);
+                sentencia.Parameters.AddWithValue("@Costo", obj.costo);
+                sentencia.Parameters.AddWithValue("@Descripccion", obj.descripccion);
 
-            nodoRaiz.InsertAfter(Producto, nodoRaiz.LastChild);
+                Conexion.ejecutarSentencia(sentencia, true);
 
-            doc.Save(rutaXml);
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            finally
+            {
+                Conexion.desconectar();
+            }
 
         }
-        public int nId()
-        {
-            List<MArticulos> respuesta = new List<MArticulos>();
-            doc.Load(rutaXml);
-            XmlNodeList Lista = doc.SelectNodes("Datos/Producto");
-            return Lista.Count + 1;
 
-        }
-
-        private XmlNode Crear_Producto(string id, string nom, string costo, String Descripcion, String Tipo)
-        {
-
-            XmlNode Producto = doc.CreateElement("Producto");
-
-
-            XmlElement xid = doc.CreateElement("IdProducto");
-            xid.InnerText = id;
-            Producto.AppendChild(xid);
-
-            XmlElement xNombre = doc.CreateElement("Nombre");
-            xNombre.InnerText = nom;
-            Producto.AppendChild(xNombre);
-
-            XmlElement xCosto = doc.CreateElement("Costo");
-            xCosto.InnerText = costo;
-            Producto.AppendChild(xCosto);
-
-            XmlElement xDesc = doc.CreateElement("Descripcion");
-            xDesc.InnerText = Descripcion;
-            Producto.AppendChild(xDesc);
-
-
-            XmlElement xTipo = doc.CreateElement("Tipo");
-            xTipo.InnerText = Tipo;
-            Producto.AppendChild(xTipo);
-
-            return Producto;
-        }
 
         public List<MArticulos> GetAll()
         {
-            List<MArticulos> respuesta = new List<MArticulos>();
-            doc.Load(rutaXml);
-            XmlNodeList Lista = doc.SelectNodes("Datos/Producto");
+            List<MArticulos> lista = new List<MArticulos>();
 
-            MArticulos nProducto = new MArticulos();
-            foreach (XmlNode Producto in Lista)
+            try
             {
-                nProducto = new MArticulos();
+                MySqlCommand sentencia = new MySqlCommand();
+                sentencia.CommandText = "SELECT * FROM articulos;";
 
-                nProducto.id = Producto.SelectSingleNode("IdProducto").InnerText;
-                nProducto.nombre = Producto.SelectSingleNode("Nombre").InnerText;
-                nProducto.costo = Double.Parse(Producto.SelectSingleNode("Costo").InnerText);
-                nProducto.descripccion = Producto.SelectSingleNode("Descripcion").InnerText;
-                nProducto.tipo = Producto.SelectSingleNode("Tipo").InnerText;
-                respuesta.Add(nProducto);
+                DataTable tabla = Conexion.ejecutarConsulta(sentencia);
+
+                MArticulos art = new MArticulos();
+
+                foreach (DataRow fila in tabla.Rows)
+                {
+                    art.id = fila["ID"].ToString();
+                    art.nombre = fila["Nombre"].ToString();
+                    art.tipo = fila["Tipo"].ToString();
+                    art.costo = double.Parse(fila["Costo"].ToString());
+                    art.descripccion = fila["Descripccion"].ToString();
+                    lista.Add(art);
+                }
+
+                return lista;
             }
-
-            return respuesta;
+            catch (Exception)
+            {
+                return lista;
+            }
+            finally
+            {
+                Conexion.desconectar();
+            }
         }
 
         public MArticulos Getbyid(String id)
         {
-            doc.Load(rutaXml);
-            XmlNodeList Lista = doc.SelectNodes("Datos/Producto");
 
-            MArticulos nProducto = new MArticulos();
-            foreach (XmlNode Producto in Lista)
+            MArticulos art = new MArticulos();
+            try
             {
-                if (Producto.SelectSingleNode("IdProducto").InnerText.Equals(id))
-                {
-                    nProducto.id = Producto.SelectSingleNode("IdProducto").InnerText;
-                    nProducto.nombre = Producto.SelectSingleNode("Nombre").InnerText;
-                    nProducto.costo = Double.Parse(Producto.SelectSingleNode("Costo").InnerText);
-                    nProducto.descripccion = Producto.SelectSingleNode("Descripcion").InnerText;
-                    nProducto.tipo = Producto.SelectSingleNode("Tipo").InnerText;
-                    break;
-                }
-            }
+                MySqlCommand sentencia = new MySqlCommand();
+                sentencia.CommandText = "SELECT * FROM articulos where ID = @ID;";
+                sentencia.Parameters.AddWithValue("@ID", id);
 
-            return nProducto;
+                DataTable tabla = Conexion.ejecutarConsulta(sentencia);
+
+
+
+                foreach (DataRow fila in tabla.Rows)
+                {
+
+                    art.id = fila["ID"].ToString();
+                    art.nombre = fila["Nombre"].ToString();
+                    art.tipo = fila["Tipo"].ToString();
+                    art.costo = double.Parse(fila["Costo"].ToString());
+                    art.descripccion = fila["Descripccion"].ToString();
+
+                }
+
+                return art;
+            }
+            catch (Exception)
+            {
+                return art;
+            }
+            finally
+            {
+                Conexion.desconectar();
+            }
         }
         public MArticulos GetbyNombre(String Nombre)
         {
-            doc.Load(rutaXml);
-            XmlNodeList Lista = doc.SelectNodes("Datos/Producto");
-
-            MArticulos nProducto = new MArticulos();
-            foreach (XmlNode Producto in Lista)
+            MArticulos art = new MArticulos();
+            try
             {
-                if (Producto.SelectSingleNode("Nombre").InnerText.Equals(Nombre))
-                {
-                    nProducto.id = Producto.SelectSingleNode("IdProducto").InnerText;
-                    nProducto.nombre = Producto.SelectSingleNode("Nombre").InnerText;
-                    nProducto.costo = Double.Parse(Producto.SelectSingleNode("Costo").InnerText);
-                    nProducto.descripccion = Producto.SelectSingleNode("Descripcion").InnerText;
-                    nProducto.tipo = Producto.SelectSingleNode("Tipo").InnerText;
-                    break;
-                }
-            }
+                MySqlCommand sentencia = new MySqlCommand();
+                sentencia.CommandText = "SELECT * FROM articulos where Nombre = '@Nombre';";
+                sentencia.Parameters.AddWithValue("@Nombre", Nombre);
 
-            return nProducto;
+                DataTable tabla = Conexion.ejecutarConsulta(sentencia);
+
+
+
+                foreach (DataRow fila in tabla.Rows)
+                {
+
+                    art.id = fila["ID"].ToString();
+                    art.nombre = fila["Nombre"].ToString();
+                    art.tipo = fila["Tipo"].ToString();
+                    art.costo = double.Parse(fila["Costo"].ToString());
+                    art.descripccion = fila["Descripccion"].ToString();
+
+                }
+
+                return art;
+            }
+            catch (Exception)
+            {
+                return art;
+            }
+            finally
+            {
+                Conexion.desconectar();
+            }
         }
 
         public List<String> GetNombres()
         {
-            doc.Load(rutaXml);
-            XmlNodeList Lista = doc.SelectNodes("Datos/Producto");
+            List<String> lista = new List<String>();
 
-            List<String> Nombres = new List<String>();
-            foreach (XmlNode Producto in Lista)
+            try
             {
-                
-                    Nombres.Add(Producto.SelectSingleNode("Nombre").InnerText);  
-                
-            }
+                MySqlCommand sentencia = new MySqlCommand();
+                sentencia.CommandText = "SELECT Nombre FROM articulos;";
 
-            return Nombres;
-        }
+                DataTable tabla = Conexion.ejecutarConsulta(sentencia);
 
+                MArticulos art = new MArticulos();
 
-        public void Eliminar(string id)
-        {
-            doc.Load(rutaXml);
-
-            XmlNode empleados = doc.DocumentElement;
-
-            XmlNodeList listaEmpleados = doc.SelectNodes("Datos/Producto");
-
-            foreach (XmlNode item in listaEmpleados)
-            {
-
-                if (item.SelectSingleNode("IdProducto").InnerText == id)
+                foreach (DataRow fila in tabla.Rows)
                 {
-
-                    XmlNode nodoOld = item;
-
-                    empleados.RemoveChild(nodoOld);
+                    lista.Add(fila["Nombre"].ToString());
                 }
+
+                return lista;
             }
-
-            doc.Save(rutaXml);
-        }
-
-        public void Editar(string id, string nom, double costo, String Descripcion, String Tipo)
-        {
-
-            XmlElement Productos = doc.DocumentElement;
-
-            XmlNodeList lista = doc.SelectNodes("Datos/Producto");
-
-            XmlNode nuevo_Producto = Crear_Producto(id, nom,costo+"",Descripcion,Tipo);
-
-            foreach (XmlNode item in lista)
+            catch (Exception)
             {
-
-                if (item.FirstChild.InnerText == id)
-                {
-                    XmlNode nodoOld = item;
-                    Productos.ReplaceChild(nuevo_Producto, nodoOld);
-
-                }
+                return lista;
             }
-
-            doc.Save(rutaXml);
+            finally
+            {
+                Conexion.desconectar();
+            }
         }
 
+
+        public Boolean Eliminar(string id)
+        {
+            try
+            {
+                MySqlCommand sentencia = new MySqlCommand();
+                sentencia.CommandText = "DELETE FROM articulos WHERE ID =@ID;";
+                sentencia.Parameters.AddWithValue("@ID", id);
+                Conexion.ejecutarSentencia(sentencia,false);
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                Conexion.desconectar();
+            }
+
+        }
     }
 }

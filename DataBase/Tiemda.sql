@@ -1,4 +1,4 @@
--- MySQL Workbench Forward Engineering
+﻿-- MySQL Workbench Forward Engineering
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
@@ -18,7 +18,7 @@ USE `Tiemda` ;
 -- Table `Tiemda`.`Articulos`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Tiemda`.`Articulos` (
-  `ID` VARCHAR(15) NOT NULL,
+  `ID` INT NOT NULL auto_increment,
   `Tipo` ENUM('Hamburguesa', 'Pizza', 'Bebida') NOT NULL,
   `Nombre` VARCHAR(45) NOT NULL,
   `Costo` DECIMAL(10,2) NOT NULL,
@@ -31,7 +31,7 @@ ENGINE = InnoDB;
 -- Table `Tiemda`.`Ventas`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Tiemda`.`Ventas` (
-  `idVentas` VARCHAR(15) NOT NULL,
+  `idVentas` INT NOT NULL auto_increment,
   `fecha` VARCHAR(45) NOT NULL,
   `total` DECIMAL(10,2) NOT NULL,
   `Descripcion` VARCHAR(255) NOT NULL,
@@ -43,12 +43,11 @@ ENGINE = InnoDB;
 -- Table `Tiemda`.`Detalles`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Tiemda`.`Detalles` (
-  `idVenta` VARCHAR(15) NOT NULL,
-  `Producto` VARCHAR(45) NOT NULL,
+  `idVenta` INT NOT NULL,
+  `Producto` INT NOT NULL,
   `Tipo` ENUM('Hamburguesa', 'Pizza', 'Bebida') NOT NULL,
   `Cantidad` INT NOT NULL,
   `Total` DECIMAL(10,2) NOT NULL,
-  `idDetalles` VARCHAR(45) NOT NULL,
   INDEX `idVenta_idx` (`idVenta` ASC) VISIBLE,
   INDEX `Producto_idx` (`Producto` ASC) VISIBLE,
   PRIMARY KEY (idVenta,Producto),
@@ -70,7 +69,7 @@ ENGINE = InnoDB;
 -- Table `Tiemda`.`Usuario`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Tiemda`.`Usuario` (
-  `idUsuario` VARCHAR(15) NOT NULL,
+  `idUsuario` INT NOT NULL auto_increment,
   `Nombre` VARCHAR(45) NOT NULL,
   `Primer_Apellido` VARCHAR(45) NOT NULL,
   `Segundo_Apellido` VARCHAR(45) NOT NULL,

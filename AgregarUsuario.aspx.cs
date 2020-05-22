@@ -22,8 +22,6 @@ namespace proyectofinalwebII
         }
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
-            UsuarioDAO userdao = new UsuarioDAO();
-            userdao.Agregar(userdao.nId()+"",txtNombre.Text,txtApellidoP.Text,txtApellidoM.Text,txtPassword.Text,txtEmail.Text,CboxTipo.Text);
             Response.Redirect("Principal.aspx");
         }
 
