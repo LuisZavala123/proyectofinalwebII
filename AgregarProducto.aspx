@@ -44,7 +44,7 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="Scripts" runat="server">
     
     <script type="text/javascript">
-        var expr = /^[1-9][0-9]*[.][0-9][0-9]$/;
+        var expr = /^[0-9]+[.][0-9]?[1-9]$/;
         var exprn = /^[A-ZÁÉÍÓÚ][a-záéíúó]+$/;
         $(document).ready(function () {
             $('#contenido_txtNombre').keypress(function (e) {
