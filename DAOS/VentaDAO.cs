@@ -17,11 +17,7 @@ namespace proyectofinalwebII.DAOS
             {
                 MySqlCommand sentencia = new MySqlCommand();
                 sentencia.CommandText = "INSERT INTO ventas (fecha, total, Descripcion) " +
-                    "VALUES('@fecha',@total,'@Descripcion');";
-
-                sentencia.Parameters.AddWithValue("@fecha", obj.fecha);
-                sentencia.Parameters.AddWithValue("@total", obj.total);
-                sentencia.Parameters.AddWithValue("@Descripcion", obj.descripccion);
+                    "VALUES('" + obj.fecha + "'," + obj.total+",'"+obj.descripccion+"');";
 
                 Conexion.ejecutarSentencia(sentencia, true);
 
@@ -80,9 +76,7 @@ namespace proyectofinalwebII.DAOS
             try
             {
                 MySqlCommand sentencia = new MySqlCommand();
-                sentencia.CommandText = "SELECT * FROM ventas where idVentas = @idVentas;";
-                sentencia.Parameters.AddWithValue("@idVentas", id);
-
+                sentencia.CommandText = "SELECT * FROM ventas where idVentas = "+id+";";
                 DataTable tabla = Conexion.ejecutarConsulta(sentencia);
 
 
@@ -115,8 +109,7 @@ namespace proyectofinalwebII.DAOS
             try
             {
                 MySqlCommand sentencia = new MySqlCommand();
-                sentencia.CommandText = "DELETE FROM ventas WHERE idVentas =@idVentas;";
-                sentencia.Parameters.AddWithValue("@idVentas", id);
+                sentencia.CommandText = "DELETE FROM ventas WHERE idVentas ="+id+";";
                 Conexion.ejecutarSentencia(sentencia, false);
 
                 return true;
@@ -139,14 +132,8 @@ namespace proyectofinalwebII.DAOS
                 MySqlCommand sentencia = new MySqlCommand();
                 sentencia.CommandText = "INSERT INTO detalles (idVenta ,Producto ,Tipo , Cantidad,"+
                     " Total) " +
-                    "VALUES(@idVenta ,@Producto ,'@Tipo' , @Cantidad, @Total);";
-
-                sentencia.Parameters.AddWithValue("@idVenta", obj.idVenta);
-                sentencia.Parameters.AddWithValue("@Producto", obj.producto);
-                sentencia.Parameters.AddWithValue("@Tipo", obj.Tipo);
-                sentencia.Parameters.AddWithValue("@Cantidad", obj.cantidad);
-                sentencia.Parameters.AddWithValue("@Total", obj.total);
-
+                    "VALUES("+obj.idVenta+" ,"+obj.producto+" ,'"+obj.Tipo+"', "+obj.cantidad
+                    +","+obj.cantidad+");";
 
                 Conexion.ejecutarSentencia(sentencia, true);
 
@@ -169,9 +156,7 @@ namespace proyectofinalwebII.DAOS
             try
             {
                 MySqlCommand sentencia = new MySqlCommand();
-                sentencia.CommandText = "SELECT * FROM detalles where idVenta = @idVenta;";
-                sentencia.Parameters.AddWithValue("@idVenta", id);
-
+                sentencia.CommandText = "SELECT * FROM detalles where idVenta = "+id+";";
                 DataTable tabla = Conexion.ejecutarConsulta(sentencia);
 
 
@@ -204,8 +189,7 @@ namespace proyectofinalwebII.DAOS
             try
             {
                 MySqlCommand sentencia = new MySqlCommand();
-                sentencia.CommandText = "DELETE FROM detalles WHERE idVenta =@idVenta;";
-                sentencia.Parameters.AddWithValue("@idVenta", id);
+                sentencia.CommandText = "DELETE FROM detalles WHERE idVenta ="+id+";";
                 Conexion.ejecutarSentencia(sentencia, false);
 
                 return true;

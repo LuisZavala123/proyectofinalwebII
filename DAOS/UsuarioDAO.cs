@@ -15,21 +15,13 @@ namespace proyectofinalwebII.DAOS
     {
         public Boolean Agregar(MUsuarios obj)
         {
-            
-
             try
             {
                 MySqlCommand sentencia = new MySqlCommand();
                 sentencia.CommandText = "INSERT INTO usuario ( Nombre, Primer_Apellido,"+
                     " Segundo_Apellido, Contraseña, Correo, Tipo)" +
-                    "('@Nombre', '@Primer_Apellido', '@Segundo_Apellido', '@Contraseña', '@Correo', '@Tipo');";
-
-                sentencia.Parameters.AddWithValue("@Nombre", obj.Nombre);
-                sentencia.Parameters.AddWithValue("@Primer_Apellido", obj.Primer_Apellido);
-                sentencia.Parameters.AddWithValue("@Segundo_Apellido", obj.Segundo_Apellido);
-                sentencia.Parameters.AddWithValue("@Contraseña", obj.Contraseña);
-                sentencia.Parameters.AddWithValue("@Correo", obj.Correo);
-                sentencia.Parameters.AddWithValue("@Tipo", obj.Tipo);
+                    "('"+ obj.Nombre + "', '"+ obj.Primer_Apellido + "', '"+ obj.Segundo_Apellido + 
+                    "', '"+ obj.Contraseña + "', '"+obj.Correo+"', '"+ obj.Tipo + "');";
 
                 Conexion.ejecutarSentencia(sentencia, true);
 
@@ -93,9 +85,7 @@ namespace proyectofinalwebII.DAOS
             try
             {
                 MySqlCommand sentencia = new MySqlCommand();
-                sentencia.CommandText = "SELECT * FROM usuario where idUsuario = @idUsuario;";
-                sentencia.Parameters.AddWithValue("@idUsuario", id);
-
+                sentencia.CommandText = "SELECT * FROM usuario where idUsuario = "+id+"";
                 DataTable tabla = Conexion.ejecutarConsulta(sentencia);
 
 
@@ -130,9 +120,7 @@ namespace proyectofinalwebII.DAOS
             try
             {
                 MySqlCommand sentencia = new MySqlCommand();
-                sentencia.CommandText = "SELECT * FROM usuario where Correo = '@Correo';";
-                sentencia.Parameters.AddWithValue("@Correo", Correo);
-
+                sentencia.CommandText = "SELECT * FROM usuario where Correo = '"+Correo+"';";
                 DataTable tabla = Conexion.ejecutarConsulta(sentencia);
 
 
@@ -170,8 +158,7 @@ namespace proyectofinalwebII.DAOS
             try
             {
                 MySqlCommand sentencia = new MySqlCommand();
-                sentencia.CommandText = "DELETE FROM usuario WHERE idUsuario =@idUsuario;";
-                sentencia.Parameters.AddWithValue("@idUsuario", id);
+                sentencia.CommandText = "DELETE FROM usuario WHERE idUsuario ="+id+";";
                 Conexion.ejecutarSentencia(sentencia, false);
             
 
@@ -197,13 +184,8 @@ namespace proyectofinalwebII.DAOS
             try
             {
                 MySqlCommand sentencia = new MySqlCommand();
-                sentencia.CommandText = "SELECT * FROM usuario where Nombre = '@Nombre';";
-                sentencia.Parameters.AddWithValue("@Nombre", Nombre);
-
+                sentencia.CommandText = "SELECT * FROM usuario where Nombre = '"+Nombre+"';";
                 DataTable tabla = Conexion.ejecutarConsulta(sentencia);
-
-                
-
                 foreach (DataRow fila in tabla.Rows)
                 {
 
