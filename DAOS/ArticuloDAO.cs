@@ -15,7 +15,6 @@ namespace proyectofinalwebII.DAOS
 
         public Boolean Agregar(MArticulos obj)
         {
-            // new MArticulos(Tipo,nom,costo,nId()+"",Descripcion);
 
             try
             {
@@ -23,10 +22,6 @@ namespace proyectofinalwebII.DAOS
                 sentencia.CommandText = "INSERT INTO articulos ( Tipo, Nombre, Costo, Descripccion) " +
                     "VALUES('"+ obj.tipo + "','"+ obj.nombre + "',"+ obj.costo + ",'"+ obj.descripccion + "');";
 
-               /* sentencia.Parameters.AddWithValue("@Tipo", obj.tipo);
-                sentencia.Parameters.AddWithValue("@Nombre", obj.nombre);
-                sentencia.Parameters.AddWithValue("@Costo", obj.costo);
-                sentencia.Parameters.AddWithValue("@Descripccion", obj.descripccion);*/
 
                 Conexion.ejecutarSentencia(sentencia, true);
 

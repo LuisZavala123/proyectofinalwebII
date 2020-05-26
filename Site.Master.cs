@@ -12,25 +12,7 @@ namespace proyectofinalwebII
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                agProducto.Visible = false;
-                agUsuario.Visible = false;
-                Reporte.Visible = false;
-                Login.Visible = true;
-                exit.Visible = false;
-            }
-            if (Session["Nombre"] != null)
-            {
-                if (new UsuarioDAO().IsUsuario(Session["Nombre"].ToString()))
-                {
-                    agProducto.Visible = true;
-                    agUsuario.Visible = true;
-                    Reporte.Visible = true;
-                    Login.Visible = false;
-                    exit.Visible = true;
-                } 
-            }
+            
         }
       
 

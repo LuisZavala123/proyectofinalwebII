@@ -257,7 +257,6 @@
     <Content Include="WS\WSArticulos.asmx" />
     <Content Include="WS\WSUsuario.asmx" />
     <Content Include="WS\WSVenta.asmx" />
-    <Content Include="XML\Datos.xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AgregarProducto.aspx.cs">
@@ -352,6 +351,7 @@
     <None Include="Connected Services\WSArticulo\WSArticulos.wsdl" />
     <None Include="packages.config" />
     <Content Include="Site.Master" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -20,6 +20,11 @@
     <script type="text/javascript">
        
         $(document).ready(function () {
+          
+            if (sessionStorage.getItem('User') != "1") {
+                debugger;
+                location.href = "Principal.aspx";
+            }
             $('#contenido_btnGenerar').click(function (e) {
                 e.preventDefault();
                 let fecha = '<%= Calendario.SelectedDate.Day+"-"+Calendario.SelectedDate.Month+"-"+Calendario.SelectedDate.Year %>'; 

@@ -23,32 +23,32 @@ namespace proyectofinalwebII.WS
     {
         private UsuarioDAO DAO = new UsuarioDAO();
 
-        [WebMethod]
+        [WebMethod(EnableSession = true)]
         public void Agregar( string nom, string primer_apellido, string segundo_apellido, string contraseña, string Correo, string Tipo)
         {
             MD5CryptoServiceProvider hashmd5 = new MD5CryptoServiceProvider();
             DAO.Agregar(new MUsuarios("",nom,primer_apellido,segundo_apellido, BitConverter.ToString(hashmd5.ComputeHash(UTF8Encoding.UTF8.GetBytes(contraseña))),Correo,Tipo));   
         }
 
-        [WebMethod]
+        [WebMethod(EnableSession = true)]
         public List<MUsuarios> GetAll()
         {
             return DAO.GetAll();
         }
 
-        [WebMethod]
+        [WebMethod(EnableSession = true)]
         public MUsuarios Getbyid(String id)
         {
             return DAO.Getbyid(id);
         }
 
-        [WebMethod]
+        [WebMethod(EnableSession = true)]
         public Boolean IsUsuario(String Nombre)
         {
             return DAO.IsUsuario(Nombre);
         }
 
-        [WebMethod]
+        [WebMethod(EnableSession = true)]
         public MUsuarios Getbycorreo(String correo)
         {
             return DAO.GetbyCorreo(correo);
@@ -60,6 +60,7 @@ namespace proyectofinalwebII.WS
             MD5CryptoServiceProvider hashmd5 = new MD5CryptoServiceProvider();
             if (DAO.GetbyCorreo(correo).Contraseña.Equals(BitConverter.ToString(hashmd5.ComputeHash(UTF8Encoding.UTF8.GetBytes(pw)))))
             {
+                var us = DAO.GetbyCorreo(correo).Nombre;
                 return true;
             }
             else
@@ -69,7 +70,7 @@ namespace proyectofinalwebII.WS
             
         }
 
-        [WebMethod]
+        [WebMethod(EnableSession = true)]
         public void Eliminar(string id)
         {
             DAO.Eliminar(id);

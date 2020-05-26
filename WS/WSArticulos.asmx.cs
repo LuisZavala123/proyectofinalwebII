@@ -23,7 +23,7 @@ namespace proyectofinalwebII.WS
         private ArticuloDAO DAO = new ArticuloDAO();
 
 
-        [WebMethod]
+        [WebMethod(EnableSession = true)]
         public void Agregar(string nom, String costo, String Descripcion, String Tipo)
         {
 
@@ -38,26 +38,27 @@ namespace proyectofinalwebII.WS
             return DAO.GetAll();
         }
 
-        [WebMethod]
+
+        [WebMethod(EnableSession = true)]
         public MArticulos Getbyid(String id)
         {
             return DAO.Getbyid(id);
         }
 
-        [WebMethod]
+        [WebMethod(EnableSession = true)]
         public MArticulos GetbyNombre(String Nombre)
         {
             return DAO.GetbyNombre(Nombre);
         }
 
-        [WebMethod]
+        [WebMethod(EnableSession = true)]
         public List<String> GetNombres()
         {
             return DAO.GetNombres();
         }
 
 
-        [WebMethod]
+        [WebMethod(EnableSession = true)]
         public void Eliminar(string id)
         {
             DAO.Eliminar(id);

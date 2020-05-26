@@ -47,6 +47,11 @@
         var expr = /^[0-9]+[.][0-9]?[1-9]$/;
         var exprn = /^[A-ZÁÉÍÓÚ][a-záéíúó]+$/;
         $(document).ready(function () {
+            
+            if (sessionStorage.getItem('User') != "1") {
+                debugger;
+                location.href = "Principal.aspx";
+            }
             $('#contenido_txtNombre').keypress(function (e) {
                 e.preventDefault();
                 var exa = $('#contenido_txtNombre').val();
@@ -80,7 +85,7 @@
                         dataType: 'json',
                         type: 'POST',
                         success: function (data) {
-                            console.log(data);
+                            location.href ="Principal.aspx";
                         },
                         error: function (err) {
                             console.log(err);

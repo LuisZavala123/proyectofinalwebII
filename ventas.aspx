@@ -128,6 +128,10 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
+            if (sessionStorage.getItem('User') != "1") {
+                debugger;
+                location.href = "Principal.aspx";
+            }
             $('#contenido_btnAgregar').click(function (e) {
                 e.preventDefault();
                 var prod = $('#contenido_CboxProducto').val();
@@ -208,7 +212,11 @@
         var expr = /^[0-9]+[.][0-9]?[1-9]$/;
         var ready = 0;
         $(document).ready(function () {
-            
+            var user = "<%=Session["User"]%>";
+            if (user == "") {
+                debugger;
+                location.href = "Principal.aspx";
+            }
             $('#contenido_txtCantidad').keypress(function (e) {
                 e.preventDefault();
                 var exa = $('#contenido_txtCantidad').val();
