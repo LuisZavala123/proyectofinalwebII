@@ -25,7 +25,7 @@ namespace proyectofinalwebII.WS
         private static List<MDetalles> detalles = new List<MDetalles>();
 
 
-        [WebMethod]
+        [WebMethod(EnableSession = true)]
         public void Agregar( String Total, String Descripcion)
         {
             DateTime fecha= DateTime.Today;
@@ -37,7 +37,7 @@ namespace proyectofinalwebII.WS
             }
             
         }
-        [WebMethod]
+        [WebMethod(EnableSession = true)]
         public List<MDetalles> detalle(String producto, String Cantidad)
         {
             ArticuloDAO artdao = new ArticuloDAO();
@@ -69,13 +69,13 @@ namespace proyectofinalwebII.WS
             return detalles;
         }
 
-        [WebMethod]
+        [WebMethod(EnableSession = true)]
         public List<MVentas> GetAll()
         {
             return DAO.GetAll();
         }
 
-        [WebMethod]
+        [WebMethod(EnableSession = true)]
         public List<MDetalles> GetDetalles(String id)
         {
             return DAO.GetDetalles(id);
@@ -113,25 +113,25 @@ namespace proyectofinalwebII.WS
             return lista2;
         }
 
-        [WebMethod]
+        [WebMethod(EnableSession = true)]
         public MVentas Getbyid(String id)
         {
             return DAO.Getbyid(id);
         }
 
-        [WebMethod]
+        [WebMethod(EnableSession = true)]
         public void Eliminar(string id)
         {
             DAO.Eliminar(id);
         }
 
-        [WebMethod]
+        [WebMethod(EnableSession = true)]
         public void EliminarDetalles(string id)
         {
             DAO.EliminarDetalles(id);
         }
 
-        [WebMethod]
+        [WebMethod(EnableSession = true)]
         public List<MDetalles> quitarDetalle(string id)
         {
             foreach (var item in detalles)

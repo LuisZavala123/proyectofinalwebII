@@ -31,7 +31,7 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Scripts" runat="server">
     <script type="text/javascript">
-
+        
         $(document).ready(function () {
             $('#contenido_btnLogin').click(function (e) {
                 e.preventDefault();
@@ -44,7 +44,15 @@
                     dataType: 'json',
                     type: 'POST',
                     success: function (data) {
-                        console.log(data);
+                        debugger;
+                        if (data.d) {
+                            sessionStorage.setItem('User','1');
+                        } else {
+                        
+                        }
+                        
+                            location.href = "Principal.aspx";
+                        
                     },
                     error: function (err) {
                         console.log(err);

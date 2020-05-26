@@ -58,6 +58,12 @@
     <script type="text/javascript">
 
         $(document).ready(function () {
+            
+            if (sessionStorage.getItem('User') != "1") {
+                debugger;
+                location.href = "Principal.aspx";
+            }
+
             $('#contenido_btnAceptar').click(function (e) {
                 e.preventDefault();
                 var Nombre = $('#contenido_txtNombre').val();
