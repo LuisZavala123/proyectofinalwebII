@@ -205,31 +205,6 @@
             });
         });
     </script>
-
-
-
     <script type="text/javascript">
-        var expr = /^[0-9]+[.][0-9]?[1-9]$/;
-        var ready = 0;
-        $(document).ready(function () {
-            var user = "<%=Session["User"]%>";
-            if (user == "") {
-                debugger;
-                location.href = "Principal.aspx";
-            }
-            $('#contenido_txtCantidad').keypress(function (e) {
-                e.preventDefault();
-                var exa = $('#contenido_txtCantidad').val();
-                if (expr.test(exa)) {
-                    ready += 1;
-                } else {
-                    ready = 0;
-                }
-            });
-            if (ready = 1) {
-                //Poner lo que quieras que haga si es cierto
-            }
-
-        });
     </script>
 </asp:Content>
