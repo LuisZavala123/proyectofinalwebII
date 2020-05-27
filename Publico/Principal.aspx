@@ -21,7 +21,7 @@
                                                 </a>
                                               </div>
                                               <div class="col-sm-6">
-                                                <img src="img/burger.png" class="img-fluid d-none d-sm-block">
+                                                <img src="../img/burger.png" class="img-fluid d-none d-sm-block">
                                               </div>
                                             </div>
                                           </div>
@@ -39,7 +39,7 @@
                                                 </a>
                                               </div>
                                               <div class="col-sm-6">
-                                                <img src="img/pizza.png" class="img-fluid d-none d-sm-block">
+                                                <img src="../img/pizza.png" class="img-fluid d-none d-sm-block">
                                               </div>
                                             </div>
                                           </div>
@@ -57,7 +57,7 @@
                                                 </a>
                                               </div>
                                               <div class="col-sm-6">
-                                                <img src="img/pollo.png" class="img-fluid d-none d-sm-block">
+                                                <img src="../img/pollo.png" class="img-fluid d-none d-sm-block">
                                               </div>
                                             </div>
                                           </div>

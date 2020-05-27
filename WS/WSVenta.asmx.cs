@@ -29,7 +29,26 @@ namespace proyectofinalwebII.WS
         public void Agregar( String Total, String Descripcion)
         {
             DateTime fecha= DateTime.Today;
-            DAO.Agregar(new MVentas(fecha.Day+"-"+ fecha.Month + "-"+ fecha.Year, double.Parse(Total), "",Descripcion));
+            String fech= fecha.Year + "-";
+            if (fecha.Month.ToString().Length < 2)
+            {
+                fech = fech + "0" + fecha.Month + "-";
+            }
+            else {
+                fech = fech + fecha.Month + "-";
+            }
+            if (fecha.Day.ToString().Length < 2)
+            {
+                fech = fech + "0" + fecha.Day;
+            }
+            else
+            {
+                fech = fech + fecha.Day + "";
+            }
+
+
+
+            DAO.Agregar(new MVentas(fech, double.Parse(Total), "",Descripcion));
             int id = DAO.lastid();
             foreach (var item in detalles)
             {

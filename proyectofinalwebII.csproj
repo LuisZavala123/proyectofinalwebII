@@ -114,8 +114,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AgregarProducto.aspx" />
-    <Content Include="AgregarUsuario.aspx" />
+    <Content Include="css\datatables.css" />
+    <Content Include="css\datatables.min.css" />
+    <Content Include="js\datatables.js" />
+    <Content Include="js\datatables.min.js" />
+    <Content Include="Publico\Login.js" />
+    <Content Include="Publico\Login.min.js" />
+    <Content Include="Publico\Mostrar1.js" />
+    <Content Include="Publico\Mostrar1.min.js" />
+    <Content Include="Site.min.js" />
+    <Content Include="Usuario\AgregarProducto.aspx" />
+    <Content Include="Usuario\AgregarProducto.min.js" />
+    <Content Include="Usuario\AgregarUsuario.aspx" />
     <Content Include="Connected Services\WSArticulo\proyectofinalwebII.WSArticulo.AgregarResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -249,29 +259,32 @@
     <Content Include="js\jquery.dataTables.min.js" />
     <Content Include="js\jquery.js" />
     <Content Include="js\popper.min.js" />
-    <Content Include="Login.aspx" />
-    <Content Include="Mostrar1.aspx" />
-    <Content Include="Principal.aspx" />
-    <Content Include="Reportes.aspx" />
-    <Content Include="ventas.aspx" />
+    <Content Include="Publico\Login.aspx" />
+    <Content Include="Publico\Mostrar1.aspx" />
+    <Content Include="Publico\Principal.aspx" />
+    <Content Include="Usuario\AgregarUsuario.min.js" />
+    <Content Include="Usuario\Reportes.aspx" />
+    <Content Include="Usuario\Reportes.min.js" />
+    <Content Include="Usuario\ventas.aspx" />
+    <Content Include="Usuario\Ventas.min.js" />
     <Content Include="Web.config" />
     <Content Include="WS\WSArticulos.asmx" />
     <Content Include="WS\WSUsuario.asmx" />
     <Content Include="WS\WSVenta.asmx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AgregarProducto.aspx.cs">
+    <Compile Include="Usuario\AgregarProducto.aspx.cs">
       <DependentUpon>AgregarProducto.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AgregarProducto.aspx.designer.cs">
+    <Compile Include="Usuario\AgregarProducto.aspx.designer.cs">
       <DependentUpon>AgregarProducto.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AgregarUsuario.aspx.cs">
+    <Compile Include="Usuario\AgregarUsuario.aspx.cs">
       <DependentUpon>AgregarUsuario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AgregarUsuario.aspx.designer.cs">
+    <Compile Include="Usuario\AgregarUsuario.aspx.designer.cs">
       <DependentUpon>AgregarUsuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="Connected Services\WSArticulo\Reference.cs">
@@ -283,11 +296,11 @@
     <Compile Include="DAOS\Conexion.cs" />
     <Compile Include="DAOS\UsuarioDAO.cs" />
     <Compile Include="DAOS\VentaDAO.cs" />
-    <Compile Include="Login.aspx.cs">
+    <Compile Include="Publico\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Login.aspx.designer.cs">
+    <Compile Include="Publico\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Modelos\MArticulos.cs" />
@@ -295,26 +308,26 @@
     <Compile Include="Modelos\MUsuarios.cs" />
     <Compile Include="Modelos\MVentas.cs" />
     <Compile Include="Modelos\MReporte.cs" />
-    <Compile Include="Mostrar1.aspx.cs">
+    <Compile Include="Publico\Mostrar1.aspx.cs">
       <DependentUpon>Mostrar1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Mostrar1.aspx.designer.cs">
+    <Compile Include="Publico\Mostrar1.aspx.designer.cs">
       <DependentUpon>Mostrar1.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Principal.aspx.cs">
+    <Compile Include="Publico\Principal.aspx.cs">
       <DependentUpon>Principal.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Principal.aspx.designer.cs">
+    <Compile Include="Publico\Principal.aspx.designer.cs">
       <DependentUpon>Principal.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reportes.aspx.cs">
+    <Compile Include="Usuario\Reportes.aspx.cs">
       <DependentUpon>Reportes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Reportes.aspx.designer.cs">
+    <Compile Include="Usuario\Reportes.aspx.designer.cs">
       <DependentUpon>Reportes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
@@ -324,11 +337,11 @@
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
-    <Compile Include="ventas.aspx.cs">
+    <Compile Include="Usuario\ventas.aspx.cs">
       <DependentUpon>ventas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ventas.aspx.designer.cs">
+    <Compile Include="Usuario\ventas.aspx.designer.cs">
       <DependentUpon>ventas.aspx</DependentUpon>
     </Compile>
     <Compile Include="WS\WSArticulos.asmx.cs">
