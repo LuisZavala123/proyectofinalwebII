@@ -118,9 +118,7 @@
     <Content Include="css\datatables.min.css" />
     <Content Include="js\datatables.js" />
     <Content Include="js\datatables.min.js" />
-    <Content Include="Publico\Login.js" />
     <Content Include="Publico\Login.min.js" />
-    <Content Include="Publico\Mostrar1.js" />
     <Content Include="Publico\Mostrar1.min.js" />
     <Content Include="Site.min.js" />
     <Content Include="Usuario\AgregarProducto.aspx" />
