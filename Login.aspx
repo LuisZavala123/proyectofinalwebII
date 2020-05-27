@@ -13,7 +13,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <asp:Label runat="server" Text="Correo Electronico"></asp:Label>
+                        <asp:Label runat="server" Text="Correo Electronico" ID="label1"></asp:Label>
                         <asp:TextBox runat="server" id="txtEmail" type="email" class="form-control" placeholder="Ingresa tu Correo Electronico"></asp:TextBox>
                     </div>
                     <div class="form-group">
@@ -37,47 +37,35 @@
                 e.preventDefault();
                 var Password = $('#contenido_txtPassword').val();
                 var Correo = $('#contenido_txtEmail').val();
-                $.ajax({
-                    url: 'WS/WSUsuario.asmx/Confirmar',
-                    data: '{ "correo":"' + Correo + '", "pw":"' + Password +'"}',
-                    contentType: 'application/json; utf-8',
-                    dataType: 'json',
-                    type: 'POST',
-                    success: function (data) {
-                        debugger;
-                        if (data.d) {
-                            sessionStorage.setItem('User','1');
-                        } else {
-                        
-                        }
-                        
+                
+                if (expr.test(Correo)) {
+                    $.ajax({
+                        url: 'WS/WSUsuario.asmx/Confirmar',
+                        data: '{ "correo":"' + Correo + '", "pw":"' + Password + '"}',
+                        contentType: 'application/json; utf-8',
+                        dataType: 'json',
+                        type: 'POST',
+                        success: function (data) {
+                            debugger;
+                            if (data.d) {
+                                sessionStorage.setItem('User', '1');
+                            } else {
+
+                            }
+
                             location.href = "Principal.aspx";
-                        
-                    },
-                    error: function (err) {
-                        console.log(err);
-                    }
-                });
+
+                        },
+                        error: function (err) {
+                            console.log(err);
+                        }
+                    });
+                } else {
+                    console.log("Correo invalido");
+                }
             });
         });
         var expr = /^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/;
-        var ready = 0;
-        $(document).ready(function () {
-            
-            $('#contenido_txtEmail').keypress(function (e) {
-                e.preventDefault();
-                var exa = $('#contenido_txtEmail').val();
-                if (expr.test(exa)) {
-                    ready += 1;
-                } else {
-                    ready = 0;
-                }
-            });
-            if (ready = 1) {
-                //Poner lo que quieras que haga si es cierto
-            }
-
-
-        });
+        
     </script>
 </asp:Content>
