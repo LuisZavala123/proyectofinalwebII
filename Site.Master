@@ -32,14 +32,14 @@
                     <li runat="server" class="nav-item" id="agProducto">
                         <a href="/AgregarProducto.aspx"><img src="img/iconos/productos.png" class="nav-link btn"></a>
                     </li>
-                    <li class="nav-item ">
-                        <a href="#"><img src="img/iconos/hamburguesas.png" class="nav-link btn"></a>
+                    <li class="nav-item">
+                        <a href="#" id="HamBtn"><img src="img/iconos/hamburguesas.png" class="nav-link btn"></a>
+                    </li>
+                    <li class="nav-item"> 
+                        <a href="#" id="PizBtn"><img src="img/iconos/pizzas.png" class="nav-link btn"></a>
                     </li>
                     <li class="nav-item">
-                        <a href="#"><img src="img/iconos/pizzas.png" class="nav-link btn"></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#"><img src="img/iconos/bebidas.png" class="nav-link btn"></a>
+                        <a href="#" id="BebBtn"><img src="img/iconos/bebidas.png" class="nav-link btn"></a>
                     </li>
                     <li runat="server" class="nav-item" id="orden">
                         <a href="/ventas.aspx"><img src="img/iconos/orden.png" class="nav-link btn"></a>
@@ -79,12 +79,25 @@
                     $("#Login").show();
             }
 
+            $("#HamBtn").click(function () {
+                sessionStorage.setItem("Producto", "Hamburguesa");
+                location.href = "Mostrar1.aspx";
+            });
+            $("#PizBtn").click(function () {
+                sessionStorage.setItem("Producto", "Pizza");
+                location.href = "Mostrar1.aspx";
+            });
+            $("#BebBtn").click(function () {
+                sessionStorage.setItem("Producto", "Bebida");
+                location.href = "Mostrar1.aspx";
+            });
             $("#lexit").click(function (e) {
                 e.preventDefault();
                 sessionStorage.setItem('User', null);
                 location.href = "Principal.aspx";
             });
         });
+        
     </script>
     <asp:ContentPlaceHolder ID="Scripts" runat="server">
             </asp:ContentPlaceHolder> 

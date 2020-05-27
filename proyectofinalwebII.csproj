@@ -250,6 +250,7 @@
     <Content Include="js\jquery.js" />
     <Content Include="js\popper.min.js" />
     <Content Include="Login.aspx" />
+    <Content Include="Mostrar1.aspx" />
     <Content Include="Principal.aspx" />
     <Content Include="Reportes.aspx" />
     <Content Include="ventas.aspx" />
@@ -294,6 +295,13 @@
     <Compile Include="Modelos\MUsuarios.cs" />
     <Compile Include="Modelos\MVentas.cs" />
     <Compile Include="Modelos\MReporte.cs" />
+    <Compile Include="Mostrar1.aspx.cs">
+      <DependentUpon>Mostrar1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mostrar1.aspx.designer.cs">
+      <DependentUpon>Mostrar1.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Principal.aspx.cs">
       <DependentUpon>Principal.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
