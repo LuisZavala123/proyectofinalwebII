@@ -30,42 +30,6 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Scripts" runat="server">
-    <script type="text/javascript">
-        
-        $(document).ready(function () {
-            $('#contenido_btnLogin').click(function (e) {
-                e.preventDefault();
-                var Password = $('#contenido_txtPassword').val();
-                var Correo = $('#contenido_txtEmail').val();
-                
-                if (expr.test(Correo)) {
-                    $.ajax({
-                        url: 'WS/WSUsuario.asmx/Confirmar',
-                        data: '{ "correo":"' + Correo + '", "pw":"' + Password + '"}',
-                        contentType: 'application/json; utf-8',
-                        dataType: 'json',
-                        type: 'POST',
-                        success: function (data) {
-                            debugger;
-                            if (data.d) {
-                                sessionStorage.setItem('User', '1');
-                            } else {
-
-                            }
-
-                            location.href = "Principal.aspx";
-
-                        },
-                        error: function (err) {
-                            console.log(err);
-                        }
-                    });
-                } else {
-                    console.log("Correo invalido");
-                }
-            });
-        });
-        var expr = /^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/;
-        
+    <script src="Login.min.js" type="text/javascript">
     </script>
 </asp:Content>
