@@ -54,7 +54,7 @@
         $('#grvLista').DataTable();
      });
    </script>
-        <script type="text/javascript" >
+        <script type="text/javascript" src="Ventas.min.js">
             
         </script>
     
