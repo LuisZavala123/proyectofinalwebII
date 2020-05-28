@@ -66,7 +66,6 @@ namespace proyectofinalwebII.WS
             MD5CryptoServiceProvider hashmd5 = new MD5CryptoServiceProvider();
             if (DAO.GetbyCorreo(correo).Contraseña.Equals(BitConverter.ToString(hashmd5.ComputeHash(UTF8Encoding.UTF8.GetBytes(pw)))))
             {
-                var us = DAO.GetbyCorreo(correo).Nombre;
                 return true;
             }
             else
