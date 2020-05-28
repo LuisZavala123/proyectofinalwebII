@@ -8,6 +8,7 @@ using System.Text;
 using System.Web;
 using System.Web.Services;
 using System.Xml;
+using System.Text.RegularExpressions;
 
 namespace proyectofinalwebII.WS
 {
@@ -26,8 +27,13 @@ namespace proyectofinalwebII.WS
         [WebMethod(EnableSession = true)]
         public void Agregar( string nom, string primer_apellido, string segundo_apellido, string contraseña, string Correo, string Tipo)
         {
-            MD5CryptoServiceProvider hashmd5 = new MD5CryptoServiceProvider();
-            DAO.Agregar(new MUsuarios("",nom,primer_apellido,segundo_apellido, BitConverter.ToString(hashmd5.ComputeHash(UTF8Encoding.UTF8.GetBytes(contraseña))),Correo,Tipo));   
+            //Aqui
+            String ExpresionNom = @"[A-ZÁÉÍÓÚ][a-z]+";
+            String ExpresionCor = @"[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+";
+            if (Regex.IsMatch(nom,ExpresionNom) && Regex.IsMatch(primer_apellido,ExpresionNom) && Regex.IsMatch(segundo_apellido,ExpresionNom) && Regex.IsMatch(Correo,ExpresionCor)) {
+                MD5CryptoServiceProvider hashmd5 = new MD5CryptoServiceProvider();
+                DAO.Agregar(new MUsuarios("", nom, primer_apellido, segundo_apellido, BitConverter.ToString(hashmd5.ComputeHash(UTF8Encoding.UTF8.GetBytes(contraseña))), Correo, Tipo));
+            }
         }
 
         [WebMethod(EnableSession = true)]
