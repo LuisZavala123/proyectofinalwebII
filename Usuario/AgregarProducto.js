@@ -1,10 +1,25 @@
-﻿var expr = /^[0-9]+[.][0-9]?[0-9]$/;
+﻿let nom = 0;
+let cos = 0;
+function popear() {
+    if (nom == 1) {
+        var popup = document.getElementById("popt1");
+        popup.classList.toggle("show");
+    }
+    if (cos == 1) {
+        var popup = document.getElementById("popt2");
+        popup.classList.toggle("show");
+    }
+
+
+
+}
+var expr = /^[0-9]+\.[0-9]?[0-9]$/;
 var exprn = /^[A-ZÁÉÍÓÚ][a-záéíúó]+$/;
 var ready = 0;
 $(document).ready(function () {
 
     if (sessionStorage.getItem('User') != "1") {
-        debugger;
+
         location.href = "../Publico/Principal.aspx";
     }
 
@@ -17,16 +32,21 @@ $(document).ready(function () {
 
         if (exprn.test(Nombre)) {
             ready += 1;
+            nom = 0;
         } else {
             ready = 0;
+            nom = 1;
         }
+        debugger;
         if (expr.test(Costo)) {
             ready += 1;
+            cos = 0;
         } else {
             ready = 0;
+            cos = 1;
         }
         console.log(ready);
-        if (ready = 2) {
+        if (ready == 2) {
             $.ajax({
                 url: '../WS/WSArticulos.asmx/Agregar',
                 data: '{ "nom":"' + Nombre + '", "costo":"' + Costo + '", "Descripcion":"' + Desc + '", "Tipo": "' + tipo + '" }',
@@ -41,6 +61,8 @@ $(document).ready(function () {
                 }
             });
         } else {
+            ready = 0;
+            popear();
             console.log("Verifique Datos");
         }
     });

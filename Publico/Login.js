@@ -1,7 +1,13 @@
 ﻿
 
 $(document).ready(function () {
-    debugger;
+    function popear() {
+       
+            var popup = document.getElementById("popt");
+            popup.classList.toggle("show");
+        
+
+    }
     $('#contenido_btnLogin').click(function (e) {
         debugger;
         e.preventDefault();
@@ -31,6 +37,8 @@ $(document).ready(function () {
                 }
             });
         } else {
+
+            popear();
             console.log("Correo invalido");
         }
     });

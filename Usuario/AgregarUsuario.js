@@ -1,4 +1,22 @@
-﻿
+﻿let nom = 0;
+let ap = 0;
+let cor = 0;
+function popear() {
+    if (nom == 1) {
+        var popup = document.getElementById("popt1");
+        popup.classList.toggle("show");
+    }
+    if (ap == 1) {
+        var popup = document.getElementById("popt2");
+        popup.classList.toggle("show");
+    }
+    if (cor == 1) {
+        var popup = document.getElementById("popt2");
+        popup.classList.toggle("show");
+    }
+}
+
+
 $(document).ready(function () {
 
     if (sessionStorage.getItem('User') != "1") {
@@ -20,12 +38,16 @@ $(document).ready(function () {
 
         if (exprn.test(Nombre)) {
             ready += 1;
+            nom = 0;
         } else {
+            nom = 1;
             ready = 0;
         }
         if (exprn.test(ApellidoP)) {
             ready += 1;
+            ap = 0;
         } else {
+            ap = 1;
             ready = 0;
         }
         if (exprn.test(ApellidoM)) {
@@ -35,7 +57,9 @@ $(document).ready(function () {
         }
         if (expr.test(Correo)) {
             ready += 1;
+            cor = 0;
         } else {
+            cor = 1;
             ready = 0;
         }
         var exa2 = $('#contenido_txtPassword').val();
@@ -64,6 +88,7 @@ $(document).ready(function () {
             });
         } else {
             ready = 0;
+            popear();
             console.log("Verifique los datos");
         }
     });
@@ -71,3 +96,5 @@ $(document).ready(function () {
 var expr = /^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/;
 var exprn = /^[A-ZÁÉÍÓÚ][a-záéíúó]+$/;
 var ready = 0;
+
+

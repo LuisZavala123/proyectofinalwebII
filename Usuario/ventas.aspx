@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ventas.aspx.cs" Inherits="proyectofinalwebII.ventas" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+     <link rel="stylesheet" href="../css/popup.css">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="contenido" runat="server">
     <div id="cont" onload="nombres" class="container">
@@ -20,6 +21,7 @@
                     </div>
                     <div class="form-group">
                         <asp:Label runat="server" Text="Cantidad"></asp:Label>
+                        <div class="popup"><span id="popt1" class="popuptext">X</span></div>
                         <asp:TextBox runat="server" id="txtCantidad" type="number" class="form-control"></asp:TextBox>
                     </div>
                         <div class="form-group">
@@ -52,6 +54,8 @@
         $('#grvLista').DataTable();
      });
    </script>
-        <script type="text/javascript" src="Ventas.min.js"></script>
+        <script type="text/javascript" src="Ventas.min.js">
+            
+        </script>
     
 </asp:Content>

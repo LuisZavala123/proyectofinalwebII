@@ -1,4 +1,8 @@
-﻿function eliminar(dato) {
+﻿function popear() {
+    var popup = document.getElementById("popt1");
+    popup.classList.toggle("show");
+}
+function eliminar(dato) {
     dato.preventDefault;
 
     $.ajax({
@@ -110,6 +114,7 @@ $(document).ready(function () {
                 console.log(data);
             },
             error: function (err) {
+                popear();
                 console.log(err);
             }
         });

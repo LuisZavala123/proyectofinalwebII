@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AgregarUsuario.aspx.cs" Inherits="proyectofinalwebII.AgregarUsuario" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link rel="stylesheet" href="../css/popup.css">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="contenido" runat="server">
     <div class="container">
@@ -14,10 +15,12 @@
                     </div>
                     <div class="form-group">
                         <asp:Label runat="server" Text="Nombre"></asp:Label>
+                        <div class="popup"><span id="popt1" class="popuptext">X</span></div>
                         <asp:TextBox runat="server" id="txtNombre" type="text" class="form-control" placeholder="Ingresa tu Nombre"></asp:TextBox>
                     </div>
                     <div class="form-group">
                         <asp:Label runat="server" Text="Apellido Paterno"></asp:Label>
+                        <div class="popup"><span id="popt2" class="popuptext">X</span></div>
                         <asp:TextBox runat="server" id="txtApellidoP" type="text" class="form-control" placeholder="Ingresa tu Apellido Paterno"></asp:TextBox>
                     </div>
                     <div class="form-group">
@@ -26,6 +29,7 @@
                     </div>
                     <div class="form-group">
                         <asp:Label runat="server" Text="Correo Electronico"></asp:Label>
+                        <div class="popup"><span id="popt3" class="popuptext">X</span></div>
                         <asp:TextBox runat="server" id="txtEmail" type="email" class="form-control" placeholder="Ingresa tu Correo Electronico"></asp:TextBox>
                     </div>
                     <div class="form-group">
@@ -55,6 +59,7 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Scripts" runat="server">
-    <script type="text/javascript" src="AgregarUsuario.min.js">
+    <script type="text/javascript" src="AgregarProducto.min.js">
+        
     </script>
 </asp:Content>
