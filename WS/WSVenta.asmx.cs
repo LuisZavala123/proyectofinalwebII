@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Services;
 using System.Xml;
+using System.Text.RegularExpressions;
 
 namespace proyectofinalwebII.WS
 {
@@ -26,10 +27,11 @@ namespace proyectofinalwebII.WS
 
 
         [WebMethod(EnableSession = true)]
-        public void Agregar( String Total, String Descripcion)
+        public void Agregar(String Total, String Descripcion)
         {
-            DateTime fecha= DateTime.Today;
-            String fech= fecha.Year + "-";
+
+            DateTime fecha = DateTime.Today;
+            String fech = fecha.Year + "-";
             if (fecha.Month.ToString().Length < 2)
             {
                 fech = fech + "0" + fecha.Month + "-";
@@ -45,14 +47,15 @@ namespace proyectofinalwebII.WS
             {
                 fech = fech + fecha.Day + "";
             }
-
-
-
-            DAO.Agregar(new MVentas(fech, double.Parse(Total), "",Descripcion));
-            int id = DAO.lastid();
-            foreach (var item in detalles)
-            {
-                DAO.Agregar_Detalles(new MDetalles(id+"",item.producto,item.Tipo,item.cantidad,item.total));
+            String Expresion = @"[0-9]+[\.][0-9][0-9]?";
+            //Aqui
+            if (Regex.IsMatch(Total, Expresion)) { }
+                DAO.Agregar(new MVentas(fech, double.Parse(Total), "", Descripcion));
+                int id = DAO.lastid();
+                foreach (var item in detalles)
+                {
+                    DAO.Agregar_Detalles(new MDetalles(id + "", item.producto, item.Tipo, item.cantidad, item.total));
+                }
             }
             
         }

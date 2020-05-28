@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Services;
 using System.Xml;
+using System.Text.RegularExpressions;
 
 namespace proyectofinalwebII.WS
 {
@@ -26,8 +27,14 @@ namespace proyectofinalwebII.WS
         [WebMethod(EnableSession = true)]
         public void Agregar(string nom, String costo, String Descripcion, String Tipo)
         {
-
-            DAO.Agregar(new MArticulos(Tipo,nom,Double.Parse(costo),"",Descripcion)); 
+            //Aqui
+            String ExpresionNom = @"[A-ZÁÉÍÓÚ][a-z]+";
+            String ExpresionCos = @"[0-9]+[\.][0-9][0-9]?";
+            if (Regex.IsMatch(nom,ExpresionNom) && Regex.IsMatch(costo, ExpresionCos))
+            {
+                DAO.Agregar(new MArticulos(Tipo,nom,Double.Parse(costo),"",Descripcion)); 
+            }
+            
 
         }
 
