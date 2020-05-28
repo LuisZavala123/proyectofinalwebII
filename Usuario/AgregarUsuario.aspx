@@ -59,7 +59,6 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Scripts" runat="server">
-    <script type="text/javascript" src="AgregarProducto.min.js">
-        
+    <script type="text/javascript" src="AgregarUsuario.min.js">
     </script>
 </asp:Content>
