@@ -1,10 +1,16 @@
 ﻿
 
 $(document).ready(function () {
-    function popear() {
-       
-            var popup = document.getElementById("popt");
+    
+    function popear(c) {
+        if (c == 1) {
+            var popup = document.getElementById("popt1");
             popup.classList.toggle("show");
+        } else if (c == 2) {
+            var popup = document.getElementById("popt2");
+            popup.classList.toggle("show");
+        }
+            
         
 
     }
@@ -25,11 +31,10 @@ $(document).ready(function () {
                     debugger;
                     if (data.d) {
                         sessionStorage.setItem('User', '1');
+                        location.href = "Principal.aspx";
                     } else {
-
+                        popear(2);
                     }
-
-                    location.href = "Principal.aspx";
 
                 },
                 error: function (err) {
@@ -38,7 +43,7 @@ $(document).ready(function () {
             });
         } else {
 
-            popear();
+            popear(1);
             console.log("Correo invalido");
         }
     });

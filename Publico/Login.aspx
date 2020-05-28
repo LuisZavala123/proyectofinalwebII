@@ -15,11 +15,12 @@
                     </div>
                     <div class="form-group">
                         <asp:Label runat="server" Text="Correo Electronico" ID="label1"></asp:Label>
-                        <div class="popup"><span id="popt" class="popuptext">X</span></div>
+                        <div class="popup"><span id="popt1" class="popuptext">X</span></div>
                         <asp:TextBox runat="server" id="txtEmail" type="email" class="form-control" placeholder="Ingresa tu Correo Electronico"></asp:TextBox>
                     </div>
                     <div class="form-group">
                         <asp:Label runat="server" Text="Contraseña"></asp:Label>
+                        <div class="popup"><span id="popt2" class="popuptext">X</span></div>
                         <asp:TextBox runat="server" id="txtPassword" type="password" class="form-control" placeholder="Ingresa tu contraseña"></asp:TextBox>
                     </div>
                     <div class="col-md-12 text-center">
