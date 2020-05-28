@@ -32,6 +32,6 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Scripts" runat="server">
-    <script  type="text/javascript" >
+    <script  type="text/javascript" src="Login.min.js">
     </script>
 </asp:Content>

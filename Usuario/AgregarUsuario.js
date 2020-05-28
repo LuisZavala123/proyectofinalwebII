@@ -1,4 +1,7 @@
-﻿let nom = 0;
+﻿var expr = /^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/;
+var exprn = /^[A-ZÁÉÍÓÚ][a-záéíúó]+$/;
+var ready = 0;
+let nom = 0;
 let ap = 0;
 let cor = 0;
 function popear() {
@@ -50,6 +53,7 @@ $(document).ready(function () {
             ap = 1;
             ready = 0;
         }
+        debugger;
         if (exprn.test(ApellidoM)) {
             ready += 1;
         } else {
@@ -93,8 +97,3 @@ $(document).ready(function () {
         }
     });
 });
-var expr = /^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/;
-var exprn = /^[A-ZÁÉÍÓÚ][a-záéíúó]+$/;
-var ready = 0;
-
-
