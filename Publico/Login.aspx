@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="proyectofinalwebII.Login" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link rel="stylesheet" href="../css/popup.css">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="contenido" runat="server">
     <div class="container">
@@ -14,6 +15,7 @@
                     </div>
                     <div class="form-group">
                         <asp:Label runat="server" Text="Correo Electronico" ID="label1"></asp:Label>
+                        <div class="popup"><span id="popt" class="popuptext">X</span></div>
                         <asp:TextBox runat="server" id="txtEmail" type="email" class="form-control" placeholder="Ingresa tu Correo Electronico"></asp:TextBox>
                     </div>
                     <div class="form-group">
@@ -30,6 +32,6 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Scripts" runat="server">
-    <script src="Login.min.js" type="text/javascript">
+    <script  type="text/javascript" >
     </script>
 </asp:Content>

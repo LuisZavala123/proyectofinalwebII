@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AgregarProducto.aspx.cs" Inherits="proyectofinalwebII.AgregarProducto" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link rel="stylesheet" href="../css/popup.css">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="contenido" runat="server">
     <div class="container">
@@ -14,10 +15,12 @@
                     </div>
                     <div class="form-group">
                         <asp:Label runat="server" Text="Nombre"></asp:Label>
+                        <div class="popup"><span id="popt1" class="popuptext">X</span></div>
                         <asp:TextBox runat="server" id="txtNombre" type="text" class="form-control" placeholder="Ingresa el nombre del producto"></asp:TextBox>
                     </div>
                     <div class="form-group">
                         <asp:Label runat="server" Text="Costo"></asp:Label>
+                        <div class="popup"><span id="popt2" class="popuptext">X</span></div>
                         <asp:TextBox runat="server" id="txtCosto" type="text" class="form-control" placeholder="Ingresa el precio del producto"></asp:TextBox>
                     </div>
                     <div class="form-group">
