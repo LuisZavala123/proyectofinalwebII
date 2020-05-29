@@ -15,10 +15,10 @@
                                                 <h1>
                                                   Hamburguesa Bigman
                                                 </h1>
-                                                <p></p>
-                                                <a href="#" class="btn btn-outline-secondary btn-lg text-white">
-                                                  Read More
-                                                </a>
+                                                <p>
+                                                    Ya eres un chico grande?, ven y demuestralo...
+                                                </p>
+                                                
                                               </div>
                                               <div class="col-sm-6">
                                                 <img src="../img/burger.png" class="img-fluid d-none d-sm-block">
@@ -34,9 +34,7 @@
                                                   Pizza de peperoni
                                                 </h1>
                                                 <p>Ven y prueba nuestra pizza de peperoni</p>
-                                                <a href="#" class="btn btn-outline-secondary btn-lg text-white">
-                                                  Read More
-                                                </a>
+                                                
                                               </div>
                                               <div class="col-sm-6">
                                                 <img src="../img/pizza.png" class="img-fluid d-none d-sm-block">
@@ -51,10 +49,10 @@
                                                 <h1>
                                                   Alitas de pollo
                                                 </h1>
-                                                <p></p>
-                                                <a href="#" class="btn btn-outline-secondary btn-lg text-white">
-                                                  Read More
-                                                </a>
+                                                <p>
+                                                    Deliciosas alitas con un sabor explosivo
+                                                </p>
+                                                
                                               </div>
                                               <div class="col-sm-6">
                                                 <img src="../img/pollo.png" class="img-fluid d-none d-sm-block">
@@ -75,54 +73,7 @@
                         </div>
             </header>
 
-            <!-- Noticias -->
-            <section class="py-5">
-            <div class="container">
-              <div class="row">
-                <div class="col-md-3">
-                  <div class="card text-center carta-blanca">
-                    <div class="card-body">
-                      <h3>Noticia 1</h3>
-                      <p>
-                        
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="card text-center carta-negra">
-                    <div class="card-body">
-                      <h3>Noticia 2</h3>
-                      <p>
-                         
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="card text-center carta-blanca">
-                    <div class="card-body">
-                      <h3>Noticia 3</h3>
-                      <p>
-                        Amet alias a ipsa tempora ullam asperiores 
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="card text-center carta-negra">
-                    <div class="card-body">
-                      <h3>Noticia 4</h3>
-                      <p>
-                        
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-        
+            
           <footer>
                 <div class="container p-3">
                   <div class="row text-center text-white">
