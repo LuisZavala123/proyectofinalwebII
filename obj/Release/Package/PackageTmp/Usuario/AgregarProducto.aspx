@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AgregarProducto.aspx.cs" Inherits="proyectofinalwebII.AgregarProducto" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link rel="stylesheet" href="../css/popup.css">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="contenido" runat="server">
     <div class="container">
@@ -14,10 +15,12 @@
                     </div>
                     <div class="form-group">
                         <asp:Label runat="server" Text="Nombre"></asp:Label>
+                        <div class="popup"><span id="popt1" class="popuptext">X</span></div>
                         <asp:TextBox runat="server" id="txtNombre" type="text" class="form-control" placeholder="Ingresa el nombre del producto"></asp:TextBox>
                     </div>
                     <div class="form-group">
                         <asp:Label runat="server" Text="Costo"></asp:Label>
+                        <div class="popup"><span id="popt2" class="popuptext">X</span></div>
                         <asp:TextBox runat="server" id="txtCosto" type="text" class="form-control" placeholder="Ingresa el precio del producto"></asp:TextBox>
                     </div>
                     <div class="form-group">
@@ -43,51 +46,6 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Scripts" runat="server">
     
-    <script type="text/javascript">
-        var expr = /^[0-9]+[.][0-9]?[1-9]$/;
-        var exprn = /^[A-ZÁÉÍÓÚ][a-záéíúó]+$/;
-        $(document).ready(function () {
-            $('#contenido_txtNombre').keypress(function (e) {
-                e.preventDefault();
-                var exa = $('#contenido_txtNombre').val();
-                if (exprn.test(exa)) {
-                    ready += 1;
-                } else {
-                    ready = 0;
-                }
-            });
-            $('#contenido_txtCosto').keypress(function (e) {
-                e.preventDefault();
-                var exa = $('#contenido_txtCosto').val();
-                if (expr.test(exa)) {
-                    ready += 1;
-                } else {
-                    ready = 0;
-                }
-            });
-
-            $('#contenido_btnAceptar').click(function (e) {
-                if (ready = 2) {
-                    e.preventDefault();
-                    var Nombre = $('#contenido_txtNombre').val();
-                    var Costo = $('#contenido_txtCosto').val();
-                    var Desc = $('#contenido_txtDescripcion').val();
-                    var tipo = $('#contenido_CboxTipo').val();
-                    $.ajax({
-                        url: 'WS/WSArticulos.asmx/Agregar',
-                        data: '{ "nom":"' + Nombre + '", "costo":"' + Costo + '", "Descripcion":"' + Desc + '", "Tipo": "' + tipo + '" }',
-                        contentType: 'application/json; utf-8',
-                        dataType: 'json',
-                        type: 'POST',
-                        success: function (data) {
-                            console.log(data);
-                        },
-                        error: function (err) {
-                            console.log(err);
-                        }
-                    });
-                }
-            });
-        });
+    <script type="text/javascript" src="AgregarProducto.min.js">
     </script>
 </asp:Content>
