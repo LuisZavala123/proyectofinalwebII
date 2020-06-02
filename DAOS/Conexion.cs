@@ -18,10 +18,11 @@ namespace proyectofinalwebII.DAOS
 
                 if (conexion == null || conexion.State != ConnectionState.Open)
                 {
-                    conexion.ConnectionString = "Server=b7tm7unpzauiyubyqiet-mysql.services.clever-cloud.com;" +
-                    "Database=b7tm7unpzauiyubyqiet;" +
-                    "uid=u9qzupgimx5wfbdt;" +
-                    "pwd=dMOCGjLgElUYRcZzmCKe;";
+                    conexion = new MySqlConnection();
+                    conexion.ConnectionString = "Server=localhost;" +
+                    "Database=tiemda;" +
+                    "uid=root;" +
+                    "pwd=root;";
                     conexion.Open();
                 }
                 return true;
