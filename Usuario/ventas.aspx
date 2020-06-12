@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ventas.aspx.cs" Inherits="proyectofinalwebII.ventas" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/DeUsuario.Master" AutoEventWireup="true" CodeBehind="ventas.aspx.cs" Inherits="proyectofinalwebII.ventas" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
      <link rel="stylesheet" href="../css/popup.css">
 </asp:Content>

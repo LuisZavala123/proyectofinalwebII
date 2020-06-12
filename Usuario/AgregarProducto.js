@@ -18,17 +18,14 @@ var exprn = /^[A-ZÁÉÍÓÚ][a-záéíúó]+$/;
 var ready = 0;
 $(document).ready(function () {
 
-    if (sessionStorage.getItem('User') != "1") {
+   
 
-        location.href = "../Publico/Principal.aspx";
-    }
-
-    $('#contenido_btnAceptar').click(function (e) {
+    $('#contenido_contenido_btnAceptar').click(function (e) {
         e.preventDefault();
-        var Nombre = $('#contenido_txtNombre').val();
-        var Costo = $('#contenido_txtCosto').val();
-        var Desc = $('#contenido_txtDescripcion').val();
-        var tipo = $('#contenido_CboxTipo').val();
+        var Nombre = $('#contenido_contenido_txtNombre').val();
+        var Costo = $('#contenido_contenido_txtCosto').val();
+        var Desc = $('#contenido_contenido_txtDescripcion').val();
+        var tipo = $('#contenido_contenido_CboxTipo').val();
 
         if (exprn.test(Nombre)) {
             ready += 1;

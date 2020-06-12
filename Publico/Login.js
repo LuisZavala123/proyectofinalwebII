@@ -30,7 +30,6 @@ $(document).ready(function () {
                 success: function (data) {
                     debugger;
                     if (data.d) {
-                        sessionStorage.setItem('User', '1');
                         location.href = "Principal.aspx";
                     } else {
                         popear(2);

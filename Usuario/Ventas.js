@@ -51,13 +51,13 @@ $(document).ready(function nombres(e) {
         type: 'POST',
         success: function (data) {
             var models = (typeof data.d) == 'string' ? eval('(' + data.d + ') ') : data.d;
-            $('#contenido_CboxProducto').get(0).options.length = 0;
+            $('#contenido_contenido_CboxProducto').get(0).options.length = 0;
 
             for (var i = 0; i < models.length; i++) {
 
                 var val = models[i];
 
-                $('#contenido_CboxProducto').get(0).options[$('#contenido_CboxProducto').get(0).options.length] = new Option(val);
+                $('#contenido_contenido_CboxProducto').get(0).options[$('#contenido_contenido_CboxProducto').get(0).options.length] = new Option(val);
 
             }
             console.log(data);
@@ -69,14 +69,11 @@ $(document).ready(function nombres(e) {
 
 });
 $(document).ready(function () {
-    if (sessionStorage.getItem('User') != "1") {
-        debugger;
-        location.href = "../Publico/Principal.aspx";
-    }
-    $('#contenido_btnAgregar').click(function (e) {
+   
+    $('#contenido_contenido_btnAgregar').click(function (e) {
         e.preventDefault();
-        var prod = $('#contenido_CboxProducto').val();
-        var cant = $('#contenido_txtCantidad').val();
+        var prod = $('#contenido_contenido_CboxProducto').val();
+        var cant = $('#contenido_contenido_txtCantidad').val();
         $.ajax({
             url: '../WS/WSVenta.asmx/detalle',
             data: '{ "producto":"' + prod + '", "Cantidad": "' + cant + '"}',
@@ -110,7 +107,7 @@ $(document).ready(function () {
                     $(tabla).children('tbody').append(fila);
 
                 }
-                $('#contenido_lbltotal').html(to);
+                $('#contenido_contenido_lbltotal').html(to);
                 console.log(data);
             },
             error: function (err) {
@@ -121,11 +118,11 @@ $(document).ready(function () {
     });
 });
 $(document).ready(function () {
-    $('#contenido_btnAceptar').click(function (e) {
+    $('#contenido_contenido_btnAceptar').click(function (e) {
         e.preventDefault();
 
-        var desc = $('#contenido_txtDescripcion').val();
-        var Total = $('#contenido_lbltotal').html();
+        var desc = $('#contenido_contenido_txtDescripcion').val();
+        var Total = $('#contenido_contenido_lbltotal').html();
         debugger;
         $.ajax({
             url: '../WS/WSVenta.asmx/Agregar',

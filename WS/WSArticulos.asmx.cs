@@ -27,48 +27,72 @@ namespace proyectofinalwebII.WS
         [WebMethod(EnableSession = true)]
         public void Agregar(string nom, String costo, String Descripcion, String Tipo)
         {
-            //Aqui
-            String ExpresionNom = @"[A-ZÁÉÍÓÚ][a-z]+";
-            String ExpresionCos = @"[0-9]+[\.][0-9][0-9]?";
-            if (Regex.IsMatch(nom,ExpresionNom) && Regex.IsMatch(costo, ExpresionCos))
-            {
-                DAO.Agregar(new MArticulos(Tipo,nom,Double.Parse(costo),"",Descripcion)); 
+            if (Session["Usuario"] != null && Session["Usuario"].ToString().Equals("SI")) {
+                String ExpresionNom = @"[A-ZÁÉÍÓÚ][a-z]+";
+                String ExpresionCos = @"[0-9]+[\.][0-9][0-9]?";
+                if (Regex.IsMatch(nom, ExpresionNom) && Regex.IsMatch(costo, ExpresionCos))
+                {
+                    DAO.Agregar(new MArticulos(Tipo, nom, Double.Parse(costo), "", Descripcion));
+                }
             }
-            
-
         }
 
-        [WebMethod]
+        [WebMethod(EnableSession = true)]
         public List<MArticulos> GetAll()
         {
-
-            return DAO.GetAll();
+            if (Session["Usuario"] != null && Session["Usuario"].ToString().Equals("SI")) {
+                return DAO.GetAll();
+            }
+            else
+            {
+                return null ;
+            }
         }
 
 
         [WebMethod(EnableSession = true)]
         public MArticulos Getbyid(String id)
         {
-            return DAO.Getbyid(id);
+            if (Session["Usuario"] != null && Session["Usuario"].ToString().Equals("SI")) {
+                return DAO.Getbyid(id);
+            }
+            else
+            {
+                return null;
+            }
         }
 
         [WebMethod(EnableSession = true)]
         public MArticulos GetbyNombre(String Nombre)
         {
-            return DAO.GetbyNombre(Nombre);
+            if (Session["Usuario"] != null && Session["Usuario"].ToString().Equals("SI")) {
+                return DAO.GetbyNombre(Nombre);
+            }
+            else {
+                return null; 
+            }
         }
 
         [WebMethod(EnableSession = true)]
         public List<String> GetNombres()
         {
-            return DAO.GetNombres();
+            if (Session["Usuario"] != null && Session["Usuario"].ToString().Equals("SI")) {
+                return DAO.GetNombres();
+            }
+            else
+            {
+                return null;
+            }
         }
 
 
         [WebMethod(EnableSession = true)]
         public void Eliminar(string id)
         {
-            DAO.Eliminar(id);
+            if (Session["Usuario"] != null && Session["Usuario"].ToString().Equals("SI")) {
+                DAO.Eliminar(id);
+            }
+            
         }
 
         
