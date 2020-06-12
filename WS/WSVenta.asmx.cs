@@ -23,147 +23,196 @@ namespace proyectofinalwebII.WS
 
 
         private VentaDAO DAO = new VentaDAO();
-        private static List<MDetalles> detalles = new List<MDetalles>();
-
+        
 
         [WebMethod(EnableSession = true)]
         public void Agregar(String Total, String Descripcion)
         {
+            if (Session["Usuario"] != null && Session["Usuario"].ToString().Equals("SI") && Session["detalles"] != null ) {
+                DateTime fecha = DateTime.Today;
+                String fech = fecha.Year + "-";
+                if (fecha.Month.ToString().Length < 2)
+                {
+                    fech = fech + "0" + fecha.Month + "-";
+                }
+                else {
+                    fech = fech + fecha.Month + "-";
+                }
+                if (fecha.Day.ToString().Length < 2)
+                {
+                    fech = fech + "0" + fecha.Day;
+                }
+                else
+                {
+                    fech = fech + fecha.Day + "";
+                }
+                String Expresion = @"[0-9]+[\.][0-9][0-9]?";
 
-            DateTime fecha = DateTime.Today;
-            String fech = fecha.Year + "-";
-            if (fecha.Month.ToString().Length < 2)
-            {
-                fech = fech + "0" + fecha.Month + "-";
-            }
-            else {
-                fech = fech + fecha.Month + "-";
-            }
-            if (fecha.Day.ToString().Length < 2)
-            {
-                fech = fech + "0" + fecha.Day;
-            }
-            else
-            {
-                fech = fech + fecha.Day + "";
-            }
-            String Expresion = @"[0-9]+[\.][0-9][0-9]?";
-            //Aqui
-            if (Regex.IsMatch(Total, Expresion)) { }
+                if (Regex.IsMatch(Total, Expresion)) { }
                 DAO.Agregar(new MVentas(fech, double.Parse(Total), "", Descripcion));
                 int id = DAO.lastid();
-                foreach (var item in detalles)
+                
+                foreach (var item in Session["detalles"] as List<MDetalles>)
                 {
                     DAO.Agregar_Detalles(new MDetalles(id + "", item.producto, item.Tipo, item.cantidad, item.total));
                 }
+            }
             }
             
         
         [WebMethod(EnableSession = true)]
         public List<MDetalles> detalle(String producto, String Cantidad)
         {
-            ArticuloDAO artdao = new ArticuloDAO();
-            MArticulos art = artdao.GetbyNombre(producto);
-            bool si = true;
-            if (detalles.Count < 1)
-            {
-                detalles.Add(new MDetalles("", art.id, art.tipo, int.Parse(Cantidad), int.Parse(Cantidad) * art.costo));
-            }
-            else {
-                foreach (var item in detalles)
+            if (Session["Usuario"] != null && Session["Usuario"].ToString().Equals("SI")) {
+                ArticuloDAO artdao = new ArticuloDAO();
+                MArticulos art = artdao.GetbyNombre(producto);
+                bool si = true;
+                List<MDetalles> detalles = Session["detalles"] as List<MDetalles>;
+                if (detalles == null)
                 {
-                    if (item.producto.Equals(art.id))
-                    {
-                        item.cantidad += int.Parse(Cantidad);
-                        item.total += int.Parse(Cantidad) * art.costo;
-                        
-                    }
-                    else
-                    {
-                        si = false;
-                    }
+                    detalles = new List<MDetalles>();
                 }
-                if (!si) {
+                if (detalles.Count < 1)
+                {
                     detalles.Add(new MDetalles("", art.id, art.tipo, int.Parse(Cantidad), int.Parse(Cantidad) * art.costo));
                 }
+                else {
+                    foreach (var item in detalles)
+                    {
+                        if (item.producto.Equals(art.id))
+                        {
+                            item.cantidad += int.Parse(Cantidad);
+                            item.total += int.Parse(Cantidad) * art.costo;
+
+                        }
+                        else
+                        {
+                            si = false;
+                        }
+                    }
+                    if (!si) {
+                        detalles.Add(new MDetalles("", art.id, art.tipo, int.Parse(Cantidad), int.Parse(Cantidad) * art.costo));
+                    }
+                }
+                Session["detalles"] = detalles;
+                return detalles;
             }
-            
-            return detalles;
+            else
+            {
+                return null;
+            }
         }
 
         [WebMethod(EnableSession = true)]
         public List<MVentas> GetAll()
         {
-            return DAO.GetAll();
+            if (Session["Usuario"] != null && Session["Usuario"].ToString().Equals("SI"))
+            {
+                return DAO.GetAll();
+            }
+            else {
+                return null;
+            }
         }
 
         [WebMethod(EnableSession = true)]
         public List<MDetalles> GetDetalles(String id)
         {
-            return DAO.GetDetalles(id);
+            if (Session["Usuario"] != null && Session["Usuario"].ToString().Equals("SI"))
+            {
+                return DAO.GetDetalles(id);
+            }
+            else {
+                return null;
+            }
         }
-        [WebMethod]
+        [WebMethod(EnableSession = true)]
         public List<MReporte> GetallDetalles(String fecha)
         {
-            List<MReporte> lista2= new List<MReporte>();
-            List<MDetalles> lista1 = DAO.GetallDetalles();
-            MReporte rep = new MReporte();
-
-            foreach (var item in DAO.GetAll())
+            if (Session["Usuario"] != null && Session["Usuario"].ToString().Equals("SI"))
             {
-                foreach (var item2 in lista1)
-                {
-                    if (item.fecha.Equals(fecha)&&item.id.Equals(item2.idVenta))
-                    {
-                        rep.Tipo = item2.Tipo;
-                        rep.Cantidad = item2.cantidad;
-                        rep.Total = item2.total;
+                List<MReporte> lista2 = new List<MReporte>();
+                List<MDetalles> lista1 = DAO.GetallDetalles();
+                MReporte rep = new MReporte();
 
-                        if (lista2.Contains(rep))
+                foreach (var item in DAO.GetAll())
+                {
+                    foreach (var item2 in lista1)
+                    {
+                        if (item.fecha.Equals(fecha) && item.id.Equals(item2.idVenta))
                         {
-                            lista2.ElementAt(lista2.IndexOf(rep)).Total += rep.Total;
-                            lista2.ElementAt(lista2.IndexOf(rep)).Cantidad += rep.Cantidad;
+                            rep.Tipo = item2.Tipo;
+                            rep.Cantidad = item2.cantidad;
+                            rep.Total = item2.total;
+
+                            if (lista2.Contains(rep))
+                            {
+                                lista2.ElementAt(lista2.IndexOf(rep)).Total += rep.Total;
+                                lista2.ElementAt(lista2.IndexOf(rep)).Cantidad += rep.Cantidad;
+                            }
+                            else
+                            {
+                                lista2.Add(rep);
+                            }
+
                         }
-                        else {
-                            lista2.Add(rep);
-                        }
-                        
                     }
                 }
-            }
 
-            return lista2;
+                return lista2;
+            }
+            else {
+                return null;
+            }
         }
 
         [WebMethod(EnableSession = true)]
         public MVentas Getbyid(String id)
         {
-            return DAO.Getbyid(id);
+            if (Session["Usuario"] != null && Session["Usuario"].ToString().Equals("SI")) {
+                return DAO.Getbyid(id);
+            }
+            else
+            {
+                return null;
+            }
         }
 
         [WebMethod(EnableSession = true)]
         public void Eliminar(string id)
         {
-            DAO.Eliminar(id);
+            if (Session["Usuario"] != null && Session["Usuario"].ToString().Equals("SI"))
+            {
+                DAO.Eliminar(id);
+            }
         }
 
         [WebMethod(EnableSession = true)]
         public void EliminarDetalles(string id)
         {
-            DAO.EliminarDetalles(id);
+            if (Session["Usuario"] != null && Session["Usuario"].ToString().Equals("SI")) {
+                DAO.EliminarDetalles(id);
+            }
         }
 
         [WebMethod(EnableSession = true)]
         public List<MDetalles> quitarDetalle(string id)
         {
-            foreach (var item in detalles)
+            if (Session["Usuario"] != null && Session["Usuario"].ToString().Equals("SI"))
             {
-                if (item.producto.Equals(id))
+                List<MDetalles> detalles = Session["Usuario"] as List<MDetalles>;
+                foreach (var item in detalles)
                 {
-                    detalles.Remove(item);
+                    if (item.producto.Equals(id))
+                    {
+                        detalles.Remove(item);
+                    }
                 }
+                return detalles;
             }
-            return detalles;
+            else {
+                return null;
+            }
         }
     }
 }

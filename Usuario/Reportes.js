@@ -1,10 +1,7 @@
 ﻿
 
-if (sessionStorage.getItem('User') != "1") {
-    debugger;
-    location.href = "../Publico/Principal.aspx";
-}
-$('#contenido_btnGenerar').click(function (e) {
+
+$('#contenido_contenido_btnGenerar').click(function (e) {
     e.preventDefault();
     debugger;
     let fech = $('#Fecha').val();

@@ -273,6 +273,13 @@
     <Content Include="WS\WSVenta.asmx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DeUsuario.master.cs">
+      <DependentUpon>DeUsuario.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DeUsuario.master.designer.cs">
+      <DependentUpon>DeUsuario.master</DependentUpon>
+    </Compile>
     <Compile Include="Usuario\AgregarProducto.aspx.cs">
       <DependentUpon>AgregarProducto.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -370,6 +377,7 @@
     <Content Include="css\bootstrap.min.css.map" />
     <Content Include="letras\CooperFiveOpti-Black.otf" />
     <None Include="Connected Services\WSArticulo\WSArticulos.wsdl" />
+    <Content Include="DeUsuario.master" />
     <None Include="packages.config" />
     <Content Include="Site.Master" />
     <None Include="Properties\PublishProfiles\Anrojito - FTP.pubxml" />

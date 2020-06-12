@@ -22,22 +22,19 @@ function popear() {
 
 $(document).ready(function () {
 
-    if (sessionStorage.getItem('User') != "1") {
-        debugger;
-        location.href = "../Publico/Principal.aspx";
-    }
+    
 
-    $('#contenido_btnAceptar').click(function (e) {
+    $('#contenido_contenido_btnAceptar').click(function (e) {
         e.preventDefault();
 
         debugger;
 
-        var Nombre = $('#contenido_txtNombre').val();
-        var ApellidoP = $('#contenido_txtApellidoP').val();
-        var ApellidoM = $('#contenido_txtApellidoM').val();
-        var Password = $('#contenido_txtPassword').val();
-        var Correo = $('#contenido_txtEmail').val();
-        var tipo = $('#contenido_CboxTipo').val();
+        var Nombre = $('#contenido_contenido_txtNombre').val();
+        var ApellidoP = $('#contenido_contenido_txtApellidoP').val();
+        var ApellidoM = $('#contenido_contenido_txtApellidoM').val();
+        var Password = $('#contenido_contenido_txtPassword').val();
+        var Correo = $('#contenido_contenido_txtEmail').val();
+        var tipo = $('#contenido_contenido_CboxTipo').val();
 
         if (exprn.test(Nombre)) {
             ready += 1;
@@ -66,7 +63,7 @@ $(document).ready(function () {
             cor = 1;
             ready = 0;
         }
-        var exa2 = $('#contenido_txtPassword').val();
+        var exa2 = $('#contenido_contenido_txtPassword').val();
         if (Password = exa2) {
             ready += 1;
         } else {

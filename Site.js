@@ -1,20 +1,6 @@
 ﻿$(document).ready(function () {
+    debugger;
 
-    if (sessionStorage.getItem('User') == "1") {
-        $("#agUsuario").show();
-        $("#Reporte").show();
-        $("#agProducto").show();
-        $("#exit").show();
-        $("#orden").show();
-        $("#Login").hide();
-    } else {
-        $("#agUsuario").hide();
-        $("#Reporte").hide();
-        $("#agProducto").hide();
-        $("#exit").hide();
-        $("#orden").hide();
-        $("#Login").show();
-    }
 
     $("#HamBtn").click(function () {
         sessionStorage.setItem("Producto", "Hamburguesa");
@@ -29,8 +15,23 @@
         location.href = "../Publico/Mostrar1.aspx";
     });
     $("#lexit").click(function (e) {
+        debugger;
         e.preventDefault();
-        sessionStorage.setItem('User', null);
-        location.href = "../Publico/Principal.aspx";
+        $.ajax({
+            url: '../WS/WSUsuario.asmx/Salir',
+            data: {},
+            contentType: 'application/json; utf-8',
+            dataType: 'json',
+            type: 'POST',
+            success: function (data) {
+                debugger;
+                location.href = "Principal.aspx";
+
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+
     });
 });

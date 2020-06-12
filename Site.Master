@@ -60,7 +60,8 @@
     <script src="../js/jquery.js"></script>
         <script src="../js/popper.min.js"></script>
         <script src="../js/bootstrap.js"></script>
-    <script type="text/javascript" src="../Site.min.js"></script>
+    <script type="text/javascript" src="../Site.js">
+    </script>
     <asp:ContentPlaceHolder ID="Scripts" runat="server">
             </asp:ContentPlaceHolder> 
         
