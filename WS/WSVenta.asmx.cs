@@ -200,14 +200,17 @@ namespace proyectofinalwebII.WS
         {
             if (Session["Usuario"] != null && Session["Usuario"].ToString().Equals("SI"))
             {
-                List<MDetalles> detalles = Session["Usuario"] as List<MDetalles>;
+                MDetalles temp = new MDetalles(); ;
+                List<MDetalles> detalles = Session["detalles"] as List<MDetalles>;
                 foreach (var item in detalles)
                 {
                     if (item.producto.Equals(id))
                     {
-                        detalles.Remove(item);
+                        temp=item;
                     }
                 }
+                detalles.Remove(temp);
+                Session["detalles"] = detalles;
                 return detalles;
             }
             else {
