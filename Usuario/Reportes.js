@@ -1,7 +1,4 @@
-﻿
-
-
-$('#contenido_contenido_btnGenerar').click(function (e) {
+﻿$('#contenido_contenido_btnGenerar').click(function (e) {
     e.preventDefault();
     debugger;
     let fech = $('#Fecha').val();
@@ -18,7 +15,7 @@ $('#contenido_contenido_btnGenerar').click(function (e) {
             $('#grvLista tr').remove();
             $('#grvLista td').remove();
             let tabla = $('#grvLista');
-            let encabezado = $("<thead/>").append("<tr><th>Producto</th><th>Cantidad</th><th>Total</th><td></td>");
+            let encabezado = $("<thead/>").append("<tr><th>Producto</th><th>Cantidad</th><th>Total</th>");
             $(tabla).append(encabezado);
             $(tabla).append("<tbody/>");
 
@@ -26,12 +23,14 @@ $('#contenido_contenido_btnGenerar').click(function (e) {
             for (var i = 0; i < data.d.length; i++) {
                 fila = document.createElement("tr");
                 let cosa = '<td>' + data.d[i].Tipo + '</td>' +
-                    '<td>' + data.d[i].Cantidad + '</td>' +
-                    '<td>' + data.d[i].Total + '</td>';
+                    '<td>' + data.d[i].Cantidad.toString() + '</td>' +
+                    '<td>' + data.d[i].Total.toString() + '</td>';
                 fila.innerHTML = cosa;
                 $(tabla).children('tbody').append(fila);
 
             }
+            debugger;
+            $('#grvLista').DataTable();
             console.log(data);
         },
         error: function (err) {

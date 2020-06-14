@@ -8,16 +8,9 @@
     <div class="row justify-content-center my-2">
             <asp:Button ID="btnGenerar" CssClass="btn btn-success mybtn btn-primary tx-tfm" runat="server" Text="Generar Reporte" />
         </div>
-        <table id="grvLista" class="table table-striped table-bordered dib" ></table>
+        <table id="grvLista" class="sem table table-bordered table-striped table-hover dib" ></table>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Scripts" runat="server">
-    <script type="text/javascript" src="../js/datatables.min.js">
-     $(document).ready(function () {
-        $('#grvLista').DataTable();
-     });
-   </script>
-
-    <script type="text/javascript" src="Reportes.min.js">
-
-    </script>
+    
+    <script type="text/javascript" src="Reportes.min.js"></script>
 </asp:Content>

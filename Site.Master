@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/estilo.css">
         <link href="css/Alert.css" rel="stylesheet"/>
+        <link href="css/datatables.css" rel="stylesheet" />
     <title>Sistemas</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -60,8 +61,8 @@
     <script src="../js/jquery.js"></script>
         <script src="../js/popper.min.js"></script>
         <script src="../js/bootstrap.js"></script>
-    <script type="text/javascript" src="../Site.js">
-    </script>
+        <script src="../js/datatables.js"></script>
+        <script type="text/javascript" src="../Site.js"></script>
     <asp:ContentPlaceHolder ID="Scripts" runat="server">
             </asp:ContentPlaceHolder> 
         

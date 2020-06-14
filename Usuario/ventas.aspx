@@ -44,19 +44,12 @@
             </div>
             </div>
             <div id="gridViewDiv" class="form-group">
-                <table id="grvLista" class="table table-striped table-bordered dib" ></table>
+                <table id="grvLista" class="sem table table-bordered table-striped table-hover dib" ></table>
             </div>
         </div>
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Scripts" runat="server">
-    <script type="text/javascript" src="../js/datatables.min.js">
-     $(document).ready(function () {
-        $('#grvLista').DataTable();
-     });
-   </script>
-        <script type="text/javascript" src="Ventas.min.js">
-            
-        </script>
+        <script type="text/javascript" src="Ventas.min.js"></script>
     
 </asp:Content>
