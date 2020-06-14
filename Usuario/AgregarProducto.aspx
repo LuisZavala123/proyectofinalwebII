@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-5 mx-auto">
             <div id="primero">
-                <div class="myform form">
+                <div class="myform form dib">
                     <div class="logo mb-3">
                         <div class="col-md-12 text-center">
                             <h1>Nuevo Producto</h1>
@@ -16,20 +16,20 @@
                     <div class="form-group">
                         <asp:Label runat="server" Text="Nombre"></asp:Label>
                         <div class="popup"><span id="popt1" class="popuptext">X</span></div>
-                        <asp:TextBox runat="server" id="txtNombre" type="text" class="form-control" placeholder="Ingresa el nombre del producto"></asp:TextBox>
+                        <asp:TextBox runat="server" id="txtNombre" type="text" class="form-control din" placeholder="Ingresa el nombre del producto"></asp:TextBox>
                     </div>
                     <div class="form-group">
                         <asp:Label runat="server" Text="Costo"></asp:Label>
                         <div class="popup"><span id="popt2" class="popuptext">X</span></div>
-                        <asp:TextBox runat="server" id="txtCosto" type="text" class="form-control" placeholder="Ingresa el precio del producto"></asp:TextBox>
+                        <asp:TextBox runat="server" id="txtCosto" type="text" class="form-control din" placeholder="Ingresa el precio del producto"></asp:TextBox>
                     </div>
                     <div class="form-group">
                         <asp:Label runat="server" Text="Descripcion"></asp:Label>
-                        <asp:TextBox runat="server" id="txtDescripcion" type="text" class="form-control" placeholder="Ingresa Descripcion el producto"></asp:TextBox>
+                        <asp:TextBox runat="server" id="txtDescripcion" type="text" class="form-control din" placeholder="Ingresa Descripcion el producto"></asp:TextBox>
                     </div>
                     <div class="form-group">
                         <asp:Label ID="Label8" runat="server" Text="Tipo"></asp:Label>
-                            <asp:DropDownList ID="CboxTipo" CssClass="form-control" runat="server">
+                            <asp:DropDownList ID="CboxTipo" CssClass="form-control din" runat="server">
                                 <asp:ListItem>Hamburguesa</asp:ListItem>
                                 <asp:ListItem>Pizza</asp:ListItem>
                                 <asp:ListItem>Bebida</asp:ListItem>
