@@ -1,19 +1,11 @@
 ﻿
 
 $(document).ready(function () {
-    
+
     function popear(c) {
-        if (c == 1) {
-            var popup = document.getElementById("popt1");
-            popup.classList.toggle("show");
-        } else if (c == 2) {
-            var popup = document.getElementById("popt2");
-            popup.classList.toggle("show");
-        }
-            
-        
 
     }
+    popear(1);
     $('#contenido_btnLogin').click(function (e) {
         debugger;
         e.preventDefault();
@@ -32,17 +24,23 @@ $(document).ready(function () {
                     if (data.d) {
                         location.href = "Principal.aspx";
                     } else {
-                        popear(2);
+                        $("#mensaje").html('<button type="button" class="close" data-dismiss="alert" >&times;</button>' +
+                            '<strong> Los datos son incorrectos  </strong >');
+                        $("#mensaje").show();
                     }
 
                 },
                 error: function (err) {
+                    $("#mensaje").html('<button type="button" class="close" data-dismiss="alert" >&times;</button>' +
+                        '<strong > a acurrido un error </strong >');
+                    $("#mensaje").show();
                     console.log(err);
                 }
             });
         } else {
-
-            popear(1);
+            $("#mensaje").html('<button type="button" class="close" data-dismiss="alert" >&times;</button>' +
+                '<strong > Los datos son incorrectos  </strong > Correo invalido');
+            $("#mensaje").show();
             console.log("Correo invalido");
         }
     });

@@ -4,20 +4,8 @@ var ready = 0;
 let nom = 0;
 let ap = 0;
 let cor = 0;
-function popear() {
-    if (nom == 1) {
-        var popup = document.getElementById("popt1");
-        popup.classList.toggle("show");
-    }
-    if (ap == 1) {
-        var popup = document.getElementById("popt2");
-        popup.classList.toggle("show");
-    }
-    if (cor == 1) {
-        var popup = document.getElementById("popt2");
-        popup.classList.toggle("show");
-    }
-}
+var mensj = "";
+
 
 
 $(document).ready(function () {
@@ -42,6 +30,7 @@ $(document).ready(function () {
         } else {
             nom = 1;
             ready = 0;
+            mensj = mens + "Nombre, ";
         }
         if (exprn.test(ApellidoP)) {
             ready += 1;
@@ -49,6 +38,7 @@ $(document).ready(function () {
         } else {
             ap = 1;
             ready = 0;
+            mensj = mens + "Apellido Paterno, ";
         }
         debugger;
         if (exprn.test(ApellidoM)) {
@@ -62,12 +52,14 @@ $(document).ready(function () {
         } else {
             cor = 1;
             ready = 0;
+            mensj = mens + "Correo, ";
         }
         var exa2 = $('#contenido_contenido_txtPassword').val();
         if (Password = exa2) {
             ready += 1;
         } else {
             ready = 0;
+            mensj = mens + "Contraseña ";
         }
         console.log(ready);
         if (ready == 5) {
@@ -84,12 +76,15 @@ $(document).ready(function () {
                     console.log(data);
                 },
                 error: function (err) {
+                    $("#mensaje").html('<button type="button" class="close" data-dismiss="alert" >&times;</button>' +
+                        '<strong > a acurrido un error </strong >');
                     console.log(err);
                 }
             });
         } else {
             ready = 0;
-            popear();
+            $("#mensaje").html('<button type="button" class="close" data-dismiss="alert" >&times;</button>' +
+                '<strong > Verifique los datos en: </strong >' + mensj);
             console.log("Verifique los datos");
         }
     });

@@ -1,24 +1,13 @@
 ﻿let nom = 0;
 let cos = 0;
-function popear() {
-    if (nom == 1) {
-        var popup = document.getElementById("popt1");
-        popup.classList.toggle("show");
-    }
-    if (cos == 1) {
-        var popup = document.getElementById("popt2");
-        popup.classList.toggle("show");
-    }
 
-
-
-}
 var expr = /^[0-9]+\.[0-9]?[0-9]$/;
 var exprn = /^[A-ZÁÉÍÓÚ][a-záéíúó]+$/;
 var ready = 0;
+var mensj = "";
 $(document).ready(function () {
 
-   
+
 
     $('#contenido_contenido_btnAceptar').click(function (e) {
         e.preventDefault();
@@ -33,6 +22,8 @@ $(document).ready(function () {
         } else {
             ready = 0;
             nom = 1;
+            mensj = mens + "Nombre, ";
+
         }
         debugger;
         if (expr.test(Costo)) {
@@ -41,6 +32,7 @@ $(document).ready(function () {
         } else {
             ready = 0;
             cos = 1;
+            mensj = mens + "Costo";
         }
         console.log(ready);
         if (ready == 2) {
@@ -54,12 +46,15 @@ $(document).ready(function () {
                     location.href = "../Publico/Principal.aspx";
                 },
                 error: function (err) {
+                    $("#mensaje").html('<button type="button" class="close" data-dismiss="alert" >&times;</button>' +
+                        '<strong > a acurrido un error </strong >');
                     console.log(err);
                 }
             });
         } else {
             ready = 0;
-            popear();
+            $("#mensaje").html('<button type="button" class="close" data-dismiss="alert" >&times;</button>' +
+                '<strong > Verifique los datos en: </strong >' + mensj);
             console.log("Verifique Datos");
         }
     });
