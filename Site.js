@@ -25,7 +25,7 @@
             type: 'POST',
             success: function (data) {
                 debugger;
-                location.href = "Principal.aspx";
+                location.href = "../Publico/Principal.aspx";
 
             },
             error: function (err) {
