@@ -1,7 +1,4 @@
-﻿function popear() {
-    var popup = document.getElementById("popt1");
-    popup.classList.toggle("show");
-}
+﻿
 function eliminar(dato) {
     dato.preventDefault;
 
@@ -111,7 +108,8 @@ $(document).ready(function () {
                 console.log(data);
             },
             error: function (err) {
-                popear();
+                $("#mensaje").html('<button type="button" class="close" data-dismiss="alert" >&times;</button>' +
+                    '<strong > revise los datos </strong >');
                 console.log(err);
             }
         });
@@ -136,6 +134,8 @@ $(document).ready(function () {
                 console.log(data);
             },
             error: function (err) {
+                $("#mensaje").html('<button type="button" class="close" data-dismiss="alert" >&times;</button>' +
+                    '<strong > a acurrido un error </strong >');
                 console.log(err);
             }
         });

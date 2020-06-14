@@ -3,6 +3,8 @@
      <link rel="stylesheet" href="../css/popup.css">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="contenido" runat="server">
+        <div id="mensaje" class="alert alert-danger">
+</div> 
     <div id="cont" onload="nombres" class="container">
         <div class="row dib">
             <div class="col-md-5 mx-auto">
@@ -21,7 +23,6 @@
                     </div>
                     <div class="form-group">
                         <asp:Label runat="server" Text="Cantidad"></asp:Label>
-                        <div class="popup"><span id="popt1" class="popuptext">X</span></div>
                         <asp:TextBox runat="server" id="txtCantidad" type="number" class="form-control dib"></asp:TextBox>
                     </div>
                         <div class="form-group">

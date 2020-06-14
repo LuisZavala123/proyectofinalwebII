@@ -88,19 +88,29 @@ namespace proyectofinalwebII.WS
         [WebMethod(EnableSession = true)]
         public Boolean Confirmar(String correo, String pw)
         {
-            
-            MD5CryptoServiceProvider hashmd5 = new MD5CryptoServiceProvider();
-            if (DAO.GetbyCorreo(correo).Contraseña.Equals(BitConverter.ToString(hashmd5.ComputeHash(UTF8Encoding.UTF8.GetBytes(pw)))))
+            try
             {
-                
-                Session["Usuario"] =  "SI";
-                String c = Session["Usuario"].ToString();
-                return true;
-            }
+                MD5CryptoServiceProvider hashmd5 = new MD5CryptoServiceProvider();
+                if (DAO.GetbyCorreo(correo).Contraseña.Equals(BitConverter.ToString(hashmd5.ComputeHash(UTF8Encoding.UTF8.GetBytes(pw)))))
+                {
+
+                    Session["Usuario"] = "SI";
+                    String c = Session["Usuario"].ToString();
+                    return true;
+                }
                 else
                 {
                     return false;
                 }
+
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+            
+            
             
             
         }
