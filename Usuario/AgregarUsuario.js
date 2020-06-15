@@ -14,7 +14,7 @@ $(document).ready(function () {
 
     $('#contenido_contenido_btnAceptar').click(function (e) {
         e.preventDefault();
-
+        mensj = "";
         debugger;
 
         var Nombre = $('#contenido_contenido_txtNombre').val();
@@ -30,7 +30,7 @@ $(document).ready(function () {
         } else {
             nom = 1;
             ready = 0;
-            mensj = mens + "Nombre, ";
+            mensj = mensj + "Nombre, ";
         }
         if (exprn.test(ApellidoP)) {
             ready += 1;
@@ -38,7 +38,7 @@ $(document).ready(function () {
         } else {
             ap = 1;
             ready = 0;
-            mensj = mens + "Apellido Paterno, ";
+            mensj = mensj + "Apellido , ";
         }
         debugger;
         if (exprn.test(ApellidoM)) {
@@ -52,14 +52,14 @@ $(document).ready(function () {
         } else {
             cor = 1;
             ready = 0;
-            mensj = mens + "Correo, ";
+            mensj = mensj + "Correo, ";
         }
-        var exa2 = $('#contenido_contenido_txtPassword').val();
+        var exa2 = $('#contenido_contenido_txtRPassword').val();
         if (Password = exa2) {
             ready += 1;
         } else {
             ready = 0;
-            mensj = mens + "Contraseña ";
+            mensj = mensj + "Contraseña ";
         }
         console.log(ready);
         if (ready == 5) {
@@ -73,12 +73,14 @@ $(document).ready(function () {
                 type: 'POST',
                 success: function (data) {
                     sessionStorage.setItem("indx", null);
+                    sessionStorage.setItem("accion", "Usuario");
                     location.href = "index.html";
                     console.log(data);
                 },
                 error: function (err) {
                     $("#mensaje").html('<button type="button" class="close" data-dismiss="alert" >&times;</button>' +
                         '<strong > a acurrido un error </strong >');
+                    $("#mensaje").show();
                     console.log(err);
                 }
             });
@@ -86,6 +88,7 @@ $(document).ready(function () {
             ready = 0;
             $("#mensaje").html('<button type="button" class="close" data-dismiss="alert" >&times;</button>' +
                 '<strong > Verifique los datos en: </strong >' + mensj);
+            $("#mensaje").show();
             console.log("Verifique los datos");
         }
     });

@@ -2,7 +2,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="contenido" runat="server">
-   
+   <div id="mensaje" class="alert alert-success">
+</div>
     
     <header >
               <div class="carrucel">
@@ -86,4 +87,5 @@
    
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Scripts" runat="server">
+    <script type="text/javascript" src="Publico/Principal.min.js"></script>
 </asp:Content>

@@ -15,14 +15,14 @@ $(document).ready(function () {
         var Costo = $('#contenido_contenido_txtCosto').val();
         var Desc = $('#contenido_contenido_txtDescripcion').val();
         var tipo = $('#contenido_contenido_CboxTipo').val();
-
+        mensj = "";
         if (exprn.test(Nombre)) {
             ready += 1;
             nom = 0;
         } else {
             ready = 0;
             nom = 1;
-            mensj = mens + "Nombre, ";
+            mensj = mensj + "Nombre, ";
 
         }
         debugger;
@@ -32,7 +32,7 @@ $(document).ready(function () {
         } else {
             ready = 0;
             cos = 1;
-            mensj = mens + "Costo";
+            mensj = mensj + "Costo";
         }
         console.log(ready);
         if (ready == 2) {
@@ -44,11 +44,13 @@ $(document).ready(function () {
                 type: 'POST',
                 success: function (data) {
                     sessionStorage.setItem("indx", null);
+                    sessionStorage.setItem("accion", "Producto");
                     location.href = "index.html";
                 },
                 error: function (err) {
                     $("#mensaje").html('<button type="button" class="close" data-dismiss="alert" >&times;</button>' +
                         '<strong > a acurrido un error </strong >');
+                    $("#mensaje").show();
                     console.log(err);
                 }
             });
@@ -56,6 +58,7 @@ $(document).ready(function () {
             ready = 0;
             $("#mensaje").html('<button type="button" class="close" data-dismiss="alert" >&times;</button>' +
                 '<strong > Verifique los datos en: </strong >' + mensj);
+            $("#mensaje").show();
             console.log("Verifique Datos");
         }
     });

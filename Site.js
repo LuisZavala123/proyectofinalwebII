@@ -52,6 +52,7 @@
             success: function (data) {
                 debugger;
                 sessionStorage.setItem("indx", null);
+                sessionStorage.setItem("accion", "salir");
                 location.href = "index.html";
             },
             error: function (err) {
