@@ -17,12 +17,12 @@ namespace proyectofinalwebII
                 {
                     if (!Session["Usuario"].ToString().Equals("SI"))
                     {
-                        Response.Redirect("../Publico/Principal.aspx");
+                        Response.Redirect("index.html");
                     }
                 }
                 else
                 {
-                    Response.Redirect("../Publico/Principal.aspx");
+                    Response.Redirect("index.html");
                 }
             }
         }

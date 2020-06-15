@@ -2,6 +2,7 @@
 function inicio() {
     $("#container").hide();
     $("#container1").hide();
+    $("#container2").hide();
     if (sessionStorage.getItem("Producto") == "Hamburguesa") {
         noc = "#container img";
         n = "hamburgesas/";

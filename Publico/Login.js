@@ -1,6 +1,4 @@
-﻿
-
-$(document).ready(function () {
+﻿$(document).ready(function () {
 
     function popear(c) {
 
@@ -14,7 +12,7 @@ $(document).ready(function () {
         debugger;
         if (expr.test(Correo)) {
             $.ajax({
-                url: '../WS/WSUsuario.asmx/Confirmar',
+                url: 'WS/WSUsuario.asmx/Confirmar',
                 data: '{ "correo":"' + Correo + '", "pw":"' + Password + '"}',
                 contentType: 'application/json; utf-8',
                 dataType: 'json',
@@ -22,7 +20,9 @@ $(document).ready(function () {
                 success: function (data) {
                     debugger;
                     if (data.d) {
-                        location.href = "Principal.aspx";
+                        sessionStorage.setItem("indx", null);
+                        location.href = "index.html";
+
                     } else {
                         $("#mensaje").html('<button type="button" class="close" data-dismiss="alert" >&times;</button>' +
                             '<strong> Los datos son incorrectos  </strong >');
