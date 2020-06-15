@@ -18,30 +18,30 @@ namespace proyectofinalwebII
                 {
                     if (Session["Usuario"].ToString().Equals("SI"))
                     {
-                        agUsuario.Visible = true;
-                        Reporte.Visible = true;
-                        agProducto.Visible = true;
+                        btnAgUsuario.Visible = true;
+                        btnReporte.Visible = true;
+                        btnAgProducto.Visible = true;
                         exit.Visible = true;
-                        orden.Visible = true;
-                        Login.Visible = false;
+                        btnOrden.Visible = true;
+                        btnLogin.Visible = false;
                     }
                     else {
-                        agUsuario.Visible = false;
-                        Reporte.Visible = false;
-                        agProducto.Visible = false;
+                        btnAgUsuario.Visible = false;
+                        btnReporte.Visible = false;
+                        btnAgProducto.Visible = false;
                         exit.Visible = false;
-                        orden.Visible = false;
-                        Login.Visible = true;
+                        btnOrden.Visible = false;
+                        btnLogin.Visible = true;
                     }
                 }
                 else
                 {
-                    agUsuario.Visible = false;
-                    Reporte.Visible = false;
-                    agProducto.Visible = false;
+                    btnAgUsuario.Visible = false;
+                    btnReporte.Visible = false;
+                    btnAgProducto.Visible = false;
                     exit.Visible = false;
-                    orden.Visible = false;
-                    Login.Visible = true;
+                    btnOrden.Visible = false;
+                    btnLogin.Visible = true;
                 }
             }
         }

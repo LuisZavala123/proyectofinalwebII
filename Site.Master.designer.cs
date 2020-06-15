@@ -7,11 +7,13 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace proyectofinalwebII {
-    
-    
-    public partial class Site {
-        
+namespace proyectofinalwebII
+{
+
+
+    public partial class Site
+    {
+
         /// <summary>
         /// Control head.
         /// </summary>
@@ -20,7 +22,7 @@ namespace proyectofinalwebII {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
-        
+
         /// <summary>
         /// Control frm.
         /// </summary>
@@ -29,7 +31,7 @@ namespace proyectofinalwebII {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm frm;
-        
+
         /// <summary>
         /// Control navbarNav.
         /// </summary>
@@ -38,52 +40,52 @@ namespace proyectofinalwebII {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl navbarNav;
-        
+
         /// <summary>
-        /// Control agUsuario.
+        /// Control btnAgUsuario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl agUsuario;
-        
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl btnAgUsuario;
+
         /// <summary>
-        /// Control Reporte.
+        /// Control btnReporte.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Reporte;
-        
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl btnReporte;
+
         /// <summary>
-        /// Control agProducto.
+        /// Control btnAgProducto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl agProducto;
-        
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl btnAgProducto;
+
         /// <summary>
-        /// Control orden.
+        /// Control btnOrden.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl orden;
-        
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl btnOrden;
+
         /// <summary>
-        /// Control Login.
+        /// Control btnLogin.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Login;
-        
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl btnLogin;
+
         /// <summary>
         /// Control exit.
         /// </summary>
@@ -92,7 +94,7 @@ namespace proyectofinalwebII {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl exit;
-        
+
         /// <summary>
         /// Control contenido.
         /// </summary>
@@ -101,7 +103,7 @@ namespace proyectofinalwebII {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder contenido;
-        
+
         /// <summary>
         /// Control Scripts.
         /// </summary>

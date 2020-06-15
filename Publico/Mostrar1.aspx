@@ -72,6 +72,6 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Scripts" runat="server">
     <script type="text/javascript" src="js/jquery-3.4.1.js"></script>
-    <script type="text/javascript" src="Mostrar1.min.js"> 
+    <script type="text/javascript" src="Publico/Mostrar1.min.js"> 
     </script>
 </asp:Content>
