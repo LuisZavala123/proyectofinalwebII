@@ -66,13 +66,14 @@ $(document).ready(function () {
             console.log("Si");
             ready = 0;
             $.ajax({
-                url: '../WS/WSUsuario.asmx/Agregar',
+                url: 'WS/WSUsuario.asmx/Agregar',
                 data: '{ "nom":"' + Nombre + '", "primer_apellido":"' + ApellidoP + '", "segundo_apellido":"' + ApellidoM + '", "contraseña": "' + Password + '", "Correo": "' + Correo + '", "Tipo":"' + tipo + '"}',
                 contentType: 'application/json; utf-8',
                 dataType: 'json',
                 type: 'POST',
                 success: function (data) {
-                    location.href = "../Publico/Principal.aspx";
+                    sessionStorage.setItem("indx", null);
+                    location.href = "index.html";
                     console.log(data);
                 },
                 error: function (err) {

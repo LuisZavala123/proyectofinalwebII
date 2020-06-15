@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/DeUsuario.Master" AutoEventWireup="true" CodeBehind="ventas.aspx.cs" Inherits="proyectofinalwebII.ventas" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-     <link rel="stylesheet" href="../css/popup.css">
+     <link rel="stylesheet" href="css/popup.css">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="contenido" runat="server">
         <div id="mensaje" class="alert alert-danger">
@@ -50,6 +50,6 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Scripts" runat="server">
-        <script type="text/javascript" src="Usuario/.min.js"></script>
+        <script type="text/javascript" src="Usuario/Ventas.min.js"></script>
     
 </asp:Content>

@@ -4,7 +4,7 @@
     let fech = $('#Fecha').val();
     debugger;
     $.ajax({
-        url: '../WS/WSVenta.asmx/GetallDetalles',
+        url: 'WS/WSVenta.asmx/GetallDetalles',
         data: '{ "fecha":"' + fech + '"}',
         contentType: 'application/json; utf-8',
         dataType: 'json',
