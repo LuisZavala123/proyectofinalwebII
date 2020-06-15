@@ -21,6 +21,7 @@
                     debugger;
                     if (data.d) {
                         sessionStorage.setItem("indx", null);
+                        sessionStorage.setItem("accion", "Login");
                         location.href = "index.html";
 
                     } else {

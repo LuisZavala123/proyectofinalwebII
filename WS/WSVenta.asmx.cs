@@ -63,44 +63,56 @@ namespace proyectofinalwebII.WS
         [WebMethod(EnableSession = true)]
         public List<MDetalles> detalle(String producto, String Cantidad)
         {
-            if (Session["Usuario"] != null && Session["Usuario"].ToString().Equals("SI")) {
-                ArticuloDAO artdao = new ArticuloDAO();
-                MArticulos art = artdao.GetbyNombre(producto);
-                bool si = true;
-                List<MDetalles> detalles = Session["detalles"] as List<MDetalles>;
-                if (detalles == null)
+            try
+            {
+                if (Session["Usuario"] != null && Session["Usuario"].ToString().Equals("SI"))
                 {
-                    detalles = new List<MDetalles>();
-                }
-                if (detalles.Count < 1)
-                {
-                    detalles.Add(new MDetalles("", art.id, art.tipo, int.Parse(Cantidad), int.Parse(Cantidad) * art.costo));
-                }
-                else {
-                    foreach (var item in detalles)
+                    ArticuloDAO artdao = new ArticuloDAO();
+                    MArticulos art = artdao.GetbyNombre(producto);
+                    bool si = true;
+                    List<MDetalles> detalles = Session["detalles"] as List<MDetalles>;
+                    if (detalles == null)
                     {
-                        if (item.producto.Equals(art.id))
-                        {
-                            item.cantidad += int.Parse(Cantidad);
-                            item.total += int.Parse(Cantidad) * art.costo;
-
-                        }
-                        else
-                        {
-                            si = false;
-                        }
+                        detalles = new List<MDetalles>();
                     }
-                    if (!si) {
+                    if (detalles.Count < 1)
+                    {
                         detalles.Add(new MDetalles("", art.id, art.tipo, int.Parse(Cantidad), int.Parse(Cantidad) * art.costo));
                     }
+                    else
+                    {
+                        foreach (var item in detalles)
+                        {
+                            if (item.producto.Equals(art.id))
+                            {
+                                item.cantidad += int.Parse(Cantidad);
+                                item.total += int.Parse(Cantidad) * art.costo;
+
+                            }
+                            else
+                            {
+                                si = false;
+                            }
+                        }
+                        if (!si)
+                        {
+                            detalles.Add(new MDetalles("", art.id, art.tipo, int.Parse(Cantidad), int.Parse(Cantidad) * art.costo));
+                        }
+                    }
+                    Session["detalles"] = detalles;
+                    return detalles;
                 }
-                Session["detalles"] = detalles;
-                return detalles;
+                else
+                {
+                    return null;
+                }
             }
-            else
+            catch (Exception)
             {
+
                 return null;
             }
+            
         }
 
         [WebMethod(EnableSession = true)]
