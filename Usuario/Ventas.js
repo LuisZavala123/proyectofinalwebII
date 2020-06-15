@@ -5,7 +5,7 @@ function eliminar(dato) {
     dato.preventDefault;
     debugger;
     $.ajax({
-        url: '../WS/WSVenta.asmx/quitarDetalle',
+        url: 'WS/WSVenta.asmx/quitarDetalle',
         data: '{ "id":"' + dato + '"}',
         contentType: 'application/json; utf-8',
         dataType: 'json',
@@ -52,7 +52,7 @@ function eliminar(dato) {
 $(document).ready(function nombres(e) {
     e.preventDefault;
     $.ajax({
-        url: '../WS/WSArticulos.asmx/GetNombres',
+        url: 'WS/WSArticulos.asmx/GetNombres',
         data: {},
         contentType: 'application/json; utf-8',
         dataType: 'json',
@@ -83,7 +83,7 @@ $(document).ready(function () {
         var prod = $('#contenido_contenido_CboxProducto').val();
         var cant = $('#contenido_contenido_txtCantidad').val();
         $.ajax({
-            url: '../WS/WSVenta.asmx/detalle',
+            url: 'WS/WSVenta.asmx/detalle',
             data: '{ "producto":"' + prod + '", "Cantidad": "' + cant + '"}',
             contentType: 'application/json; utf-8',
             dataType: 'json',
@@ -135,14 +135,15 @@ $(document).ready(function () {
         var Total = $('#contenido_contenido_lbltotal').html();
         debugger;
         $.ajax({
-            url: '../WS/WSVenta.asmx/Agregar',
+            url: 'WS/WSVenta.asmx/Agregar',
             data: '{"Total":"' + Total + '", "Descripcion": "' + desc + '"}',
             contentType: 'application/json; utf-8',
             dataType: 'json',
             type: 'POST',
             success: function (data) {
                 debugger;
-                location.href = "../Publico/Principal.aspx";
+                sessionStorage.setItem("indx", null);
+                location.href = "index.html";
                 console.log(data);
             },
             error: function (err) {

@@ -37,13 +37,14 @@ $(document).ready(function () {
         console.log(ready);
         if (ready == 2) {
             $.ajax({
-                url: '../WS/WSArticulos.asmx/Agregar',
+                url: 'WS/WSArticulos.asmx/Agregar',
                 data: '{ "nom":"' + Nombre + '", "costo":"' + Costo + '", "Descripcion":"' + Desc + '", "Tipo": "' + tipo + '" }',
                 contentType: 'application/json; utf-8',
                 dataType: 'json',
                 type: 'POST',
                 success: function (data) {
-                    location.href = "../Publico/Principal.aspx";
+                    sessionStorage.setItem("indx", null);
+                    location.href = "index.html";
                 },
                 error: function (err) {
                     $("#mensaje").html('<button type="button" class="close" data-dismiss="alert" >&times;</button>' +

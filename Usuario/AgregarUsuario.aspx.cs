@@ -18,11 +18,11 @@ namespace proyectofinalwebII
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Principal.aspx");
+            Response.Redirect("index.html");
         }
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Principal.aspx");
+            Response.Redirect("index.html");
         }
 
     }
