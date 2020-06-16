@@ -10,16 +10,18 @@ namespace proyectofinalwebII
         public string Tipo { get; set; }
         public int Cantidad { get; set; }
         public Double Total { get; set; }
+        public string Nombre { get; set; }
 
         public MReporte()
         {
         }
 
-        public MReporte(string tipo, int cantidad, double total)
+        public MReporte(string tipo, int cantidad, double total,String Nombre)
         {
             Tipo = tipo;
             Cantidad = cantidad;
             Total = total;
+            this.Nombre = Nombre;
         }
     }
 }

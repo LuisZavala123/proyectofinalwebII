@@ -118,7 +118,6 @@ $(document).ready(function () {
 
                         }
                         $('#contenido_contenido_lbltotal').html(to);
-                        $('#grvLista').DataTable();
                         console.log(data);
                     } else {
                         $("#mensaje").html('<button type="button" class="close" data-dismiss="alert" >&times;</button>' +

@@ -78,6 +78,7 @@ namespace proyectofinalwebII.DAOS
 
                 foreach (DataRow fila in tabla.Rows)
                 {
+                    ven = new MVentas();
                     ven.id = fila["idVentas"].ToString();
                     ven.fecha = fila["fecha"].ToString();
                     ven.total = Double.Parse(fila["total"].ToString());
@@ -226,7 +227,7 @@ namespace proyectofinalwebII.DAOS
 
                 foreach (DataRow fila in tabla.Rows)
                 {
-
+                    det = new MDetalles();
                     det.idVenta = fila["idVenta"].ToString();
                     det.producto = fila["Producto"].ToString();
                     det.Tipo = fila["Tipo"].ToString();
