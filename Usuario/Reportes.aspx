@@ -13,5 +13,5 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Scripts" runat="server">
     
-    <script type="text/javascript" src="Usuario/Reportes.js"></script>
+    <script type="text/javascript" src="Usuario/Reportes.min.js"></script>
 </asp:Content>

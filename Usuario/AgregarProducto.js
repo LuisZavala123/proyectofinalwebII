@@ -7,7 +7,30 @@ var ready = 0;
 var mensj = "";
 $(document).ready(function () {
 
-
+    $('#frm').validate({
+        rules: {
+            ctl00$ctl00$contenido$contenido$txtCosto: {
+                required: true,
+                step: .01
+            },
+            ctl00$ctl00$contenido$contenido$txtNombre: {
+                required: true,
+                lettersonly: true,
+                minlength: 2
+            }
+        },
+        messages: {
+            ctl00$ctl00$contenido$contenido$txtCosto: {
+                required: 'Por favor, ingrese un costo',
+                step: 'Por favor, ingrese costo valido'
+            },
+            ctl00$ctl00$contenido$contenido$txtNombre: {
+                required: 'Por favor, ingrese un nombre',
+                lettersonly: 'Por favor, ingrese nombre valido',
+                minlength: "Por favor, ingrese un nombre real"
+            }
+        }
+    });
 
     $('#contenido_contenido_btnAceptar').click(function (e) {
         e.preventDefault();
