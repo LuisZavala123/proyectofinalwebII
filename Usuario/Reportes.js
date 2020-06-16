@@ -1,4 +1,10 @@
-﻿$('#contenido_contenido_btnGenerar').click(function (e) {
+﻿var tabla = null;
+function otro() {
+    sessionStorage.setItem("indx", "5");
+    location.href = "index.html";
+}
+
+$('#contenido_contenido_btnGenerar').click(function (e) {
     e.preventDefault();
     debugger;
     let fech = $('#Fecha').val();
@@ -11,26 +17,49 @@
         type: 'POST',
         success: function (data) {
             debugger;
+           
             $('#grvLista tbody').remove();
             $('#grvLista tr').remove();
             $('#grvLista td').remove();
             let tabla = $('#grvLista');
-            let encabezado = $("<thead/>").append("<tr><th>Producto</th><th>Cantidad</th><th>Total</th>");
+            let encabezado = $("<thead/>").append("<tr><th>Producto</th><th>Tipo</th><th>Cantidad</th><th>Total</th>");
             $(tabla).append(encabezado);
             $(tabla).append("<tbody/>");
 
             let fila;
             for (var i = 0; i < data.d.length; i++) {
                 fila = document.createElement("tr");
-                let cosa = '<td>' + data.d[i].Tipo + '</td>' +
+                let cosa = '<td>' + data.d[i].Nombre + '</td>' +
+                    '<td>' + data.d[i].Tipo + '</td>' +
                     '<td>' + data.d[i].Cantidad.toString() + '</td>' +
                     '<td>' + data.d[i].Total.toString() + '</td>';
                 fila.innerHTML = cosa;
                 $(tabla).children('tbody').append(fila);
 
             }
+            
+            $('#grvListathead tr:eq(1) th').each(function (i) {
+                var title = $(this).text();
+                $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+
+                $('input', this).on('keyup change', function () {
+                    if (table.column(i).search() !== this.value) {
+                        table
+                            .column(i)
+                            .search(this.value)
+                            .draw();
+                    }
+                });
+            });
             debugger;
-            $('#grvLista').DataTable();
+            tabla= $('#grvLista').DataTable({
+                orderCellsTop: true,
+                fixedHeader: true
+            });
+            $('#Fecha').hide();
+            $('#contenido_contenido_btnGenerar').hide();
+            
+            
             console.log(data);
         },
         error: function (err) {

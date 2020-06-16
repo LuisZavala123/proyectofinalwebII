@@ -7,11 +7,13 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace proyectofinalwebII {
-    
-    
-    public partial class Reportes {
-        
+namespace proyectofinalwebII
+{
+
+
+    public partial class Reportes
+    {
+
         /// <summary>
         /// Control btnGenerar.
         /// </summary>

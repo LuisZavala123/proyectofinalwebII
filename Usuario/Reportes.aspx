@@ -5,9 +5,10 @@
     <div class="row justify-content-center my-2">
         <input id="Fecha" type="date">   
     </div>
-    <div class="row justify-content-center my-2">
-            <asp:Button ID="btnGenerar" CssClass="btn btn-success mybtn btn-primary tx-tfm" runat="server" Text="Generar Reporte" />
-        </div>
+    <div  class="row justify-content-center my-2">
+            <asp:Button ID="btnGenerar" CssClass="btn btn-success mybtn btn-primary tx-tfm" runat="server" Text="Generar Reporte" />  
+    </div>
+    
         <table id="grvLista" class="sem table table-bordered table-striped table-hover dib" ></table>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Scripts" runat="server">

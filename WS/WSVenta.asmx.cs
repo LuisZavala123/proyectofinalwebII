@@ -153,10 +153,11 @@ namespace proyectofinalwebII.WS
                     {
                         if (item.fecha.Equals(fecha) && item.id.Equals(item2.idVenta))
                         {
+                            rep = new MReporte();
                             rep.Tipo = item2.Tipo;
                             rep.Cantidad = item2.cantidad;
                             rep.Total = item2.total;
-
+                            rep.Nombre = new ArticuloDAO().Getbyid(item2.producto).nombre;
                             if (lista2.Contains(rep))
                             {
                                 lista2.ElementAt(lista2.IndexOf(rep)).Total += rep.Total;
