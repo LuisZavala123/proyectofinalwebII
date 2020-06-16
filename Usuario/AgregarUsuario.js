@@ -11,12 +11,69 @@ var mensj = "";
 $(document).ready(function () {
 
     
+    $('#frm').validate({
+        rules: {
+            ctl00$ctl00$contenido$contenido$txtApellidoP: {
+                required: true,
+                lettersonly: true,
+                minlength: 2
+            },
+            ctl00$ctl00$contenido$contenido$txtApellidoM: {
+                required: false,
+                lettersonly: true,
+                minlength: 2
+            },
+            ctl00$ctl00$contenido$contenido$txtNombre: {
+                required: true,
+                lettersonly: true,
+                minlength: 2
+            },
+            ctl00$ctl00$contenido$contenido$txtEmail: {
+                required: true,
+                email: true
+            },
+            ctl00$ctl00$contenido$contenido$txtPassword: {
+                required: true
+            },
+            ctl00$ctl00$contenido$contenido$txtRPassword: {
+                required: true,
+                equalTo: '#ctl00$ctl00$contenido$contenido$txtPassword'
+            }
+        },
+        messages: {
+            ctl00$ctl00$contenido$contenido$txtApellidoP: {
+                required: 'Por favor, ingrese un Apellido Paterno',
+                lettersonly: 'Por favor, ingrese Apellido valido',
+                minlength: "Por favor, ingrese un Apellido real"
+            },
+            ctl00$ctl00$contenido$contenido$txtApellidoM: {
+                lettersonly: 'Por favor, ingrese Apellido valido',
+                minlength: "Por favor, ingrese un Apellido real"
+            },
+            ctl00$ctl00$contenido$contenido$txtNombre: {
+                required: 'Por favor, ingrese un nombre',
+                lettersonly: 'Por favor, ingrese nombre valido',
+                minlength: "Por favor, ingrese un nombre real"
+            },
+            ctl00$ctl00$contenido$contenido$txtEmail: {
+                required: 'Por favor, ingrese un correo',
+                email: 'Por favor, ingrese correo valido'
+            },
+            ctl00$ctl00$contenido$contenido$txtPassword: {
+                required: 'Por favor, ingrese una contraseña'
+            },
+            ctl00$ctl00$contenido$contenido$txtRPassword: {
+                required: 'Por favor, ingrese nuevamente la contraseña',
+                equalTo: 'Por favor, ingrese contraseña correcta'
+            }
+        }
+    });
 
     $('#contenido_contenido_btnAceptar').click(function (e) {
         e.preventDefault();
         mensj = "";
         debugger;
-
+        
         var Nombre = $('#contenido_contenido_txtNombre').val();
         var ApellidoP = $('#contenido_contenido_txtApellidoP').val();
         var ApellidoM = $('#contenido_contenido_txtApellidoM').val();
@@ -41,11 +98,7 @@ $(document).ready(function () {
             mensj = mensj + "Apellido , ";
         }
         debugger;
-        if (exprn.test(ApellidoM)) {
-            ready += 1;
-        } else {
-            ready = 0;
-        }
+        
         if (expr.test(Correo)) {
             ready += 1;
             cor = 0;
@@ -62,7 +115,7 @@ $(document).ready(function () {
             mensj = mensj + "Contraseña ";
         }
         console.log(ready);
-        if (ready == 5) {
+        if (ready == 4) {
             console.log("Si");
             ready = 0;
             $.ajax({

@@ -1,6 +1,5 @@
 ﻿$(document).ready(function () {
     debugger;
-
     $("#btnPrincipal").click(function () {
         sessionStorage.setItem("indx", null);
         location.href = "index.html";
@@ -61,4 +60,5 @@
         });
 
     });
+    
 });

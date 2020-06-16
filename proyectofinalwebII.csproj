@@ -118,8 +118,12 @@
     <Content Include="css\datatables.min.css" />
     <Content Include="css\popup.css" />
     <Content Include="index.html" />
+    <Content Include="js\additional-methods.js" />
+    <Content Include="js\additional-methods.min.js" />
     <Content Include="js\datatables.js" />
     <Content Include="js\datatables.min.js" />
+    <Content Include="js\jquery.validate.js" />
+    <Content Include="js\jquery.validate.min.js" />
     <Content Include="Publico\Login.min.js" />
     <Content Include="Publico\Mostrar1.min.js" />
     <Content Include="css\Alert.css" />
