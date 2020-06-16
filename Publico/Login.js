@@ -4,6 +4,20 @@
 
     }
     popear(1);
+    $('#frm').validate({
+        rules: {
+            ctl00$contenido$txtEmail: {
+                required: true,
+                email: true
+            }
+        },
+        messages: {
+            ctl00$contenido$txtEmail: {
+                required: 'Por favor, ingrese un correo',
+                email: 'Por favor, ingrese correo valido'
+            }
+        }
+    });
     $('#contenido_btnLogin').click(function (e) {
         debugger;
         e.preventDefault();
