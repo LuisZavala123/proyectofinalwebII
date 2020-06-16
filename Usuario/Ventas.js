@@ -50,6 +50,19 @@ function eliminar(dato) {
 
 
 $(document).ready(function nombres(e) {
+
+    $('#frm').validate({
+        rules: {
+            ctl00$ctl00$contenido$contenido$txtCantidad: {
+                required: true
+            }
+        },
+        messages: {
+            ctl00$ctl00$contenido$contenido$txtCantidad: {
+                required: 'Por favor, ingrese una Cantidad'
+            }
+        }
+    });
     e.preventDefault;
     $.ajax({
         url: 'WS/WSArticulos.asmx/GetNombres',
@@ -77,7 +90,18 @@ $(document).ready(function nombres(e) {
 
 });
 $(document).ready(function () {
-
+    $('#frm').validate({
+        rules: {
+            ctl00$ctl00$contenido$contenido$txtCantidad: {
+                required: true
+            }
+        },
+        messages: {
+            ctl00$ctl00$contenido$contenido$txtCantidad: {
+                required: 'Por favor, ingrese una Cantidad'
+            }
+        }
+    });
     $('#contenido_contenido_btnAgregar').click(function (e) {
         e.preventDefault();
         var prod = $('#contenido_contenido_CboxProducto').val();
@@ -142,6 +166,18 @@ $(document).ready(function () {
     });
 });
 $(document).ready(function () {
+    $('#frm').validate({
+        rules: {
+            ctl00$ctl00$contenido$contenido$txtCantidad: {
+                required: true
+            }
+        },
+        messages: {
+            ctl00$ctl00$contenido$contenido$txtCantidad: {
+                required: 'Por favor, ingrese una Cantidad'
+            }
+        }
+    });
     $('#contenido_contenido_btnAceptar').click(function (e) {
         e.preventDefault();
 
