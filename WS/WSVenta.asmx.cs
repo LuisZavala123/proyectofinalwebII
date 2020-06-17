@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Services;
 using System.Xml;
 using System.Text.RegularExpressions;
+using System.Web.Script.Serialization;
 
 namespace proyectofinalwebII.WS
 {
@@ -61,7 +62,7 @@ namespace proyectofinalwebII.WS
             
         
         [WebMethod(EnableSession = true)]
-        public List<MDetalles> detalle(String producto, String Cantidad)
+        public string detalle(String producto, String Cantidad)
         {
             try
             {
@@ -100,7 +101,8 @@ namespace proyectofinalwebII.WS
                         }
                     }
                     Session["detalles"] = detalles;
-                    return detalles;
+                    JavaScriptSerializer jss = new JavaScriptSerializer();
+                    return jss.Serialize(detalles);
                 }
                 else
                 {
@@ -139,7 +141,7 @@ namespace proyectofinalwebII.WS
             }
         }
         [WebMethod(EnableSession = true)]
-        public List<MReporte> GetallDetalles(String fecha)
+        public string GetallDetalles(String fecha)
         {
             if (Session["Usuario"] != null && Session["Usuario"].ToString().Equals("SI"))
             {
@@ -171,8 +173,8 @@ namespace proyectofinalwebII.WS
                         }
                     }
                 }
-
-                return lista2;
+                JavaScriptSerializer jss = new JavaScriptSerializer();
+                return jss.Serialize(lista2);
             }
             else {
                 return null;
@@ -209,7 +211,7 @@ namespace proyectofinalwebII.WS
         }
 
         [WebMethod(EnableSession = true)]
-        public List<MDetalles> quitarDetalle(string id)
+        public string quitarDetalle(string id)
         {
             if (Session["Usuario"] != null && Session["Usuario"].ToString().Equals("SI"))
             {
@@ -224,7 +226,8 @@ namespace proyectofinalwebII.WS
                 }
                 detalles.Remove(temp);
                 Session["detalles"] = detalles;
-                return detalles;
+                JavaScriptSerializer jss = new JavaScriptSerializer();
+                return jss.Serialize(detalles);
             }
             else {
                 return null;
