@@ -1,6 +1,4 @@
-﻿
-
-
+﻿var si = 0;
 function eliminar(dato) {
     dato.preventDefault;
     debugger;
@@ -115,7 +113,6 @@ $(document).ready(function () {
                 type: 'POST',
                 success: function (data) {
                     if (data != null) {
-
                         $('#grvLista tbody').remove();
                         $('#grvLista tr').remove();
                         $('#grvLista td').remove();
@@ -141,6 +138,51 @@ $(document).ready(function () {
                             $(tabla).children('tbody').append(fila);
 
                         }
+                        $('#grvLista thead tr th').each(function (i) {
+                            var title = $(this).text();
+                            $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+                            
+                            $('input', this).on('keyup change', function () {
+                                if (table.column(i).search() !== this.value) {
+                                    table
+                                        .destroy()
+                                        .column(i)
+                                        .search(this.value)
+                                        .draw();
+                                }
+                            });
+                        });
+                        debugger;
+                        $('#grvLista thead tr th').each(function (i) {
+                            var title = $(this).text();
+                            debugger;
+                            $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+                            debugger;
+                            $('input', this).on('keyup change', function (e) {
+                                if ($('#grvLista').DataTable().column(i).search() !== this.value && (e.keyCode == 13)) {
+                                    debugger;
+                                    $('#grvLista').DataTable({
+                                        destroy: true,
+                                        orderCellsTop: true,
+                                        fixedHeader: true
+                                    })
+                                        .column(i)
+                                        .search(this.value)
+                                        .draw();
+                                    console.log("fun");
+                                    debugger;
+                                }
+                            });
+                        });
+                        debugger;
+
+                        $('#grvLista').DataTable({
+                            destroy: true,
+                            orderCellsTop: true,
+                            fixedHeader: true
+                        });
+
+
                         $('#contenido_contenido_lbltotal').html(to);
                         console.log(data);
                     } else {

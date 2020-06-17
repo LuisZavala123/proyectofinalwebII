@@ -17,7 +17,9 @@ $('#contenido_contenido_btnGenerar').click(function (e) {
         type: 'POST',
         success: function (data) {
             debugger;
-           
+
+            $('#grvLista').empty();
+            $('#grvLista thead').remove();
             $('#grvLista tbody').remove();
             $('#grvLista tr').remove();
             $('#grvLista td').remove();
@@ -37,27 +39,37 @@ $('#contenido_contenido_btnGenerar').click(function (e) {
                 $(tabla).children('tbody').append(fila);
 
             }
+            debugger;
             
-            $('#grvListathead tr:eq(1) th').each(function (i) {
+            $('#grvLista thead tr th').each(function (i) {
                 var title = $(this).text();
+                debugger;
                 $(this).html('<input type="text" placeholder="Search ' + title + '" />');
-
-                $('input', this).on('keyup change', function () {
-                    if (table.column(i).search() !== this.value) {
-                        table
+                debugger;
+                $('input', this).on('keyup change', function(e) {
+                    if ($('#grvLista').DataTable().column(i).search() !== this.value && (e.keyCode == 13)) {
+                        debugger;
+                        $('#grvLista').DataTable({
+                            destroy: true,
+                            orderCellsTop: true,
+                            fixedHeader: true
+                        })
                             .column(i)
                             .search(this.value)
                             .draw();
+                        console.log("fun");
+                        debugger;
                     }
                 });
             });
             debugger;
-            tabla= $('#grvLista').DataTable({
-                orderCellsTop: true,
-                fixedHeader: true
-            });
-            $('#Fecha').hide();
-            $('#contenido_contenido_btnGenerar').hide();
+            
+                $('#grvLista').DataTable({
+                    destroy: true,
+                    orderCellsTop: true,
+                    fixedHeader: true
+                });
+            
             
             
             console.log(data);
