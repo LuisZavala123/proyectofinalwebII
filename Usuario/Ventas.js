@@ -1,4 +1,72 @@
-﻿var si = 0;
+﻿var con = 0;
+var tb;
+
+function recargarDatos(datos) {
+    tb.fnClearTable();
+    tb.fnAddData(datos);
+}
+
+function cargarDatos(datos) {
+    debugger;
+
+    tb = $('#grvLista').dataTable({
+        data: datos,
+        columnDefs: [
+            { width: "15%", targets: [0] },
+            { width: "25%", targets: [1] },
+            { width: "20%", targets: [2] },
+            { width: "40%", targets: [3] }
+        ],
+        columns: [
+
+            { title: "Tipo", data: "Tipo" },
+            { title: "Cantidad", data: "cantidad" },
+            { title: "Total", data: "total" },
+            { 
+
+                title: "", data: null, render:
+                    
+                    function (data, type, row) {
+                        return '<div class="row justify-content-center">' +
+                            '<button type="button" onclick="eliminar('+data.producto+')" class="btn btn-danger">Eliminar</button>' +
+                            '</div>';
+                    }
+            }
+
+        ],
+
+        "fnInitComplete": function (oSettings, json) {
+
+
+            var fila = $(this).children("thead").children("tr").clone();
+            var pie = $("<tfoot/>").append(fila).css("display", "table-header-group");
+            $(this).children("thead").after(pie);
+            $(fila).children().each(function () {
+                $(this).prop("class", null);
+            });
+
+            $(fila).children("th").each(function () {
+                var title = $(this).text();
+                $(this).html('<input type="text" class="filtro form-control input-sm"' +
+                    ' style = "width:90%;" placeholder = "Buscar ' + title + '" /> ');
+            });
+
+            $(fila).children("th:last").html('');
+            var tabla = this;
+            tabla.api().columns().eq(0).each(function (colIdx) {
+                $('#grvLista tfoot th:eq(' + colIdx + ') input').on('keyup change', function () {
+                    tabla.api().column(colIdx).search(this.value).draw();
+                });
+                $('input', tabla.api().column(colIdx).footer()).on('click', function (e) {
+                    e.stopPropagation();
+                });
+            });
+        }
+    });
+
+}
+
+
 function eliminar(dato) {
     dato.preventDefault;
     debugger;
@@ -10,33 +78,8 @@ function eliminar(dato) {
         type: 'POST',
         success: function (data) {
 
-            $('#grvLista tbody').remove();
-            $('#grvLista tr').remove();
-            $('#grvLista td').remove();
-            let tabla = $('#grvLista');
-            let encabezado = $("<thead/>").append("<tr><th>Producto</th><th>Cantidad</th><th>Total</th><td></td>");
-            $(tabla).append(encabezado);
-            $(tabla).append("<tbody/>");
-            debugger;
-            let fila;
-            let to = 0;
-            for (var i = 0; i < data.d.length; i++) {
-
-
-                to = to + data.d[i].total;
-                fila = document.createElement("tr");
-                let cosa = '<td>' + data.d[i].Tipo + '</td>' +
-                    '<td>' + data.d[i].cantidad + '</td>' +
-                    '<td>' + data.d[i].total + '</td>' +
-                    '<td>' +
-                    '<button type="button" OnClick="eliminar(' + data.d[i].producto + ')" class="btn btn-danger">Eliminar</button>'
-                    + '</td>';
-                fila.innerHTML = cosa;
-                $(tabla).children('tbody').append(fila);
-
-            }
-            $('#contenido_contenido_lbltotal').html(to);
-            $('#grvLista').DataTable();
+            recargarDatos(JSON.parse(data.d));
+            con = con - 1;
             console.log(data);
         },
         error: function (err) {
@@ -113,78 +156,13 @@ $(document).ready(function () {
                 type: 'POST',
                 success: function (data) {
                     if (data != null) {
-                        $('#grvLista tbody').remove();
-                        $('#grvLista tr').remove();
-                        $('#grvLista td').remove();
-                        let tabla = $('#grvLista');
-                        let encabezado = $("<thead/>").append("<tr><th>Producto</th><th>Cantidad</th><th>Total</th><td></td>");
-                        $(tabla).append(encabezado);
-                        $(tabla).append("<tbody/>");
-                        debugger;
-                        let fila;
-                        let to = 0;
-                        for (var i = 0; i < data.d.length; i++) {
-
-
-                            to = to + data.d[i].total;
-                            fila = document.createElement("tr");
-                            let cosa = '<td>' + data.d[i].Tipo + '</td>' +
-                                '<td>' + data.d[i].cantidad + '</td>' +
-                                '<td>' + data.d[i].total + '</td>' +
-                                '<td>' +
-                                '<button type="button" OnClick="eliminar(' + data.d[i].producto + ')" class="btn btn-danger">Eliminar</button>'
-                                + '</td>';
-                            fila.innerHTML = cosa;
-                            $(tabla).children('tbody').append(fila);
-
-                        }
-                        $('#grvLista thead tr th').each(function (i) {
-                            var title = $(this).text();
-                            $(this).html('<input type="text" placeholder="Search ' + title + '" />');
-                            
-                            $('input', this).on('keyup change', function () {
-                                if (table.column(i).search() !== this.value) {
-                                    table
-                                        .destroy()
-                                        .column(i)
-                                        .search(this.value)
-                                        .draw();
-                                }
-                            });
-                        });
-                        debugger;
-                        $('#grvLista thead tr th').each(function (i) {
-                            var title = $(this).text();
-                            debugger;
-                            $(this).html('<input type="text" placeholder="Search ' + title + '" />');
-                            debugger;
-                            $('input', this).on('keyup change', function (e) {
-                                if ($('#grvLista').DataTable().column(i).search() !== this.value && (e.keyCode == 13)) {
-                                    debugger;
-                                    $('#grvLista').DataTable({
-                                        destroy: true,
-                                        orderCellsTop: true,
-                                        fixedHeader: true
-                                    })
-                                        .column(i)
-                                        .search(this.value)
-                                        .draw();
-                                    console.log("fun");
-                                    debugger;
-                                }
-                            });
-                        });
-                        debugger;
-
-                        $('#grvLista').DataTable({
-                            destroy: true,
-                            orderCellsTop: true,
-                            fixedHeader: true
-                        });
-
-
-                        $('#contenido_contenido_lbltotal').html(to);
-                        console.log(data);
+                        console.log(JSON.parse(data.d));
+                        if (con < 1) {
+                            cargarDatos(JSON.parse(data.d));
+                            con = con + 1;
+                        } else {
+                            recargarDatos(JSON.parse(data.d));
+                        } 
                     } else {
                         $("#mensaje").html('<button type="button" class="close" data-dismiss="alert" >&times;</button>' +
                             '<strong > revise los datos </strong >');
